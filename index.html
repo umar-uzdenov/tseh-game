@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="staff-styles.css" />
+    <link rel="stylesheet" href="tabs-styles.css" />
+    <title>Цех игра</title>
+</head>
+<body>
+    <script src="database.js"></script>
+    <script src="main.js" defer></script>
+    <div class="tab-content">
+        <div class="tab workshop">
+            <div class="sub-tab machines">Станки</div>
+            <div class="sub-tab warehouse" style="display:none;">Склад</div>
+            <div class="sub-tab yarn" style="display:none;">Пряжа</div>
+            
+            <div class="sub-tab-btns">
+                <button class="sub-tab-btn machines active">Станки</button>
+                <button class="sub-tab-btn warehouse">Склад</button>
+                <button class="sub-tab-btn yarn">Пряжа</button>
+            </div>
+        </div>
+        <div class="tab store" style="display:none;">
+            <div class="sub-tab machines">Станки</div>
+            <div class="sub-tab spares" style="display:none;">Запчасти</div>
+            <div class="sub-tab yarn" style="display:none;">Пряжа</div>
+
+            <div class="sub-tab-btns">
+                <button class="sub-tab-btn machines active" >Станки</button>
+                <button class="sub-tab-btn spares" >Запчасти</button>
+                <button class="sub-tab-btn yarn" >Пряжа</button>
+            </div>
+        </div>
+        <div class="tab market" style="display:none;">
+            <div class="sub-tab bazaar">Базар</div>
+            <div class="sub-tab online" style="display:none;">Маркетплейсы</div>
+            <div class="sub-tab social" style="display:none;">Соцсети</div>
+
+            <div class="sub-tab-btns">
+                <button class="sub-tab-btn bazaar active">Базар</button>
+                <button class="sub-tab-btn online">Маркетплейсы</button>
+                <button class="sub-tab-btn social">Соцсети</button>
+            </div>
+        </div>
+        <div class="tab profile" style="display:none;">
+            <div  class="sub-tab profile">Профиль</div>
+            <div  class="sub-tab friends" style="display:none;">Друзья</div>
+            <div  class="sub-tab rating" style="display:none;">Рейтинг</div>
+
+            <div class="sub-tab-btns">
+                <button class="sub-tab-btn profile active">Профиль</button>
+                <button class="sub-tab-btn friends">Друзья</button>
+                <button class="sub-tab-btn rating">Рейтинг</button>
+            </div>
+        </div>
+    </div>
+    <div class="tab-btns">
+        <button class="tab-btn workshop">Цех</button>
+        <button class="tab-btn store">Магазин</button>
+        <button class="tab-btn market">Рынок</button>
+        <button class="tab-btn profile">Профиль</button>
+    </div>
+</body>
+</html>
