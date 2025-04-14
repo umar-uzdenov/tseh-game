@@ -1,0 +1,16 @@
+# Plan to Move Buttons to the Bottom of the Screen
+
+## Changes to be Made:
+
+1. **index.html**
+   - Move the `#tabs` div to the end of the body to ensure it is positioned at the bottom of the screen.
+
+2. **style.css**
+   - Update the `#tabs` styles to:
+     - Set `position: fixed;` to keep it at the bottom.
+     - Set `bottom: 0;` to position it at the bottom of the viewport.
+     - Set `width: 100%;` to make it span the entire width of the screen.
+     - Adjust `justify-content` to ensure buttons are centered.
+
+## Follow-up Steps:
+- Test the changes in a browser to ensure the buttons are fixed at the bottom and function correctly.
