@@ -7,3 +7,13 @@ html, body {
 }
 
 
+.header {
+    display: flex;
+    background: #ffffff;
+    position: fixed;
+    top: 0;
+    width: 100%; /* Full width */
+    z-index: 100;
+    align-items: center;
+    height: 40px;
+}

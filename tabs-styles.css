@@ -1,10 +1,13 @@
 /* Material Design Top Tabs */
 
 
-.tab {
+.tab-content {
     position: relative;
-    min-height: calc(100vh - 80px); /* Account for both tab bars */
+    top: 40px;
+    min-height: calc(100vh - 120px); /* Account for both tab bars */
     padding-bottom: 80px;
+    width: 100%;
+    /* overflow-y: scroll; */
 }
 
 .tab-btns {

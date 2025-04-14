@@ -1,5 +1,12 @@
 // Обновлённая база данных с методами внутри объекта
 var database = {
+    machineBrands: [
+        { name: "Sternfeld", country: "Германия", translation: "Звёздное поле" },
+        { name: "Hoshino (星の野)", country: "Япония", translation: "Звёздное поле" },
+        { name: "Xing Tian (星田)", country: "Китай", translation: "Звёздное поле" },
+        { name: "Champ d'Étoiles", country: "Швейцария", translation: "Звёздное поле" },
+        { name: "Campo Stellare", country: "Италия", translation: "Звёздное поле" }
+    ],
     users: [
         { id: 1, name: "John Doe", email: "john@example.com", position: "Manager" },
         { id: 2, name: "Jane Smith", email: "jane@example.com", position: "Developer" },
