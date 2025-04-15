@@ -36,14 +36,14 @@ function showStoreSpares() {
 
     database.getSpares().forEach(item => {
         const card = document.createElement("div");
-        card.className = "spares-card";
+        card.className = "card vertical";
         card.innerHTML = `
-            <div class="spares-row">
+            <div class="card-row">
                 <span class="product-name">${item.transcription}</span>
                 <span class="product-price">${item.price} ₽</span>
             </div>
             <span class="product-name">${item.description}</span>
-            <div class="spares-row">
+            <div class="card-row">
                 <span class="product-price">Количество</span>
                 <input type="number" value="1" min="1" max="999">
                 <button class="buy-btn">Купить</button>
@@ -66,14 +66,14 @@ function showStoreYarn() {
     
     yarns.forEach(yarn => {
         const card = document.createElement("div");
-        card.className = "yarn-card";
+        card.className = "card vertical";
         card.innerHTML = `
-            <div class="yarn-row">
+            <div class="card-row">
                 <div>${yarn.name}</div>
                 <div>${yarn.price.toFixed(0)} ₽</div>
             </div>
             <div>Состав: ${yarn.composition}</div>
-            <div class="yarn-row">
+            <div class="card-row">
                 <div>Килограмм</div>
                 <input type="number" class="yarn-quantity" value="1" min="1" max="10000">
                 <button class="buy-btn">Купить</button>

@@ -9,8 +9,8 @@ const tabs = {
     all: ["workshop", "store", "market", "profile"],
     workshop: {
         name: "workshop",
-        machines: "machines", warehouse: "warehouse", yarn: "yarn",
-        all: ["machines", "warehouse", "yarn"],
+        machines: "machines", models: "models", warehouse: "warehouse", yarn: "yarn",
+        all: ["machines", "models", "warehouse", "yarn"],
     },
     store: { 
         name: "store",
@@ -55,44 +55,16 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     }
 
-    activateTab(tabs.profile.name)
-    activateSubTab(tabs.profile.name, tabs.profile.profile)
+    function open(name, sub) {
+        activateTab(tabs[name].name)
+        activateSubTab(tabs[name].name, tabs[name][sub])
+    }
+
+    open("workshop", "warehouse")
 
     // Показать цех по умолчанию
     // showWorkshop();
 });
-
-function showWorkshopMachines() {
-    const workshopMachines = query(".tab.workshop .machines")
-    workshopMachines.innerHTML = '';
-    
-    // Создаем сетку для машин
-    const grid = document.createElement("div");
-    grid.className = "main-grid";
-    
-    database.getMachines().forEach(machine => {
-        const card = document.createElement("div");
-        card.className = "machine-card";
-        // <div class="machine-img"><img src="${machine.image}" alt="${machine.name}"></div>
-        card.innerHTML = `
-            <div class="machine-header">
-                <div class="machine-img" style="--machine-img-url: url('img/sturm.jpg');"></div>
-                <span class="machine-name">${machine.name}</span>
-                <span class="status-${machine.status.style}">${
-                    machine.status.description
-                }</span>
-            </div>
-
-            <div class="machine-maintenance">
-                <span>Обслуживание:</span>
-                <span>${machine.lastMaintenance}</span>
-            </div>
-        `;
-        grid.appendChild(card);
-    });
-    
-    workshopMachines.appendChild(grid);
-}
 
 
 
@@ -154,7 +126,8 @@ function showSubTab(name, subName, subTab) {
 
     if (name == tabs.workshop.name) {
         if (subName == tabs.workshop.machines) showWorkshopMachines()
-        // if (subName == tabs.workshop.machines) showWorkshop()
+        if (subName == tabs.workshop.models) { showWorkshopModels() }
+        if (subName == tabs.workshop.warehouse) { showWorkshopWarehouse() }
     } else if (name == tabs.store.name) {
         if (subName == tabs.store.machines) { showStoreMachines() }
         if (subName == tabs.store.spares) { showStoreSpares() }

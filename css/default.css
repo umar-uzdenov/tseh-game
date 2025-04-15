@@ -1,0 +1,86 @@
+html, body {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: #cff;
+    font-size: 1.2em;
+}
+
+.header {
+    display: flex;
+    background: #fbff1acf;
+    position: fixed;
+    top: 0;
+    width: 100%; /* Full width */
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+}
+
+.main-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+    display: flex;
+    gap: 8px;
+}
+
+.horizontal {
+    justify-content: space-between;
+}
+
+.vertical {
+    flex-direction: column;
+}
+
+.card-row, .card-column {
+    display: flex;
+    width: 100%;
+    gap: 8px;
+}
+
+.card-row {
+    justify-content: space-between;
+}
+
+.card-column {
+    flex-direction: column;
+}
+
+.card-icon {
+    width: 64px;
+    height: 64px;
+    background-image: var(--icon-url);
+    background-size: cover;
+    background-position: center;
+}
+
+.ok-button, .cancel-button {
+    width: 100%;
+    color: white;
+    border: none;
+    padding: 8px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: large;
+}
+
+.ok-button {
+    background: #229c00;
+}
+
+.cancel-button {
+    background: #dc2e2b;
+}
