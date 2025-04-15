@@ -44,26 +44,26 @@ var database = (function() {
     ]
 
     const products = [
-        { id: 1, name: machineBrands.random().name, state: machineStates.random(), price: 1500 },
-        { id: 2, name: machineBrands.random().name, state: machineStates.random(), price: 1200 },
-        { id: 3, name: machineBrands.random().name, state: machineStates.random(), price: 1800 },
-        { id: 4, name: machineBrands.random().name, state: machineStates.random(), price: 1600 },
-        { id: 5, name: machineBrands.random().name, state: machineStates.random(), price: 1400 },
-        { id: 6, name: machineBrands.random().name, state: machineStates.random(), price: 1550 },
-        { id: 7, name: machineBrands.random().name, state: machineStates.random(), price: 1650 },
-        { id: 8, name: machineBrands.random().name, state: machineStates.random(), price: 1750 },
-        { id: 9, name: machineBrands.random().name, state: machineStates.random(), price: 1850 },
-        { id: 10, name: machineBrands.random().name, state: machineStates.random(), price: 1950 },
-        { id: 11, name: machineBrands.random().name, state: machineStates.random(), price: 2050 },
-        { id: 12, name: machineBrands.random().name, state: machineStates.random(), price: 2150 },
-        { id: 13, name: machineBrands.random().name, state: machineStates.random(), price: 2250 },
-        { id: 14, name: machineBrands.random().name, state: machineStates.random(), price: 2350 },
-        { id: 15, name: machineBrands.random().name, state: machineStates.random(), price: 2450 },
-        { id: 16, name: machineBrands.random().name, state: machineStates.random(), price: 2550 },
-        { id: 17, name: machineBrands.random().name, state: machineStates.random(), price: 2650 },
-        { id: 18, name: machineBrands.random().name, state: machineStates.random(), price: 2750 },
-        { id: 19, name: machineBrands.random().name, state: machineStates.random(), price: 2850 },
-        { id: 20, name: machineBrands.random().name, state: machineStates.random(), price: 2950 },
+        { id: 1, name: machineBrands.random().name, state: machineStates.random(), price: 1.5 },
+        { id: 2, name: machineBrands.random().name, state: machineStates.random(), price: 1.2 },
+        { id: 3, name: machineBrands.random().name, state: machineStates.random(), price: 1.8 },
+        { id: 4, name: machineBrands.random().name, state: machineStates.random(), price: 1.6 },
+        { id: 5, name: machineBrands.random().name, state: machineStates.random(), price: 1.4 },
+        { id: 6, name: machineBrands.random().name, state: machineStates.random(), price: 1.55 },
+        { id: 7, name: machineBrands.random().name, state: machineStates.random(), price: 1.65 },
+        { id: 8, name: machineBrands.random().name, state: machineStates.random(), price: 1.75 },
+        { id: 9, name: machineBrands.random().name, state: machineStates.random(), price: 1.85 },
+        { id: 10, name: machineBrands.random().name, state: machineStates.random(), price: 1.95 },
+        { id: 11, name: machineBrands.random().name, state: machineStates.random(), price: 2.05 },
+        { id: 12, name: machineBrands.random().name, state: machineStates.random(), price: 2.15 },
+        { id: 13, name: machineBrands.random().name, state: machineStates.random(), price: 2.25 },
+        { id: 14, name: machineBrands.random().name, state: machineStates.random(), price: 2.35 },
+        { id: 15, name: machineBrands.random().name, state: machineStates.random(), price: 2.45 },
+        { id: 16, name: machineBrands.random().name, state: machineStates.random(), price: 2.55 },
+        { id: 17, name: machineBrands.random().name, state: machineStates.random(), price: 2.65 },
+        { id: 18, name: machineBrands.random().name, state: machineStates.random(), price: 2.75 },
+        { id: 19, name: machineBrands.random().name, state: machineStates.random(), price: 2.85 },
+        { id: 20, name: machineBrands.random().name, state: machineStates.random(), price: 2.95 },
     ]
 
     const status = [
@@ -125,18 +125,9 @@ var database = (function() {
     ]
 
     const yarns = [
-        { id: 1, name: "Merino Wool", weight: "Fingering", price: 12.99, color: "Natural White" },
-        { id: 2, name: "Alpaca Blend", weight: "Sport", price: 15.50, color: "Charcoal Grey" },
-        { id: 3, name: "Cashmere Silk", weight: "Lace", price: 29.99, color: "Blush Pink" },
-        { id: 4, name: "Cotton Bamboo", weight: "DK", price: 9.99, color: "Sky Blue" },
-        { id: 5, name: "Superwash Merino", weight: "Worsted", price: 14.75, color: "Forest Green" },
-        { id: 6, name: "Mohair", weight: "Bulky", price: 18.25, color: "Cream" },
-        { id: 7, name: "Linen", weight: "Aran", price: 11.50, color: "Natural Beige" },
-        { id: 8, name: "Nylon Blend", weight: "Super Bulky", price: 8.99, color: "Black" },
-        { id: 9, name: "Silk Mohair", weight: "Lace", price: 24.99, color: "Gold" },
-        { id: 10, name: "Organic Cotton", weight: "Worsted", price: 10.25, color: "Ecru" },
-        { id: 11, name: "Baby Alpaca", weight: "Sport", price: 19.99, color: "Soft Grey" },
-        { id: 12, name: "Recycled Silk", weight: "Fingering", price: 16.50, color: "Variegated" }
+        { id: 1, name: "Объёмка", price: 500, composition: "100% Акрил" },
+        { id: 2, name: "Хлопок", price: 700, composition: "50% хлопок / 50% акрил" },
+        { id: 3, name: "Вискоза", price: 1300, composition: "80% вискоза, 20% нейлон" },
     ]
 
     const spares = [
@@ -145,13 +136,13 @@ var database = (function() {
             name: "consumables",
             transcription: "Расходники",
             description: "Смазка, иголки, щётки",
-            price: 300
+            price: 5000
         },
         { id: 2,
             name: "repairKits",
             transcription: "Ремкоплект",
             description: "Платы, клинья, детали оттяжки",
-            price: 300
+            price: 30000
         },
     ]
 

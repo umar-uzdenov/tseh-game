@@ -55,8 +55,8 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     }
 
-    activateTab(tabs.store.name)
-    activateSubTab(tabs.store.name, tabs.store.spares)
+    activateTab(tabs.profile.name)
+    activateSubTab(tabs.profile.name, tabs.profile.profile)
 
     // Показать цех по умолчанию
     // showWorkshop();
@@ -76,7 +76,7 @@ function showWorkshopMachines() {
         // <div class="machine-img"><img src="${machine.image}" alt="${machine.name}"></div>
         card.innerHTML = `
             <div class="machine-header">
-                <div class="machine-img" style="--machine-img-url: url('sturm.jpg');"></div>
+                <div class="machine-img" style="--machine-img-url: url('img/sturm.jpg');"></div>
                 <span class="machine-name">${machine.name}</span>
                 <span class="status-${machine.status.style}">${
                     machine.status.description
@@ -94,119 +94,36 @@ function showWorkshopMachines() {
     workshopMachines.appendChild(grid);
 }
 
-// Остальные функции showStore, showYarn, showProfile остаются без изменений
-function showStoreMachines() {
-    const storeMachines = query(".tab.store .machines")
-    storeMachines.innerHTML = '';
-    
-    const grid = document.createElement("div");
-    grid.className = "main-grid";
-    
-    database.getProducts().forEach(product => {
-        const card = document.createElement("div");
-        card.className = "machine-card";
-        card.innerHTML = `
-            <div class="machine-header">
-                <div class="machine-img" style="--machine-img-url: url('sturm.jpg');"></div>
-                <span class="machine-name">${product.name}</span>
-                <span>${product.state.transcription}</span>
-            </div>
-            <div class="machine-header">
-                <span>Цена: $${product.price}</span>
-                <button class="buy-btn">Купить</button>
-            </div>
-        `;
-        grid.appendChild(card);
-    });
-    
-    storeMachines.appendChild(grid);
-}
 
-function showStoreSpares() {
-    const storeSpares = document.querySelector(".tab.store .spares");
-    storeSpares.innerHTML = '';
-
-    // Consumables section
-    const consumablesGrid = document.createElement("div");
-    consumablesGrid.className = "main-grid";
-
-    database.getSpares().forEach(item => {
-        const card = document.createElement("div");
-        card.className = "spares-card";
-        card.innerHTML = `
-            <div class="spares-row">
-                <span class="product-name">${item.transcription}</span>
-                <span class="product-price">$${item.price}</span>
-            </div>
-            <span class="product-name">${item.description}</span>
-            <div class="spares-row">
-                <span class="product-price">Количество</span>
-                <input type="number" class="product-quantity" value="1" min="1" max="999">
-                <button class="buy-btn">Купить</button>
-            </div>
-        `;
-        consumablesGrid.appendChild(card);
-    });
-
-    storeSpares.appendChild(consumablesGrid);
-}
-
-function showStoreYarn() {
-    const yarnTab = query('.tab.store .sub-tab.yarn');
-    yarnTab.style.display = 'block';
-    yarnTab.innerHTML = '';
-    
-    const yarns = database.getYarns();
-    const grid = document.createElement("div");
-    grid.className = "main-grid";
-    
-    yarns.forEach(yarn => {
-        const card = document.createElement("div");
-        card.className = "yarn-card";
-        card.innerHTML = `
-            <h3>${yarn.name} $${yarn.price.toFixed(2)}</h3>
-            <p>Цвет: ${yarn.color}</p>
-            <button class="add-btn">Купить</button>
-        `;
-        grid.appendChild(card);
-    });
-    
-    yarnTab.appendChild(grid);
-}
 
 function showProfile() {
-    return activateTab("profile")
-    hideAllTabs();
-    const profileTab = document.getElementById('profileTab');
+    const profileTab = query(".tab.profile .sub-tab.profile")
     profileTab.style.display = 'block';
     profileTab.innerHTML = `
-        <div class="profile-container">
-            <div class="profile-header">
-                <h2>User Profile</h2>
-            </div>
+        <div class="main-grid">
             <div class="profile-card">
-                <div class="profile-avatar">
-                    <img src="https://via.placeholder.com/150" alt="User Avatar">
+                <div
+                    class="profile-avatar"
+                    style="--profile-img-url: url('img/default-profile-icon.jpg');">
                 </div>
                 <div class="profile-info">
-                    <h3>John Doe</h3>
-                    <p><strong>Email:</strong> john@example.com</p>
-                    <p><strong>Position:</strong> Manager</p>
-                    <p><strong>Member Since:</strong> January 2023</p>
+                    <h3>Амин Халкечев</h3>
+                    <p><strong>Профессия:</strong> Программист</p>
+                    <p><strong>Зарегистрирован:</strong> 15 апреля 2025</p>
                 </div>
             </div>
             <div class="profile-stats">
                 <div class="stat-card">
-                    <h4>Projects</h4>
-                    <p>12</p>
+                    <h4>Станков куплено</h4>
+                    <p>120</p>
                 </div>
                 <div class="stat-card">
-                    <h4>Machines Used</h4>
-                    <p>5</p>
+                    <h4>Станков продано</h4>
+                    <p>53</p>
                 </div>
                 <div class="stat-card">
-                    <h4>Yarn Types</h4>
-                    <p>8</p>
+                    <h4>Заработок</h4>
+                    <p>8 000 млн ₽</p>
                 </div>
             </div>
         </div>
@@ -242,6 +159,10 @@ function showSubTab(name, subName, subTab) {
         if (subName == tabs.store.machines) { showStoreMachines() }
         if (subName == tabs.store.spares) { showStoreSpares() }
         if (subName == tabs.store.yarn) { showStoreYarn() }
+    } else if (name == tabs.market.name) {
+        // market
+    } else if (name == tabs.profile.name) {
+        if (subName == tabs.profile.profile) { showProfile() }
     }
 }
 
