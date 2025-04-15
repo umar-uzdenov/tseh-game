@@ -8,28 +8,25 @@ const tabState = {
 const tabs = {
     all: ["workshop", "store", "market", "profile"],
     workshop: {
+        name: "workshop",
         machines: "machines", warehouse: "warehouse", yarn: "yarn",
         all: ["machines", "warehouse", "yarn"],
     },
     store: { 
+        name: "store",
         machines: "machines", spares: "spares", yarn: "yarn",
         all: ["machines", "spares", "yarn"],
     },
     market: {
+        name: "market",
         bazaar: "bazaar", online: "online", social: "social",
         all: ["bazaar", "online", "social"]
     },
     profile: {
+        name: "profile",
         profile: "profile", friends: "friends", rating: "rating",
         all: ["profile", "friends", "rating"]
     },
-}
-
-const showFunctions = {
-    workshop: showWorkshop,
-    store: showStore,
-    market: showMarket,
-    profile: showProfile,
 }
 
 function showMarket() {
@@ -38,57 +35,60 @@ function showMarket() {
 
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
-    // Обработчики для кнопок вкладок
-    // document.getElementById('workshopBtn').addEventListener('click', showWorkshop);
-    // document.getElementById('storeBtn').addEventListener('click', showStore);
-    // document.getElementById('staffBtn').addEventListener('click', showStaff);
-    // document.getElementById('profileBtn').addEventListener('click', showProfile);
-
     tabs.all.forEach(addListeners)
 
     function addListeners(name) {
-        query(`.tab-btn.${name}`).addEventListener("click", showFunctions[name])
+        query(`.tab-btn.${name}`).addEventListener("click", () => activateTab(name))
+
         queryAll(`.tab.${name} .sub-tab-btn`).forEach((subTabBtn, index) => {
             subTabBtn.addEventListener("click", () => activateSubTab(name, tabs[name].all[index]))
         })
+
+        queryAll(`.tab.${name} .sub-tab`).forEach((subTab, index) => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) showSubTab(name, tabs[name].all[index], subTab)
+                });
+            });
+    
+            observer.observe(subTab)
+        })
     }
 
+    activateTab(tabs.store.name)
+
     // Показать цех по умолчанию
-    showWorkshop();
+    // showWorkshop();
 });
 
-function showWorkshop() {
-    activateTab("workshop")
-    // hideAllTabs();
-    // const workshopBtn = document.getElementById('workshopBtn')
-    // workshopBtn.classList.add('active');
-    // const workshopTab = document.getElementById('workshop');
-    // workshopTab.style.display = 'block';
-    
-    if (tabState.workshop !== false) return
-    
-    tabState.workshop = tabs.workshop.machines
-
-    const workshopMachinesSubTab = query(".tab.workshop .machines")
-    workshopMachinesSubTab.innerHTML = '';
+function showWorkshopMachines() {
+    const workshopMachines = query(".tab.workshop .machines")
+    workshopMachines.innerHTML = '';
     
     // Создаем сетку для машин
-    const machines = database.getMachines();
     const grid = document.createElement("div");
     grid.className = "machines-grid";
     
-    machines.forEach(machine => {
+    database.getMachines().forEach(machine => {
         const card = document.createElement("div");
         card.className = "machine-card";
         card.innerHTML = `
-            <h3>${machine.name}</h3>
-            <p>Status: <span class="status-${machine.status.toLowerCase()}">${machine.status}</span></p>
-            <p>Last Maintenance: ${machine.lastMaintenance}</p>
+            <div class="machine-header">
+                <span class="machine-name">${machine.name}</span>
+                <span class="status-${machine.status.toLowerCase()}">${
+                    machine.status
+                }</span>
+            </div>
+
+            <div class="machine-maintenance">
+                <span>Обслуживание:</span>
+                <span>${machine.lastMaintenance}</span>
+            </div>
         `;
         grid.appendChild(card);
     });
     
-    workshopMachinesSubTab.appendChild(grid);
+    workshopMachines.appendChild(grid);
 }
 
 function showStaff() {
@@ -116,31 +116,30 @@ function showStaff() {
 }
 
 // Остальные функции showStore, showYarn, showProfile остаются без изменений
-function showStore() {
-    activateTab("store")
-
-    // hideAllTabs();
-    // const storeTab = document.getElementById('storeTab');
-    // storeTab.style.display = 'block';
-    const storeTab1 = query(".tab.store .machines")
-    storeTab1.innerHTML = '';
+function showStoreMachines() {
+    const storeMachines = query(".tab.store .machines")
+    storeMachines.innerHTML = '';
     
-    const products = database.getProducts();
     const grid = document.createElement("div");
     grid.className = "products-grid";
     
-    products.forEach(product => {
+    database.getProducts().forEach(product => {
         const card = document.createElement("div");
-        card.className = "product-card";
+        card.className = "machine-card";
         card.innerHTML = `
-            <h3>${product.name}</h3>
-            <p>Price: $${product.price}</p>
-            <button class="buy-btn">Add to Cart</button>
+            <div class="machine-header">
+                <span class="machine-name">${product.name}</span>
+                <span>Состояние: ${product.state.transcription}</span>
+            </div>
+            <div class="machine-header">
+                <span>Цена: $${product.price}</span>
+                <button class="buy-btn">Купить</button>
+            </div>
         `;
         grid.appendChild(card);
     });
     
-    storeTab1.appendChild(grid);
+    storeMachines.appendChild(grid);
 }
 function showYarn() {
     hideAllTabs();
@@ -217,27 +216,24 @@ function activateTab(name) {
 function hideAllTabs() {
     queryAll('.tab').forEach(tab => tab.style.display = 'none')
     queryAll(".tab-btn").forEach(button =>  button.classList.remove("active"))
-    return
-    // Reset all sub-tab-buttons to first tab when switching main tabs
-    document.querySelectorAll('.sub-tab-buttons').forEach(subTabs => {
-        const buttons = subTabs.querySelectorAll('.sub-tab-btn');
-        const contents = subTabs.parentElement.querySelectorAll('.sub-tab-content');
-        
-        buttons.forEach((btn, index) => {
-            btn.classList.toggle('active', index === 0);
-        });
-        
-        contents.forEach((content, index) => {
-            content.style.display = index === 0 ? 'block' : 'none';
-        });
-    });
 }
 
 function activateSubTab(name, subName) {
-    console.log(name, subName)
+    // console.log(name, subName)
     hideAllSubTabs(name)
     query(`.tab.${name} .sub-tab.${subName}`).style.display = "block"
     query(`.tab.${name} .sub-tab-btn.${subName}`).classList.add("active")
+}
+
+function showSubTab(name, subName, subTab) {
+    console.log(name, subName, subTab)
+
+    if (name == tabs.workshop.name) {
+        if (subName == tabs.workshop.machines) showWorkshopMachines()
+        // if (subName == tabs.workshop.machines) showWorkshop()
+    } else if (name == tabs.store.name) {
+        if (subName == tabs.store.machines) showStoreMachines()
+    }
 }
 
 function hideAllSubTabs(name) {

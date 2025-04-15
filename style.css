@@ -15,5 +15,7 @@ html, body {
     width: 100%; /* Full width */
     z-index: 100;
     align-items: center;
+    justify-content: center;
+    /* padding-right: 40px; */
     height: 40px;
 }

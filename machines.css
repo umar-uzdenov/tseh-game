@@ -1,0 +1,61 @@
+/* Machines Grid - same as staff but with status colors */
+.machines-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+}
+
+.machine-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.machine-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.machine-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.machine-name {
+    font-weight: bold;
+}
+
+.status-active {
+    color: #4CAF50;
+}
+
+.status-maintenance {
+    color: #FF9800;
+}
+
+.machine-maintenance {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buy-btn {
+    width: 40%;
+    background: #1976d2;
+    color: white;
+    border: none;
+    padding: 8px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.buy-btn:hover {
+    background: #1565c0;
+}
