@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     activateTab(tabs.store.name)
+    activateSubTab(tabs.store.name, tabs.store.spares)
 
     // Показать цех по умолчанию
     // showWorkshop();
@@ -67,16 +68,18 @@ function showWorkshopMachines() {
     
     // Создаем сетку для машин
     const grid = document.createElement("div");
-    grid.className = "machines-grid";
+    grid.className = "main-grid";
     
     database.getMachines().forEach(machine => {
         const card = document.createElement("div");
         card.className = "machine-card";
+        // <div class="machine-img"><img src="${machine.image}" alt="${machine.name}"></div>
         card.innerHTML = `
             <div class="machine-header">
+                <div class="machine-img" style="--machine-img-url: url('sturm.jpg');"></div>
                 <span class="machine-name">${machine.name}</span>
-                <span class="status-${machine.status.toLowerCase()}">${
-                    machine.status
+                <span class="status-${machine.status.style}">${
+                    machine.status.description
                 }</span>
             </div>
 
@@ -91,45 +94,22 @@ function showWorkshopMachines() {
     workshopMachines.appendChild(grid);
 }
 
-function showStaff() {
-    hideAllTabs();
-    const staffTab = document.getElementById('staffTab');
-    staffTab.style.display = 'block';
-    staffTab.innerHTML = '';
-    
-    const staffData = database.getStaff();
-    const grid = document.createElement("div");
-    grid.className = "staff-grid";
-    
-    staffData.forEach(staff => {
-        const card = document.createElement("div");
-        card.className = "staff-card";
-        card.innerHTML = `
-            <h3>${staff.name}</h3>
-            <p>${staff.position}</p>
-            <p>${staff.email}</p>
-        `;
-        grid.appendChild(card);
-    });
-    
-    staffTab.appendChild(grid);
-}
-
 // Остальные функции showStore, showYarn, showProfile остаются без изменений
 function showStoreMachines() {
     const storeMachines = query(".tab.store .machines")
     storeMachines.innerHTML = '';
     
     const grid = document.createElement("div");
-    grid.className = "products-grid";
+    grid.className = "main-grid";
     
     database.getProducts().forEach(product => {
         const card = document.createElement("div");
         card.className = "machine-card";
         card.innerHTML = `
             <div class="machine-header">
+                <div class="machine-img" style="--machine-img-url: url('sturm.jpg');"></div>
                 <span class="machine-name">${product.name}</span>
-                <span>Состояние: ${product.state.transcription}</span>
+                <span>${product.state.transcription}</span>
             </div>
             <div class="machine-header">
                 <span>Цена: $${product.price}</span>
@@ -141,25 +121,52 @@ function showStoreMachines() {
     
     storeMachines.appendChild(grid);
 }
-function showYarn() {
-    hideAllTabs();
-    const yarnTab = document.getElementById('yarn');
+
+function showStoreSpares() {
+    const storeSpares = document.querySelector(".tab.store .spares");
+    storeSpares.innerHTML = '';
+
+    // Consumables section
+    const consumablesGrid = document.createElement("div");
+    consumablesGrid.className = "main-grid";
+
+    database.getSpares().forEach(item => {
+        const card = document.createElement("div");
+        card.className = "spares-card";
+        card.innerHTML = `
+            <div class="spares-row">
+                <span class="product-name">${item.transcription}</span>
+                <span class="product-price">$${item.price}</span>
+            </div>
+            <span class="product-name">${item.description}</span>
+            <div class="spares-row">
+                <span class="product-price">Количество</span>
+                <input type="number" class="product-quantity" value="1" min="1" max="999">
+                <button class="buy-btn">Купить</button>
+            </div>
+        `;
+        consumablesGrid.appendChild(card);
+    });
+
+    storeSpares.appendChild(consumablesGrid);
+}
+
+function showStoreYarn() {
+    const yarnTab = query('.tab.store .sub-tab.yarn');
     yarnTab.style.display = 'block';
     yarnTab.innerHTML = '';
     
     const yarns = database.getYarns();
     const grid = document.createElement("div");
-    grid.className = "yarn-grid";
+    grid.className = "main-grid";
     
     yarns.forEach(yarn => {
         const card = document.createElement("div");
         card.className = "yarn-card";
         card.innerHTML = `
-            <h3>${yarn.name}</h3>
-            <p>Type: ${yarn.weight}</p>
-            <p>Color: ${yarn.color}</p>
-            <p>Price: $${yarn.price.toFixed(2)}</p>
-            <button class="add-btn">Add to Project</button>
+            <h3>${yarn.name} $${yarn.price.toFixed(2)}</h3>
+            <p>Цвет: ${yarn.color}</p>
+            <button class="add-btn">Купить</button>
         `;
         grid.appendChild(card);
     });
@@ -232,7 +239,9 @@ function showSubTab(name, subName, subTab) {
         if (subName == tabs.workshop.machines) showWorkshopMachines()
         // if (subName == tabs.workshop.machines) showWorkshop()
     } else if (name == tabs.store.name) {
-        if (subName == tabs.store.machines) showStoreMachines()
+        if (subName == tabs.store.machines) { showStoreMachines() }
+        if (subName == tabs.store.spares) { showStoreSpares() }
+        if (subName == tabs.store.yarn) { showStoreYarn() }
     }
 }
 

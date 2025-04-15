@@ -40,7 +40,7 @@ var database = (function() {
 
     const machineStates = [
         { state: "new", transcription: "Новая" },
-        { state: "used", transcription: "Старая" },
+        { state: "used", transcription: "Б/У" },
     ]
 
     const products = [
@@ -66,7 +66,12 @@ var database = (function() {
         { id: 20, name: machineBrands.random().name, state: machineStates.random(), price: 2950 },
     ]
 
-    const status = ["Active", "Maintenance"]
+    const status = [
+        { style: "active", description: "Работает" },
+        { style: "active", description: "Работает" },
+        { style: "active", description: "Работает" },
+        { style: "maintenance", description: "Нужен ремонт" },
+    ]
 
     const machines = [
         {
@@ -78,43 +83,43 @@ var database = (function() {
         {
             id: 2,
             name: machineBrands.random().name,
-            status: "Active",
+            status: status.random(),
             lastMaintenance: "2023-09-28"
         },
         {
             id: 3,
             name: machineBrands.random().name,
-            status: "Maintenance",
+            status: status.random(),
             lastMaintenance: "2023-11-02"
         },
         {
             id: 4,
             name: machineBrands.random().name,
-            status: "Active",
+            status: status.random(),
             lastMaintenance: "2023-10-20"
         },
         {
             id: 5,
             name: machineBrands.random().name,
-            status: "Active",
+            status: status.random(),
             lastMaintenance: "2023-11-10"
         },
         {
             id: 6,
             name: machineBrands.random().name,
-            status: "Active",
+            status: status.random(),
             lastMaintenance: "2023-11-10"
         },
         {
             id: 7,
             name: machineBrands.random().name,
-            status: "Active",
+            status: status.random(),
             lastMaintenance: "2023-11-10"
         },
         {
             id: 8,
             name: machineBrands.random().name,
-            status: "Active",
+            status: status.random(),
             lastMaintenance: "2023-11-10"
         },
     ]
@@ -134,11 +139,28 @@ var database = (function() {
         { id: 12, name: "Recycled Silk", weight: "Fingering", price: 16.50, color: "Variegated" }
     ]
 
+    const spares = [
+        {
+            id: 1,
+            name: "consumables",
+            transcription: "Расходники",
+            description: "Смазка, иголки, щётки",
+            price: 300
+        },
+        { id: 2,
+            name: "repairKits",
+            transcription: "Ремкоплект",
+            description: "Платы, клинья, детали оттяжки",
+            price: 300
+        },
+    ]
+
     return {
         machineBrands() { return machineBrands; },
         getStaff() { return users },
         getProducts() { return products },
         getMachines() { return machines },
-        getYarns() { return yarns }
+        getYarns() { return yarns },
+        getSpares() { return spares }
     }
 })();
