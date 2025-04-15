@@ -146,12 +146,38 @@ var database = (function() {
         },
     ]
 
+    const models = [
+        { id: 1, name: "Кардиган", url: "cardigan.jpg", description: "Молодёжный кардиган" },
+        { id: 2, name: "Свитер", url: "sweater.jpg", description: "Классический свитер" },
+        { id: 3, name: "Шапка", url: "cap.jpg", description: "Жаккардовая шапка" }
+    ];
+
+    function addModel(name, description) {
+        const newId = models.length > 0 ? Math.max(...models.map(m => m.id)) + 1 : 1;
+        const newModel = { id: newId, name: name, description: description };
+        models.push(newModel);
+    }
+
+    const warehouseItems = [
+        // here must be models and their quantities
+        { name: "Кардиган", url: "cardigan.jpg", quantity: 10 },
+        { name: "Свитер", url: "sweater.jpg", quantity: 5 },
+        { name: "Шапка", url: "cap.jpg", quantity: 15 }
+    ];
+
+    function getWarehouseItems() {
+        return warehouseItems;
+    }
+
     return {
         machineBrands() { return machineBrands; },
         getStaff() { return users },
         getProducts() { return products },
         getMachines() { return machines },
         getYarns() { return yarns },
-        getSpares() { return spares }
+        getSpares() { return spares },
+        getModels() { return models },
+        addModel: addModel,
+        getWarehouseItems: getWarehouseItems
     }
 })();
