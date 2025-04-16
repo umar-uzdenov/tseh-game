@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, 'static')));
 // const bot = new TelegramBot('ВАШ_ТОКЕН', {polling: true});
 
 // Запуск сервера
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 const server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
