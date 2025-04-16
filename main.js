@@ -12,7 +12,16 @@ app.use(express.static(path.join(__dirname, 'static')));
 
 // Запуск сервера
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+});
+
+server.on('error', (err) => {
+    console.error("Server error:", err);
+});
+
+process.on('unhandledRejection', (err) => {
+    console.error("Unhandled Promise Rejection:", err);
+    process.exit(1);
 });
 
