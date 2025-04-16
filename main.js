@@ -10,21 +10,21 @@ app.use(express.static(path.join(__dirname, 'static')));
 
 
 // SSL Certificate (Replace paths with your certificate files)
-const sslOptions = {
-  key: fs.readFileSync('/etc/letsencrypt/live/tseh-game.ru/privkey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/tseh-game.ru/fullchain.pem')
-};
+// const sslOptions = {
+//   key: fs.readFileSync('/etc/letsencrypt/live/tseh-game.ru/privkey.pem'),
+//   cert: fs.readFileSync('/etc/letsencrypt/live/tseh-game.ru/fullchain.pem')
+// };
 
 // HTTPS Server
-https.createServer(sslOptions, app).listen(443, () => {
-  console.log('HTTPS Server running on port 443');
-});
+// https.createServer(sslOptions, app).listen(443, () => {
+//   console.log('HTTPS Server running on port 443');
+// });
 
 // Redirect HTTP to HTTPS
-http.createServer((req, res) => {
-  res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
-  res.end();
-}).listen(80);
+// http.createServer((req, res) => {
+//   res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+//   res.end();
+// }).listen(80);
 
 
 // Телеграм-бот
@@ -32,17 +32,18 @@ http.createServer((req, res) => {
 // const bot = new TelegramBot('ВАШ_ТОКЕН', {polling: true});
 
 // Запуск сервера
-// const PORT = process.env.PORT || 8080;
-// const server = app.listen(PORT, () => {
-//   console.log(`Server running on port ${PORT}`);
-// });
 
-// server.on('error', (err) => {
-//     console.error("Server error:", err);
-// });
+const PORT = process.env.PORT || 8080;
+const server = app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
-// process.on('unhandledRejection', (err) => {
-//     console.error("Unhandled Promise Rejection:", err);
-//     process.exit(1);
-// });
+server.on('error', (err) => {
+    console.error("Server error:", err);
+});
+
+process.on('unhandledRejection', (err) => {
+    console.error("Unhandled Promise Rejection:", err);
+    process.exit(1);
+});
 
