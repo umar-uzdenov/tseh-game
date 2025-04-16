@@ -33,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'static')));
 
 // Запуск сервера
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 80;
 const server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
