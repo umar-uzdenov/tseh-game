@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Telegram Web API Demo</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Telegram Web API Demo</h1>
+    <div id="user-info" class="card">
+      <h2>User Info</h2>
+      <p id="user-name">Loading user info...</p>
+      <p id="user-id"></p>
+    </div>
+
+    <div class="card">
+      <h2>Actions</h2>
+      <button id="send-data-btn">Send Data to Bot</button>
+      <button id="open-link-btn">Open Link</button>
+      <button id="expand-btn">Expand Web App</button>
+      <button id="close-btn">Close Web App</button>
+    </div>
+
+    <div id="log" class="card">
+      <h2>Log</h2>
+      <pre id="log-content"></pre>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
