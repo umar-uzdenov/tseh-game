@@ -7,8 +7,9 @@ const path = require('path');
 
 // Serve static files (e.g., HTML, CSS, JS)
 // app.use(express.static(path.join(__dirname, 'static')));
+app.use(express.static(path.join(__dirname, 'tg-test')));
 
-/*
+
 // SSL Certificate (Replace paths with your certificate files)
 const sslOptions = {
   key: fs.readFileSync('../../etc/letsencrypt/live/tseh-game.ru/privkey.pem'),
@@ -26,12 +27,14 @@ http.createServer((req, res) => {
   res.end();
 }).listen(80);
 
-*/
+
 // Телеграм-бот
 // const TelegramBot = require('node-telegram-bot-api');
 // const bot = new TelegramBot('ВАШ_ТОКЕН', {polling: true});
 
 // Запуск сервера
+
+/*
 
 app.use(express.static(path.join(__dirname, 'tg-test')));
 
@@ -50,3 +53,4 @@ process.on('unhandledRejection', (err) => {
     process.exit(1);
 });
 
+*/
