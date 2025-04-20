@@ -1,5 +1,12 @@
 <script setup>
 import { useTabsStore } from './stores/tabs.js'
+import WebApp from "@twa-dev/sdk";
+
+
+
+
+import { ref } from 'vue'
+
 
 const tabs = useTabsStore().tabs
 const state = useTabsStore().state
@@ -9,6 +16,23 @@ function activateTab(tab) {
     state.tab = tab.name
     state.sub = tab.active
 }
+
+
+const tg = WebApp
+const user = ref(null)
+
+tg.ready()
+// user.value = tg.initDataUnsafe.user
+
+tg.showPopup("lol")
+
+// function sendData(data) {
+//     tg.sendData(JSON.stringify(data))
+// }
+// function close() { tg.close() }
+
+// function showAlert(message) { tg.showAlert(message) }
+// const themeParams = tg.themeParams
 </script>
 
 <template>
