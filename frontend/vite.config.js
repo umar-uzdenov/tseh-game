@@ -4,6 +4,8 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import Components from 'unplugin-vue-components/vite'
+import fs from 'fs';
+
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -41,5 +43,3 @@ export default defineConfig({
     host: '0.0.0.0' // Optional: Allow external access
   }
 })
-
-
