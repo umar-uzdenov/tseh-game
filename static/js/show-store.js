@@ -1,4 +1,7 @@
 // Остальные функции showStore, showYarn, showProfile остаются без изменений
+
+
+
 function showStoreMachines() {
     const storeMachines = query(".tab.store .machines")
     storeMachines.innerHTML = '';
