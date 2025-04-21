@@ -39,7 +39,13 @@ export default defineConfig({
         key: fs.readFileSync('../../../etc/letsencrypt/live/tseh-game.ru/privkey.pem'),
         cert: fs.readFileSync('../../../etc/letsencrypt/live/tseh-game.ru/fullchain.pem')
     },
+    headers: {
+        'Content-Security-Policy': `script-src 'self' https://telegram.org;`
+    },
     port: 443, // Your desired port
     host: '0.0.0.0' // Optional: Allow external access
-  }
+  },
+//   build: {
+//     target: 'esnext' // Required for Telegram Web Apps
+//   }
 })

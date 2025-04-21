@@ -12,17 +12,17 @@ export const useTabsStore = defineStore('main', () => {
         {
             name: "store", description: "Магазин", active: "machines", sub: [
                 { name: "machines", description: "Машины" },
-                { name: "spares", description: "Запчасти" },
+                // { name: "spares", description: "Запчасти" },
                 { name: "yarns", description: "Пряжа" },
             ]
         },
-        {
-            name: "market", description: "Рынок", active: "bazaar", sub: [
-                { name: "bazaar", description: "Базар" },
-                { name: "online", description: "Маркетплейсы" },
-                { name: "social", description: "Соцсети" },
-            ]
-        },
+        // {
+        //     name: "market", description: "Рынок", active: "bazaar", sub: [
+        //         { name: "bazaar", description: "Базар" },
+        //         { name: "online", description: "Маркетплейсы" },
+        //         { name: "social", description: "Соцсети" },
+        //     ]
+        // },
         {
             name: "profile", description: "Профиль", active: "main", sub: [
                 { name: "main", description: "Главная" },
@@ -32,8 +32,10 @@ export const useTabsStore = defineStore('main', () => {
         },
     ]
 
-    const state = { tab: "workshop", sub: "machines" }
+    tabs.workshop = "workshop"
+    tabs.store = "store"
+    // tabs.market = "market"
+    tabs.profile = "profile"
 
-
-    return { tabs, state }
+    return { tabs }
 })

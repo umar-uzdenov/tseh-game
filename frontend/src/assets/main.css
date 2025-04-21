@@ -286,7 +286,7 @@ html, body {
 }
 
 .tab-btn {
-    width: 25%;
+    width: 100%;
     background-color: #6200ea; /* Material Purple */
     color: white;
     border: none;
@@ -310,8 +310,8 @@ html, body {
 }
 
 .sub-tab-btn {
-    padding: 0.5rem 0.5rem;
-    width: 33.3%;
+    padding: 4px;
+    width: 100%;
     background: #e0e0e0;
     border: none;
     cursor: pointer;
