@@ -15,7 +15,7 @@ export const useTgStore = defineStore('tg', () => {
 
     if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
         const user = tg.initDataUnsafe.user
-        data.userName = `Name: ${user.first_name || ''} ${user.last_name || ''}`
+        data.userName = `${user.first_name || ''} ${user.last_name || ''}`
         data.userID = `ID: ${user.id}`
     }
 
