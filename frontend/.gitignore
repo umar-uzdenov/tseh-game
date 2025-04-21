@@ -28,3 +28,6 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+
+# Vite configuration to use ssl certificates
+vite.config.js

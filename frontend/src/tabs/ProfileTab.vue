@@ -1,15 +1,11 @@
 <script setup>
 // import { useMarketStore } from '@/stores/market/market'
 // const market = useMarketStore().market
-function showProfile() {
-    const profileTab = query(".tab.profile .sub-tab.profile")
-    profileTab.style.display = 'block';
-    profileTab.innerHTML = `
-        <div class="main-grid">
-            
-        </div>
-    `;
-}
+
+import { useTgStore } from '@/stores/tg';
+const tg = useTgStore().tg
+const data = useTgStore().data
+
 </script>
 
 <template>
@@ -20,7 +16,7 @@ function showProfile() {
                 style="--profile-img-url: url('img/default-profile-icon.jpg');">
             </div>
             <div class="profile-info">
-                <h3>Амин Халкечев</h3>
+                <h3>{{ data.userName }}</h3>
                 <p><strong>Профессия:</strong> Программист</p>
                 <p><strong>Зарегистрирован:</strong> 15 апреля 2025</p>
             </div>
