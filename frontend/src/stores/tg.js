@@ -11,7 +11,7 @@ export const useTgStore = defineStore('tg', () => {
     if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
         const user = tg.initDataUnsafe.user
         data.userName = `${user.first_name || ''} ${user.last_name || ''}`
-        data.userId = `ID: ${user.id}`
+        data.userId = user.id
     }
 
     data.user
@@ -21,7 +21,7 @@ export const useTgStore = defineStore('tg', () => {
     launch(async () => {
         const isAuth = await authTg(tg.initData)
         if (isAuth) data.hash = tg.initDataUnsafe.user.hash
-        // data.user = await get("/api/user", { tgId: data.userId })
+        data.user = await get("/api/user", { tgId: data.userId })
         // console.log("lol")
     })
 
