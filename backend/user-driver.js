@@ -31,11 +31,11 @@ const loaded = []
 
 async function get(tgId) {
     try {
-    console.log(userMain)
-    console.log(tgId)
+    // console.log(userMain)
+    // console.log(tgId)
     const id = userMain.tgToId.find(item => item.tg == tgId).id
-    console.log(id)
-    console.log("lastid", userMain.lastId)
+    // console.log(id)
+    // console.log("lastid", userMain.lastId)
     if (userMain.lastId < id) return { error: "user not found" } // replace with loaded main blocks
 
     let user = loaded.find(lu => lu.id == id) // loaded user
