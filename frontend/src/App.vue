@@ -22,7 +22,7 @@ const current = reactive({
 })
 
 const data = reactive({
-    message: "lol",
+    message: "Баланс",
 })
 
 launch(async () => {
@@ -30,32 +30,35 @@ launch(async () => {
     // return 0
     // const user = await get('/api/user', { tgid: 0 })
     // data.message = user.balance
-    try {
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', '/api/auth');
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.onload = () => {
-                if (xhr.status >= 200 && xhr.status < 300) {
-                    const responseData = JSON.parse(xhr.responseText);
-                    if (responseData.success) {
-                        console.log(responseData)
-                        data.message = 'Вошёл как: ' + responseData.user.first_name
-                        try {
-                            data.message = window.Telegram.WebApp.platform.toLowerCase()
-                        } catch (e) {}
-                    }
-                    // resolve(responseData);
-                } else {
-                    data.message = `Request failed with status ${xhr.status}`
-                }
-            };
-            xhr.onerror = () => {
-                data.message = 'Network error'
-            };
-            xhr.send(JSON.stringify({ initData: tg.initData }));
-        } catch (error) {
-            data.message = `Error: ${error}`
-        }
+
+    data.message = await authTg(tg.initData)
+
+    // try {
+    //         const xhr = new XMLHttpRequest();
+    //         xhr.open('POST', '/api/auth');
+    //         xhr.setRequestHeader('Content-Type', 'application/json');
+    //         xhr.onload = () => {
+    //             if (xhr.status >= 200 && xhr.status < 300) {
+    //                 const responseData = JSON.parse(xhr.responseText);
+    //                 if (responseData.success) {
+    //                     console.log(responseData)
+    //                     data.message = 'Вошёл как: ' + responseData.user.first_name
+    //                     try {
+    //                         data.message = window.Telegram.WebApp.platform.toLowerCase()
+    //                     } catch (e) {}
+    //                 }
+    //                 // resolve(responseData);
+    //             } else {
+    //                 data.message = `Request failed with status ${xhr.status}`
+    //             }
+    //         };
+    //         xhr.onerror = () => {
+    //             data.message = 'Network error'
+    //         };
+    //         xhr.send(JSON.stringify({ initData: tg.initData }));
+    //     } catch (error) {
+    //         data.message = `Error: ${error}`
+    //     }
 })
 
 function height() {
