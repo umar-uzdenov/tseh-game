@@ -46,7 +46,7 @@ launch(async () => {
             xhr.onerror = () => {
                 data.message = 'Network error'
             };
-            xhr.send(JSON.stringify({ initData }));
+            xhr.send(JSON.stringify({ initData: tg.initData }));
         } catch (error) {
             data.message = `Error: ${error}`
         }
