@@ -41,7 +41,7 @@ launch(async () => {
                         console.log(responseData)
                         data.message = 'Вошёл как: ' + responseData.user.first_name
                         try {
-                            data.message = JSON.stringify(window.Telegram.WebApp)
+                            data.message = JSON.stringify(window.Telegram.WebApp.contentSafeAreaInset.top)
                         } catch (e) {}
                     }
                     // resolve(responseData);
