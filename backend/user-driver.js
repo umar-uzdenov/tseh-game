@@ -30,6 +30,7 @@ const blockSize = 100
 const loaded = []
 
 async function get(tgId) {
+    try {
     console.log(userMain)
     console.log(tgId)
     const id = userMain.tgToId.find(item => item.tg == tgId).id
@@ -48,6 +49,7 @@ async function get(tgId) {
     // console.log(user)
 
     return user
+} catch (e) { return {e}}
 }
 
 async function add(user) {
