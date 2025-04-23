@@ -33,3 +33,6 @@ coverage
 # Environment files
 .env
 **/.env
+
+database/*
+!database/.gitkeep
