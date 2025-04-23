@@ -39,7 +39,7 @@ launch(async () => {
                     const responseData = JSON.parse(xhr.responseText);
                     if (responseData.success) {
                         console.log(responseData)
-                        data.message = 'Authenticated as: ' + JSON.stringify(responseData.user).first_name
+                        data.message = 'Вошёл как: ' + JSON.stringify(responseData.user.first_name)
                         try {
                             tg.expand()
                         } catch (e) {}
