@@ -62,6 +62,7 @@ async function add(user) {
     console.log("add function")
     const id = userMain.lastId + 1
     userMain.lastId = id
+    userMain.tgToId.push({ tg: user.tgId, id })
     writeData(userMain, "user.json")
 
     user.id = id // rewrite to generate new user
