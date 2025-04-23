@@ -100,7 +100,7 @@ function h() {
         <!-- <div>Баланс: 10 000 000 ₽</div> -->
         <div :style="`height: ${h()}px; width: ${witdth()}px; border-radius: 15px; background-color:aquamarine; display: flex; justify-content: center; align-items: center;`">{{ User.balance }}</div>
          <!-- <div class="card-column" style="height:99px"> -->
-            <div>{{ tgData.userName }}</div>
+            <!-- <div>{{ tgData.userName }}</div> -->
             <!-- <div>{{ tgData.userID }}</div> -->
             <!-- <button @click="tg.close()">Close app</button> -->
          <!-- </div> -->
