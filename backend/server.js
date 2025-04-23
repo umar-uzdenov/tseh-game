@@ -39,9 +39,9 @@ app.post('/api/auth', (req, res) => {
   for (const [key, value] of params.entries()) {
     jsonParams[key] = value;
   }
-  console.log(jsonParams)
+//   console.log(jsonParams)
 //   console.log(params['user'])
-  console.log(JSON.parse(jsonParams.user))
+//   console.log(JSON.parse(jsonParams.user))
   const hash = params.get('hash');
   const authDate = parseInt(params.get('auth_date')) * 1000; // Convert to ms
 
@@ -56,22 +56,22 @@ app.post('/api/auth', (req, res) => {
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([key, val]) => `${key}=${val}`)
     .join('\n');
-    console.log(dataCheckString)
+    // console.log(dataCheckString)
 
   // Compute secret key from bot token
   const secret = crypto.createHmac('sha256', 'WebAppData')
     .update(process.env.TELEGRAM_BOT_TOKEN)
     .digest();
     
-  console.log(process.env.TELEGRAM_BOT_TOKEN)
+//   console.log(process.env.TELEGRAM_BOT_TOKEN)
   // Validate hash
   const computedHash = crypto
     .createHmac('sha256', secret)
     .update(dataCheckString)
     .digest('hex');
 
-console.log("hash", hash)
-console.log("comp", computedHash)
+// console.log("hash", hash)
+// console.log("comp", computedHash)
 
   if (computedHash !== hash) {
     return res.status(401).json({ error: 'Invalid hash' });
