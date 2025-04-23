@@ -80,7 +80,7 @@ app.post('/api/auth', (req, res) => {
   // Extract user data
   const user = JSON.parse(params.get('user'));
 
-  console.log(database.user.get(user.id))
+  console.log(database.user.get(params.get("id")))
   if (database.user.get(user.id).error) {
     database.user.add({
         tgid: user.id, hash, username: user.username, lastRequest: Date.now(),
