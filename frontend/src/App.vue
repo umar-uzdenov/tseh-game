@@ -62,7 +62,7 @@ function height() {
     const platform = window.Telegram.WebApp.platform.toLowerCase()
     // 62 ios, 47 android нвяало кнопок
     if (platform == "ios") return 62 + 30
-    if (platform == "android") return 47 + 30
+    if (platform == "android") return 47 + 28
     if (platform == "tdesktop") return 84 + 30
 }
 
@@ -70,14 +70,14 @@ function witdth() {
     const platform = window.Telegram.WebApp.platform.toLowerCase()
     // 
     if (platform == "ios") return 160
-    if (platform == "android") return 220
+    if (platform == "android") return 228
     if (platform == "tdesktop") return 40
 }
 
 function pleft() {
     const platform = window.Telegram.WebApp.platform.toLowerCase()
     // 
-    if (platform == "ios") return 128
+    if (platform == "ios") return 132
     if (platform == "android") return 112
     if (platform == "tdesktop") return 40
 }
