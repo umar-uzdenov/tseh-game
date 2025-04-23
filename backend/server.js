@@ -61,7 +61,8 @@ app.post('/api/auth', (req, res) => {
   const secret = crypto.createHash('sha256')
     .update(process.env.TELEGRAM_BOT_TOKEN)
     .digest();
-
+    
+  console.log(process.env.TELEGRAM_BOT_TOKEN)
   // Validate hash
   const computedHash = crypto
     .createHmac('sha256', secret)
