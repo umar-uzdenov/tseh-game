@@ -59,7 +59,7 @@ app.post('/api/auth', (req, res) => {
     console.log(dataCheckString)
 
   // Compute secret key from bot token
-  const secret = crypto.createHash('sha256')
+  const secret = crypto.createHmac('sha256', 'WebAppData')
     .update(process.env.TELEGRAM_BOT_TOKEN)
     .digest();
     
@@ -68,7 +68,7 @@ app.post('/api/auth', (req, res) => {
   const computedHash = crypto
     .createHmac('sha256', secret)
     .update(dataCheckString)
-    .digest('hex');
+    .toString('hex');
 
 console.log("hash", hash)
 console.log("comp", computedHash)
