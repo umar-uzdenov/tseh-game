@@ -82,7 +82,7 @@ app.post('/api/auth', async (req, res) => {
 
   if ((await database.user.get(params.get("id"))).error) {
     database.user.add({
-        tgid: user.id, hash, username: user.username, lastRequest: Date.now(),
+        tgId: user.id, hash, username: user.username, lastRequest: Date.now(),
         balance: 0, models: [], yarns: [], machines: [], items: []
     })
   }
