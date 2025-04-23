@@ -31,19 +31,19 @@ function authTg(initData) {
             xhr.open('POST', '/api/auth');
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.onload = () => {
-                if (xhr.status >= 200 && xhr.status < 300) {
+                // if (xhr.status >= 200 && xhr.status < 300) {
                     const data = JSON.parse(xhr.responseText);
-                    if (data.success) {
-                        console.log('Authenticated as:', data.user);
-                    }
-                    resolve(data);
-                } else {
-                    reject(`Request failed with status ${xhr.status}`);
-                }
+                    // if (data.success) {
+                    //     console.log('Authenticated as:', data.user);
+                    // }
+                    resolve(data.success);
+                // } else {
+                //     reject(`Request failed with status ${xhr.status}`);
+                // }
             };
-            xhr.onerror = () => {
-                reject('Network error');
-            };
+            // xhr.onerror = () => {
+            //     reject('Network error');
+            // };
             xhr.send(JSON.stringify({ initData }));
         } catch (error) {
             reject(`Error: ${error}`);
