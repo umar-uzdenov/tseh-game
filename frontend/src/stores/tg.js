@@ -5,6 +5,7 @@ export const useTgStore = defineStore('tg', () => {
     const data = {
         userName: 'Default User',
         userId: 0,
+        user: {},
         hash: "451c4c181086ced43181873b6fadce90b8192ad3a01a62bc3e182a80452201f8",
     }
 
