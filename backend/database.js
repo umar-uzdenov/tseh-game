@@ -48,7 +48,7 @@ function add(name, data) {
 const database = {
     user: {
         get(tgId) { return user.get(tgId) },
-        add(user) { return user.add(user) }
+        add(userData) { return user.add(userData) }
     },
 }
 

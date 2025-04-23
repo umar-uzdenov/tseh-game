@@ -5,12 +5,7 @@ export const useTgStore = defineStore('tg', () => {
     const data = {
         userName: 'Default User',
         userID: 0,
-        openLink() {
-            tg.openLink('https://core.telegram.org/bots/webapps')
-        },
-        sendData() {
-            tg.sendData('Hello from Web App!')
-        }
+        hash: "451c4c181086ced43181873b6fadce90b8192ad3a01a62bc3e182a80452201f8",
     }
 
     if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
@@ -22,11 +17,27 @@ export const useTgStore = defineStore('tg', () => {
     data.user
 
     tg.ready()
-    tg.requestFullscreen()
+
+    launch(async () => {
+        const isAuth = await authTg(tg.initData)
+        if (isAuth) data.hash
+    })
+
+    if (["ios", "android"].includes(tg.platform.toLowerCase())) tg.requestFullscreen() // on mobile
+    // if (platform == "tdesktop")
+    // tg.requestFullscreen()
     // tg.expand();
     // tg.close();
 
   // Ready
+
+
+//   openLink() {
+//     tg.openLink('https://core.telegram.org/bots/webapps')
+// },
+// sendData() {
+//     tg.sendData('Hello from Web App!')
+// },
 
     return { tg, data }
 })

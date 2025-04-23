@@ -16,6 +16,7 @@ async function readData(...filename) {
 
 function writeData(data, ...filename) {
     const filePath = path.join(dbPath, ...filename)
+    console.log("filePath", filePath)
     fs.writeFileSync(filePath, JSON.stringify(data, null, 4))
 }
 
@@ -44,12 +45,13 @@ async function get(tgId) {
         user = readData(`user`, `block_${index}`, `user_${id}.json`)
         loaded.push(user)
     }
-    console.log(user)
+    // console.log(user)
 
     return user
 }
 
 async function add(user) {
+    console.log("add function")
     const id = userMain.lastId + 1
     userMain.lastId = id
     writeData(userMain, "user.json")
@@ -58,7 +60,9 @@ async function add(user) {
     loaded.push(user)
 
     const index = Number((id / blockSize).toFixed(0))
+    console.log("index", index)
     writeData(user, `user`, `block_${index}`, `user_${id}.json`)
+    console.log("new user must be added")
 
     return { success: "user added" } // replace with some response
 }
