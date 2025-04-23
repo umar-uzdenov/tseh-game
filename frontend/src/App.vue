@@ -60,8 +60,9 @@ launch(async () => {
 
 function height() {
     const platform = window.Telegram.WebApp.platform.toLowerCase()
-    if (platform == "ios") return 62
-    if (platform == "android") return 48
+    // 62 ios, 46 android нвяало кнопок
+    if (platform == "ios") return 62 + 28
+    if (platform == "android") return 46 + 24
 }
 
 
