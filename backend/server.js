@@ -56,6 +56,7 @@ app.post('/api/auth', (req, res) => {
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([key, val]) => `${key}=${val}`)
     .join('\n');
+    console.log(dataCheckString)
 
   // Compute secret key from bot token
   const secret = crypto.createHash('sha256')
