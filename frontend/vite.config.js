@@ -4,7 +4,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import Components from 'unplugin-vue-components/vite'
-import fs from 'fs';
+// import fs from 'fs';
 
 
 // https://vite.dev/config/
@@ -35,13 +35,13 @@ export default defineConfig({
     },
   },
   server: {
-    https: {
-        key: fs.readFileSync('../../../etc/letsencrypt/live/tseh-game.ru/privkey.pem'),
-        cert: fs.readFileSync('../../../etc/letsencrypt/live/tseh-game.ru/fullchain.pem')
-    },
-    headers: {
-        'Content-Security-Policy': `script-src 'self' https://telegram.org;`
-    },
+    // https: {
+    //     key: fs.readFileSync('../../../etc/letsencrypt/live/tseh-game.ru/privkey.pem'),
+    //     cert: fs.readFileSync('../../../etc/letsencrypt/live/tseh-game.ru/fullchain.pem')
+    // },
+    // headers: {
+    //     'Content-Security-Policy': `script-src 'self' https://telegram.org;`
+    // },
     port: 443, // Your desired port
     host: '0.0.0.0', // Optional: Allow external access
     proxy: {

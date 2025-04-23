@@ -39,9 +39,9 @@ launch(async () => {
                     const responseData = JSON.parse(xhr.responseText);
                     if (responseData.success) {
                         console.log(responseData)
-                        data.message = 'Вошёл как: ' + JSON.stringify(responseData.user.first_name)
+                        data.message = 'Вошёл как: ' + responseData.user.first_name
                         try {
-                            tg.requestFullscreen()
+                            data.message = JSON.stringify(tg.viewport)
                         } catch (e) {}
                     }
                     // resolve(responseData);

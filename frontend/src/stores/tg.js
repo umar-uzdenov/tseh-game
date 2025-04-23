@@ -22,6 +22,7 @@ export const useTgStore = defineStore('tg', () => {
     data.user
 
     tg.ready()
+    tg.requestFullscreen()
     // tg.expand();
     // tg.close();
 
