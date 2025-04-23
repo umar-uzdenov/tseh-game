@@ -62,7 +62,7 @@ function height() {
     const platform = window.Telegram.WebApp.platform.toLowerCase()
     // 62 ios, 47 android нвяало кнопок
     if (platform == "ios") return 62 + 30
-    if (platform == "android") return 47 + 28
+    if (platform == "android") return 48 + 28
     if (platform == "tdesktop") return 84 + 30
 }
 
@@ -90,12 +90,21 @@ function pright() {
     if (platform == "tdesktop") return 40
 }
 
+function h() {
+
+    const platform = window.Telegram.WebApp.platform.toLowerCase()
+    // 
+    if (platform == "ios") return 30
+    if (platform == "android") return 28
+    if (platform == "tdesktop") return 84
+}
+
 </script>
 
 <template>
     <div class="header" :style="`--height: ${height()}px; align-items: end; justify-content: space-between; padding-left: ${pleft()}px; padding-right: ${pright}px;`">
         <!-- <div>Баланс: 10 000 000 ₽</div> -->
-        <div :style="`height:30px; width: ${witdth()}px; border-radius: 15px; background-color:aquamarine; display: flex; justify-content: center; align-items: center;`">{{ data.message }}</div>
+        <div :style="`height: ${h()}px; width: ${witdth()}px; border-radius: 15px; background-color:aquamarine; display: flex; justify-content: center; align-items: center;`">{{ data.message }}</div>
          <!-- <div class="card-column" style="height:99px"> -->
             <!-- <div>{{ tgData.userName }}</div> -->
             <!-- <div>{{ tgData.userID }}</div> -->
