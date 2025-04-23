@@ -2,7 +2,17 @@
     "id": 0,
     "tgId": 0,
     "hash": "451c4c181086ced43181873b6fadce90b8192ad3a01a62bc3e182a80452201f8",
-    "username": "default",
+    "tgUser": {
+        "id": 0,
+        "first_name": "Default",
+        "last_name": "",
+        "username":"default",
+        "language_code": "ru",
+        "is_premium": true,
+        "allows_write_to_pm": true,
+        "photo_url": "https://t.me/i/userpic/320/MAJoSgg3bCNEMRN4cd_U2B_xhvOXRlyg5rTLsJ0HWFk.svg"
+    },
+    
     "lastRequest": 1745311108875,
     "balance": 19800000,
     "machinesByed": 1,

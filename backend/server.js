@@ -77,9 +77,14 @@ app.post('/api/auth', async (req, res) => {
     if (dbUser.error) {
         await database.user.add({
             tgId: user.id, 
-            username: user.username, 
+            hash,
+            tgUser: user, 
             lastRequest: Date.now(),
-            balance: 0, 
+            balance: 3000000, 
+            machinesByed: 1,
+            machinesSold: 0,
+            itemsSold: 0,
+            moneyEarned: 0,
             models: [], 
             yarns: [], 
             machines: [], 
