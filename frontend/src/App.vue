@@ -5,12 +5,14 @@ import { reactive } from 'vue'
 
 const tg = useTgStore().tg
 const user = useTgStore().data.user
+
+console.log(user)
 // console.log(tg.initData)
 // console.log(tg.initData)
 
 
 
-setTimeout(() => console.log(typeof tg.initData), 3000)
+// setTimeout(() => console.log(typeof tg.initData), 3000)
 
 const tabs = useTabsStore().tabs
 
