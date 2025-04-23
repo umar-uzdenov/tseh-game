@@ -35,9 +35,9 @@ app.post('/api/auth', (req, res) => {
 
   // Parse initData into key-value pairs
   const params = new URLSearchParams(initData);
-  console.log(params)
-  console.log(params['user'])
-  console.log(JSON.parse(params['user']))
+  console.log(initData)
+//   console.log(params['user'])
+//   console.log(JSON.parse(params['user']))
   const hash = params.get('hash');
   const authDate = parseInt(params.get('auth_date')) * 1000; // Convert to ms
 
