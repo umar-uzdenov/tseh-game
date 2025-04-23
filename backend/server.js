@@ -69,6 +69,9 @@ app.post('/api/auth', (req, res) => {
     .update(dataCheckString)
     .digest('hex');
 
+console.log("hash", hash)
+console.log("comp", computedHash)
+
   if (computedHash !== hash) {
     return res.status(401).json({ error: 'Invalid hash' });
   }
