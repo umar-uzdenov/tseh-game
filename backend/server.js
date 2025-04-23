@@ -73,7 +73,7 @@ app.post('/api/auth', async (req, res) => {
 
     const tgId = +JSON.parse(params.get("user")).id
     const dbUser = await database.user.get(tgId)
-    console.log(dbUser)
+    // console.log(dbUser)
     // console.log("params get user id", )
     if (dbUser.error) {
         await database.user.add({
