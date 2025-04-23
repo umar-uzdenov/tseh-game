@@ -70,7 +70,7 @@ function witdth() {
     const platform = window.Telegram.WebApp.platform.toLowerCase()
     // 
     if (platform == "ios") return 160
-    if (platform == "android") return 228
+    if (platform == "android") return 224
     if (platform == "tdesktop") return 40
 }
 
