@@ -10,7 +10,7 @@ const data = useTgStore().data
 // console.log(tg.initData)
 // console.log(tg.initData)
 
-
+data
 
 // setTimeout(() => console.log(typeof tg.initData), 3000)
 
