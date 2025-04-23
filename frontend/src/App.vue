@@ -69,9 +69,9 @@ function height() {
 </script>
 
 <template>
-    <div class="header" :style="`--height: ${height()}px; align-items: end; padding-left: 64px; padding-right: 8px;`">
+    <div class="header" :style="`--height: ${height()}px; align-items: end; padding-left: 76px; padding-right: 8px;`">
         <!-- <div>Баланс: 10 000 000 ₽</div> -->
-        <div style="height:30px; width: calc(100vw - 72px); border-radius: 15px; background-color:aquamarine;">{{ data.message }}</div>
+        <div style="height:30px; width: calc(100vw - 160px); border-radius: 15px; background-color:aquamarine;">{{ data.message }}</div>
          <!-- <div class="card-column" style="height:99px"> -->
             <!-- <div>{{ tgData.userName }}</div> -->
             <!-- <div>{{ tgData.userID }}</div> -->
