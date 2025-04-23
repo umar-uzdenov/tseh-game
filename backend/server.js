@@ -74,18 +74,18 @@ app.post('/api/auth', async (req, res) => {
     const dbUser = await database.user.get(tgId)
     console.log(dbUser)
     // console.log("params get user id", )
-    // if (dbUserif (dbUser.error) {
-    //     await database.user.add({
-    //         tgId: user.id, 
-    //         username: user.username, 
-    //         lastRequest: Date.now(),
-    //         balance: 0, 
-    //         models: [], 
-    //         yarns: [], 
-    //         machines: [], 
-    //         items: []
-    //     })
-    // }
+    if (dbUser.error) {
+        await database.user.add({
+            tgId: user.id, 
+            username: user.username, 
+            lastRequest: Date.now(),
+            balance: 0, 
+            models: [], 
+            yarns: [], 
+            machines: [], 
+            items: []
+        })
+    }
   
     // Example: Use cookies or JWT
     //   res.cookie('userId', user.id, { httpOnly: true });
