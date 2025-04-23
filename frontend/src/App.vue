@@ -39,7 +39,7 @@ launch(async () => {
                     const responseData = JSON.parse(xhr.responseText);
                     if (responseData.success) {
                         console.log(responseData)
-                        data.message = 'Authenticated as: ' + responseData.user
+                        data.message = 'Authenticated as: ' + JSON.stringify(responseData.user)
                     }
                     // resolve(responseData);
                 } else {
