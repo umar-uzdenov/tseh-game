@@ -63,6 +63,7 @@ function height() {
     // 62 ios, 46 android нвяало кнопок
     if (platform == "ios") return 62 + 30
     if (platform == "android") return 46.77 + 30
+    if (platform == "tdesktop") return 84 + 30
 }
 
 
