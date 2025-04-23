@@ -41,7 +41,7 @@ launch(async () => {
                         console.log(responseData)
                         data.message = 'Вошёл как: ' + responseData.user.first_name
                         try {
-                            data.message = JSON.stringify(window.Telegram.WebApp.platform)
+                            data.message = window.Telegram.WebApp.platform == "iOS"
                         } catch (e) {}
                     }
                     // resolve(responseData);
