@@ -26,8 +26,8 @@ const data = reactive({
 })
 
 launch(async () => {
-    data.message = tg.initData
-    return 0
+    // data.message = tg.initData
+    // return 0
     // const user = await get('/api/user', { tgid: 0 })
     // data.message = user.balance
     try {
