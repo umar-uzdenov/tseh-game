@@ -5,10 +5,10 @@ import { reactive } from 'vue'
 
 const tg = useTgStore().tg
 const tgData = useTgStore().data
-console.log(tg.initData)
-console.log(tg.initData)
+// console.log(tg.initData)
+// console.log(tg.initData)
 
-authTg(tg.initData)
+
 
 setTimeout(() => console.log(typeof tg.initData), 3000)
 
@@ -26,8 +26,9 @@ const data = reactive({
 })
 
 launch(async () => {
-    const user = await get('/api/user', { tgid: 0 })
-    data.message = user.balance
+    // const user = await get('/api/user', { tgid: 0 })
+    // data.message = user.balance
+    data.message = await authTg(tg.initData)
 })
 
 
