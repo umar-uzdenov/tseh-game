@@ -3,8 +3,8 @@ import { defineStore } from 'pinia'
 export const useTgStore = defineStore('tg', () => {
     const tg = window.Telegram.WebApp
     const data = {
-        userName: 'User info not available.',
-        userID: 'User info not available.',
+        userName: 'Default User',
+        userID: 0,
         openLink() {
             tg.openLink('https://core.telegram.org/bots/webapps')
         },
@@ -18,6 +18,8 @@ export const useTgStore = defineStore('tg', () => {
         data.userName = `${user.first_name || ''} ${user.last_name || ''}`
         data.userID = `ID: ${user.id}`
     }
+
+    data.user
 
     tg.ready()
     // tg.expand();

@@ -5,6 +5,12 @@ import { reactive } from 'vue'
 
 const tg = useTgStore().tg
 const tgData = useTgStore().data
+console.log(tg.initData)
+console.log(tg.initData)
+
+authTg(tg.initData)
+
+setTimeout(() => console.log(typeof tg.initData), 3000)
 
 const tabs = useTabsStore().tabs
 
@@ -15,12 +21,22 @@ const current = reactive({
     active(tab) { return this.value.name == tab.name ? "active" : "" }
 })
 
+const data = reactive({
+    message: "lol",
+})
+
+launch(async () => {
+    const user = await get('/api/user', { tgid: 0 })
+    data.message = user.balance
+})
+
 
 </script>
 
 <template>
     <div class="header">
-        <div>Баланс: 10 000 000 ₽</div>
+        <!-- <div>Баланс: 10 000 000 ₽</div> -->
+        <div>{{ data.message }}</div>
          <!-- <div class="card-column" style="height:99px"> -->
             <!-- <div>{{ tgData.userName }}</div> -->
             <!-- <div>{{ tgData.userID }}</div> -->

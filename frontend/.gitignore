@@ -29,3 +29,7 @@ coverage
 
 *.tsbuildinfo
 vite.config.js
+
+# Environment files
+.env
+**/.env

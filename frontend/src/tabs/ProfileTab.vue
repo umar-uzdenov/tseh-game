@@ -17,7 +17,7 @@ const data = useTgStore().data
             </div>
             <div class="profile-info">
                 <h3>{{ data.userName }}</h3>
-                <p>{{ data.userId }}</p>
+                <p>{{ data.userID }}</p>
                 <p><strong>Профессия:</strong> Программист</p>
                 <p><strong>Зарегистрирован:</strong> 15 апреля 2025</p>
             </div>
