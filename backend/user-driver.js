@@ -31,25 +31,31 @@ const loaded = []
 
 async function get(tgId) {
     try {
-    // console.log(userMain)
-    // console.log(tgId)
-    const id = 0; //userMain.tgToId.find(item => item.tg == tgId).id
-    // console.log(id)
-    // console.log("lastid", userMain.lastId)
-    if (userMain.lastId < id) return { error: "user not found" } // replace with loaded main blocks
+        // console.log(userMain)
+        // console.log(tgId)
+        let id = 0
+        const tgToId = userMain.tgToId.find(item => item.tg == tgId)
+        if (tgToId) id = tgToId.id
+        else return { error: "user not found" }
+        // const id = 0; //
+        // console.log(id)
+        // console.log("lastid", userMain.lastId)
+        if (userMain.lastId < id) return { error: "user not found" } // replace with loaded main blocks
 
-    let user = loaded.find(lu => lu.id == id) // loaded user
-    // console.log(user)
+        let user = loaded.find(lu => lu.id == id) // loaded user
+        // console.log(user)
 
-    if (!user) {
-        const index = Math.floor(id / blockSize) // find block index
-        user = readData(`user`, `block_${index}`, `user_${id}.json`)
-        loaded.push(user)
+        if (!user) {
+            const index = Math.floor(id / blockSize) // find block index
+            user = readData(`user`, `block_${index}`, `user_${id}.json`)
+            loaded.push(user)
+        }
+        // console.log(user)
+
+        return user
+    } catch (error) {
+        return { error }
     }
-    // console.log(user)
-
-    return user
-} catch (e) { return {e}}
 }
 
 async function add(user) {

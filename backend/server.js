@@ -80,18 +80,17 @@ app.post('/api/auth', async (req, res) => {
   // Extract user data
   const user = JSON.parse(params.get('user'));
 
-//   console.log(await database.user.get(params.get("id")))
-//   if (database.user.get(user.id).error) {
+  if (await database.user.get(params.get("id")).error) {
     database.user.add({
         tgid: user.id, hash, username: user.username, lastRequest: Date.now(),
         balance: 0, models: [], yarns: [], machines: [], items: []
     })
-//   }
+  }
   
   // Implement: Create user in DB if new, then start session
   // Example: Use cookies or JWT
 //   res.cookie('userId', user.id, { httpOnly: true });
-  res.json({ success: true, user });
+  res.json({ success: true });
 });
 
 const port = process.env.PORT || 3000;

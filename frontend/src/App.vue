@@ -26,7 +26,7 @@ const data = reactive({
 })
 
 launch(async () => {
-    data.message = await authTg(tg.initData)
+    // data.message = await authTg(tg.initData)
 
     // try {
     //         const xhr = new XMLHttpRequest();
