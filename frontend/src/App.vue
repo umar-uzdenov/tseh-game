@@ -28,7 +28,28 @@ const data = reactive({
 launch(async () => {
     // const user = await get('/api/user', { tgid: 0 })
     // data.message = user.balance
-    data.message = await authTg(tg.initData)
+    try {
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/api/auth');
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onload = () => {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    const responseData = JSON.parse(xhr.responseText);
+                    if (responseData.success) {
+                        data.message = 'Authenticated as: ' + responseData.user
+                    }
+                    // resolve(responseData);
+                } else {
+                    data.message = `Request failed with status ${xhr.status}`
+                }
+            };
+            xhr.onerror = () => {
+                data.message = 'Network error'
+            };
+            xhr.send(JSON.stringify({ initData }));
+        } catch (error) {
+            data.message = `Error: ${error}`
+        }
 })
 
 
