@@ -35,7 +35,11 @@ app.post('/api/auth', (req, res) => {
 
   // Parse initData into key-value pairs
   const params = new URLSearchParams(initData);
-  console.log(initData)
+  const jsonParams = {};
+  for (const [key, value] of params.entries()) {
+    jsonParams[key] = value;
+  }
+  console.log(jsonParams)
 //   console.log(params['user'])
 //   console.log(JSON.parse(params['user']))
   const hash = params.get('hash');
