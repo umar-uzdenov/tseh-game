@@ -70,8 +70,10 @@ app.post('/api/auth', async (req, res) => {
     // Extract user data
     const user = JSON.parse(params.get('user'));
 
-    // const dbUser = await database.user.get(Number(params.get("id")))
-    console.log("params get user id", JSON.parse(params.get("user")).id)
+    const tgId = +JSON.parse(params.get("user")).id
+    const dbUser = await database.user.get(tgId)
+    console.log(dbUser)
+    // console.log("params get user id", )
     // if (dbUserif (dbUser.error) {
     //     await database.user.add({
     //         tgId: user.id, 
