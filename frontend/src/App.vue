@@ -4,7 +4,7 @@ import { useTabsStore } from './stores/tabs.js'
 import { reactive } from 'vue'
 
 const tg = useTgStore().tg
-const user = useTgStore().data.user
+// const user = useTgStore().data.user
 // console.log(tg.initData)
 // console.log(tg.initData)
 
@@ -98,7 +98,7 @@ function h() {
 <template>
     <div class="header" :style="`--height: ${height()}px; align-items: end; justify-content: space-between; padding-left: ${pleft()}px; padding-right: ${pright}px;`">
         <!-- <div>Баланс: 10 000 000 ₽</div> -->
-        <div :style="`height: ${h()}px; width: ${witdth()}px; border-radius: 15px; background-color:aquamarine; display: flex; justify-content: center; align-items: center;`">{{ user.balance }}</div>
+        <div :style="`height: ${h()}px; width: ${witdth()}px; border-radius: 15px; background-color:aquamarine; display: flex; justify-content: center; align-items: center;`">{{ Баланс }}</div>
          <!-- <div class="card-column" style="height:99px"> -->
             <!-- <div>{{ tgData.userName }}</div> -->
             <!-- <div>{{ tgData.userID }}</div> -->
