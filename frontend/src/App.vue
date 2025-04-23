@@ -62,16 +62,16 @@ function height() {
     const platform = window.Telegram.WebApp.platform.toLowerCase()
     // 62 ios, 46 android нвяало кнопок
     if (platform == "ios") return 62 + 30
-    if (platform == "android") return 46 + 30
+    if (platform == "android") return 46.27 + 30
 }
 
 
 </script>
 
 <template>
-    <div class="header" :style="`--height: ${height()}px; align-items: end`">
+    <div class="header" :style="`--height: ${height()}px; align-items: end; padding-left: 100px`">
         <!-- <div>Баланс: 10 000 000 ₽</div> -->
-        <div style="height:30px; width: calc(100vw - 16px); border-radius: 15px; background-color:aquamarine;">{{ data.message }}</div>
+        <div style="height:30px; width: calc(100vw - 108px); border-radius: 15px; background-color:aquamarine;">{{ data.message }}</div>
          <!-- <div class="card-column" style="height:99px"> -->
             <!-- <div>{{ tgData.userName }}</div> -->
             <!-- <div>{{ tgData.userID }}</div> -->
