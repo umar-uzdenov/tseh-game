@@ -28,7 +28,7 @@ coverage
 *.sw?
 
 *.tsbuildinfo
-vite.config.js
+# vite.config.js
 
 # Environment files
 .env
