@@ -70,15 +70,15 @@ function witdth() {
     const platform = window.Telegram.WebApp.platform.toLowerCase()
     // 
     if (platform == "ios") return 160
-    if (platform == "android") return 200
+    if (platform == "android") return 220
     if (platform == "tdesktop") return 40
 }
 
 function pleft() {
     const platform = window.Telegram.WebApp.platform.toLowerCase()
     // 
-    if (platform == "ios") return 120
-    if (platform == "android") return 100
+    if (platform == "ios") return 128
+    if (platform == "android") return 112
     if (platform == "tdesktop") return 40
 }
 
