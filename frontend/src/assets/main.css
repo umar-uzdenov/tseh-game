@@ -17,7 +17,8 @@ html, body {
     z-index: 100;
     align-items: center;
     justify-content: center;
-    height: 40px;
+    /* height: 40px; */
+    height: var(--height);
 }
 
 .main-grid {

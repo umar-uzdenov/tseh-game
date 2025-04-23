@@ -58,13 +58,16 @@ launch(async () => {
         }
 })
 
-
+function height() {
+    if (window.Telegram.WebApp.platform == "iOS") return 64
+    if (window.Telegram.WebApp.platform == "android") return 46
+}
 
 
 </script>
 
 <template>
-    <div class="header">
+    <div class="header" :style="`--height: ${height()}px`">
         <!-- <div>Баланс: 10 000 000 ₽</div> -->
         <div>{{ data.message }}</div>
          <!-- <div class="card-column" style="height:99px"> -->
