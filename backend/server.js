@@ -31,66 +31,55 @@ app.get('/api/user', async (req, res) => {
 
 
 app.post('/api/auth', async (req, res) => {
-  const { initData } = req.body;
+    const { initData } = req.body;
 
-  // Parse initData into key-value pairs
-  const params = new URLSearchParams(initData);
-  const jsonParams = {};
-  for (const [key, value] of params.entries()) {
-    jsonParams[key] = value;
-  }
-//   console.log(jsonParams)
-//   console.log(params['user'])
-//   console.log(JSON.parse(jsonParams.user))
-  const hash = params.get('hash');
-  const authDate = parseInt(params.get('auth_date')) * 1000; // Convert to ms
+    // Parse initData into key-value pairs
+    const params = new URLSearchParams(initData);
+    const hash = params.get('hash');
+    const authDate = parseInt(params.get('auth_date')) * 1000; // Convert to ms
 
-  // Basic checks
-  if (Date.now() - authDate > 86400000) { // 24 hours
-    return res.status(401).json({ error: 'Expired' });
-  }
+    // Basic checks
+    //   if (Date.now() - authDate > 86400000) { // 24 hours
+    //     return res.status(401).json({ error: 'Expired' });
+    //   }
 
-  // Generate data-check-string
-  const dataCheckString = [...params]
-    .filter(([key]) => key !== 'hash')
-    .sort(([a], [b]) => a.localeCompare(b))
-    .map(([key, val]) => `${key}=${val}`)
-    .join('\n');
-    // console.log(dataCheckString)
+    // Generate data-check-string
+    const dataCheckString = [...params]
+        .filter(([key]) => key !== 'hash')
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([key, val]) => `${key}=${val}`)
+        .join('\n');
+        // console.log(dataCheckString)
 
-  // Compute secret key from bot token
-  const secret = crypto.createHmac('sha256', 'WebAppData')
-    .update(process.env.TELEGRAM_BOT_TOKEN)
-    .digest();
+    // Compute secret key from bot token
+    const secret = crypto.createHmac('sha256', 'WebAppData')
+        .update(process.env.TELEGRAM_BOT_TOKEN)
+        .digest();
     
-//   console.log(process.env.TELEGRAM_BOT_TOKEN)
-  // Validate hash
-  const computedHash = crypto
-    .createHmac('sha256', secret)
-    .update(dataCheckString)
-    .digest('hex');
+    //   console.log(process.env.TELEGRAM_BOT_TOKEN)
+    // Validate hash
+    const computedHash = crypto
+        .createHmac('sha256', secret)
+        .update(dataCheckString)
+        .digest('hex');
 
-// console.log("hash", hash)
-// console.log("comp", computedHash)
+    if (computedHash !== hash) {
+        return res.status(401).json({ error: 'Invalid hash' });
+    }
 
-  if (computedHash !== hash) {
-    return res.status(401).json({ error: 'Invalid hash' });
-  }
+    // Extract user data
+    const user = JSON.parse(params.get('user'));
 
-  // Extract user data
-  const user = JSON.parse(params.get('user'));
-
-  if ((await database.user.get(params.get("id"))).error) {
-    database.user.add({
-        tgId: user.id, hash, username: user.username, lastRequest: Date.now(),
-        balance: 0, models: [], yarns: [], machines: [], items: []
-    })
-  }
+    if ((await database.user.get(params.get("id"))).error) {
+        database.user.add({
+            tgId: user.id, hash, username: user.username, lastRequest: Date.now(),
+            balance: 0, models: [], yarns: [], machines: [], items: []
+        })
+    }
   
-  // Implement: Create user in DB if new, then start session
-  // Example: Use cookies or JWT
-//   res.cookie('userId', user.id, { httpOnly: true });
-  res.json({ success: true });
+    // Example: Use cookies or JWT
+    //   res.cookie('userId', user.id, { httpOnly: true });
+    res.json({ success: true });
 });
 
 const port = process.env.PORT || 3000;

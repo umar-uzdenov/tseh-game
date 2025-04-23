@@ -20,7 +20,8 @@ export const useTgStore = defineStore('tg', () => {
 
     launch(async () => {
         const isAuth = await authTg(tg.initData)
-        if (isAuth) data.hash
+        if (isAuth) data.hash = tg.initDataUnsafe.user.hash
+        data.user = await get("/api/user")
     })
 
     if (["ios", "android"].includes(tg.platform.toLowerCase())) tg.requestFullscreen() // on mobile
