@@ -41,7 +41,7 @@ app.post('/api/auth', (req, res) => {
   }
   console.log(jsonParams)
 //   console.log(params['user'])
-//   console.log(JSON.parse(params['user']))
+  console.log(JSON.parse(params['user']))
   const hash = params.get('hash');
   const authDate = parseInt(params.get('auth_date')) * 1000; // Convert to ms
 
