@@ -71,7 +71,7 @@ app.post('/api/auth', async (req, res) => {
     const user = JSON.parse(params.get('user'));
 
     // const dbUser = await database.user.get(Number(params.get("id")))
-    console.log("params get id", params.get("id"))
+    console.log("params get user", params.get("user"))
     // if (dbUserif (dbUser.error) {
     //     await database.user.add({
     //         tgId: user.id, 
