@@ -22,7 +22,7 @@ app.get('/api/test', (req, res) => {
 
 app.get('/api/user', async (req, res) => {
     try {
-        const tgId = req.query.tgId
+        const tgId = +req.query.tgId
         console.log(typeof tgId)
         res.json(await database.user.get(tgId))
     } catch (error) {
