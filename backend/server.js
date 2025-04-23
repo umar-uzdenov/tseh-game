@@ -23,7 +23,7 @@ app.get('/api/test', (req, res) => {
 app.get('/api/user', async (req, res) => {
     try {
         const tgId = Number(req.query.tgId)
-        console.log(req.query)
+        // console.log(req.query)
         res.json(await database.user.get(tgId))
     } catch (error) {
         console.error('Error fetching user:', error);
