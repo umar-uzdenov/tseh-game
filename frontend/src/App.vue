@@ -71,7 +71,7 @@ function height() {
 <template>
     <div class="header" :style="`--height: ${height()}px; align-items: end`">
         <!-- <div>Баланс: 10 000 000 ₽</div> -->
-        <div style="height:30px; width: 160px; border-radius: 15px">{{ data.message }}</div>
+        <div style="height:30px; width: 160px; border-radius: 15px; background-color:aquamarine;">{{ data.message }}</div>
          <!-- <div class="card-column" style="height:99px"> -->
             <!-- <div>{{ tgData.userName }}</div> -->
             <!-- <div>{{ tgData.userID }}</div> -->
