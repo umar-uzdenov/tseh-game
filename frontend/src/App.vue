@@ -39,7 +39,10 @@ launch(async () => {
                     const responseData = JSON.parse(xhr.responseText);
                     if (responseData.success) {
                         console.log(responseData)
-                        data.message = 'Authenticated as: ' + JSON.stringify(responseData.user)
+                        data.message = 'Authenticated as: ' + JSON.stringify(responseData.user).first_name
+                        try {
+                            tg.expand()
+                        } catch (e) {}
                     }
                     // resolve(responseData);
                 } else {
@@ -54,6 +57,8 @@ launch(async () => {
             data.message = `Error: ${error}`
         }
 })
+
+
 
 
 </script>
