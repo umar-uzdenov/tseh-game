@@ -41,7 +41,7 @@ launch(async () => {
                         console.log(responseData)
                         data.message = 'Вошёл как: ' + JSON.stringify(responseData.user.first_name)
                         try {
-                            tg.expand()
+                            tg.requestFullscreen()
                         } catch (e) {}
                     }
                     // resolve(responseData);
