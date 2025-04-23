@@ -24,7 +24,9 @@ app.get('/api/user', async (req, res) => {
     try {
         const tgId = +req.query.tgId
         console.log(typeof tgId)
-        res.json(await database.user.get(tgId))
+        const user = await database.user.get(tgId)
+        console.log("user", user)
+        res.json(user)
     } catch (error) {
         console.error('Error fetching user:', error);
     }
