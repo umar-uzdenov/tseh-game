@@ -40,10 +40,11 @@ async function get(tgId) {
         // const id = 0; //
         // console.log(id)
         // console.log("lastid", userMain.lastId)
-        if (userMain.lastId < id) return { error: "user not found" } // replace with loaded main blocks
+        if (userMain.lastId < id) return { error: "user not found" }
 
         let user = loaded.find(lu => lu.id == id) // loaded user
         // console.log(user)
+        console.log("user is loaded?")
 
         if (!user) {
             const index = Math.floor(id / blockSize) // find block index
@@ -51,6 +52,8 @@ async function get(tgId) {
             loaded.push(user)
         }
         // console.log(user)
+
+        console.log("user found and loaded")
 
         return user
     } catch (error) {
