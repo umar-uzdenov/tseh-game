@@ -68,7 +68,7 @@ app.post('/api/auth', (req, res) => {
   const computedHash = crypto
     .createHmac('sha256', secret)
     .update(dataCheckString)
-    .toString('hex');
+    .digest('hex');
 
 console.log("hash", hash)
 console.log("comp", computedHash)
