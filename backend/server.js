@@ -70,7 +70,9 @@ app.post('/api/auth', async (req, res) => {
     // Extract user data
     const user = JSON.parse(params.get('user'));
 
-    if ((await database.user.get(params.get("id"))).error) {
+    const dbUser = await database.user.get(Number(params.get("id")))
+    console.log(dbUser.error)
+    if (dbUser.error) {
         database.user.add({
             tgId: user.id, hash, username: user.username, lastRequest: Date.now(),
             balance: 0, models: [], yarns: [], machines: [], items: []
