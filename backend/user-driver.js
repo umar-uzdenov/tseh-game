@@ -32,7 +32,7 @@ const loaded = []
 async function get(tgId) {
     try {
         // console.log(userMain)
-        // console.log(tgId)
+        console.log("tgId", tgId)
         let id = 0
         const tgToId = userMain.tgToId.find(item => item.tg == tgId)
         if (tgToId) id = tgToId.id
