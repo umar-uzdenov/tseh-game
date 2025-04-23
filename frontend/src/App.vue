@@ -66,7 +66,13 @@ function height() {
     if (platform == "tdesktop") return 84 + 30
 }
 
-function witdth() {}
+function witdth() {
+    const platform = window.Telegram.WebApp.platform.toLowerCase()
+    // 
+    if (platform == "ios") return 160
+    if (platform == "android") return 200
+    if (platform == "tdesktop") return 40
+}
 
 function pleft() {
     const platform = window.Telegram.WebApp.platform.toLowerCase()
@@ -89,7 +95,7 @@ function pright() {
 <template>
     <div class="header" :style="`--height: ${height()}px; align-items: end; justify-content: space-between; padding-left: ${pleft()}px; padding-right: ${pright}px;`">
         <!-- <div>Баланс: 10 000 000 ₽</div> -->
-        <div :style="`height:30px; border-radius: 15px; background-color:aquamarine; display: flex; justify-content: center; align-items: center;`">{{ data.message }}</div>
+        <div :style="`height:30px; width: ${witdth()}px; border-radius: 15px; background-color:aquamarine; display: flex; justify-content: center; align-items: center;`">{{ data.message }}</div>
          <!-- <div class="card-column" style="height:99px"> -->
             <!-- <div>{{ tgData.userName }}</div> -->
             <!-- <div>{{ tgData.userID }}</div> -->
