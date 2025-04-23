@@ -37,6 +37,7 @@ launch(async () => {
             xhr.onload = () => {
                 if (xhr.status >= 200 && xhr.status < 300) {
                     const responseData = JSON.parse(xhr.responseText);
+                    console.log(responseData.user)
                     if (responseData.success) {
                         data.message = 'Authenticated as: ' + responseData.user
                     }
