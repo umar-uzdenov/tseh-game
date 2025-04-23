@@ -30,7 +30,7 @@ app.get('/api/user', async (req, res) => {
 });
 
 
-app.post('/api/auth', (req, res) => {
+app.post('/api/auth', async (req, res) => {
   const { initData } = req.body;
 
   // Parse initData into key-value pairs
@@ -80,7 +80,7 @@ app.post('/api/auth', (req, res) => {
   // Extract user data
   const user = JSON.parse(params.get('user'));
 
-  console.log(database.user.get(params.get("id")))
+  console.log(await database.user.get(params.get("id")))
   if (database.user.get(user.id).error) {
     database.user.add({
         tgid: user.id, hash, username: user.username, lastRequest: Date.now(),
