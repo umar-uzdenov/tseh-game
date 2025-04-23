@@ -4,14 +4,14 @@ export const useTgStore = defineStore('tg', () => {
     const tg = window.Telegram.WebApp
     const data = {
         userName: 'Default User',
-        userID: 0,
+        userId: 0,
         hash: "451c4c181086ced43181873b6fadce90b8192ad3a01a62bc3e182a80452201f8",
     }
 
     if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
         const user = tg.initDataUnsafe.user
         data.userName = `${user.first_name || ''} ${user.last_name || ''}`
-        data.userID = `ID: ${user.id}`
+        data.userId = `ID: ${user.id}`
     }
 
     data.user
@@ -21,7 +21,7 @@ export const useTgStore = defineStore('tg', () => {
     launch(async () => {
         const isAuth = await authTg(tg.initData)
         if (isAuth) data.hash = tg.initDataUnsafe.user.hash
-        data.user = await get("/api/user")
+        data.user = await get("/api/user", { tgId: data.userId })
     })
 
     if (["ios", "android"].includes(tg.platform.toLowerCase())) tg.requestFullscreen() // on mobile
