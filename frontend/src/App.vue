@@ -41,7 +41,7 @@ launch(async () => {
                         console.log(responseData)
                         data.message = 'Вошёл как: ' + responseData.user.first_name
                         try {
-                            data.message = window.Telegram.WebApp.platform.toLowerCase() == "ios"
+                            data.message = window.Telegram.WebApp.platform.toLowerCase()
                         } catch (e) {}
                     }
                     // resolve(responseData);
