@@ -4,7 +4,7 @@ import { useTabsStore } from './stores/tabs.js'
 import { reactive } from 'vue'
 
 const tg = useTgStore().tg
-// const user = useTgStore().data.user
+const user = useTgStore().data.user
 // console.log(tg.initData)
 // console.log(tg.initData)
 
