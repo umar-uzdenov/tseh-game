@@ -3,6 +3,7 @@ import { useTgStore } from './stores/tg.js'
 import { useTabsStore } from './stores/tabs.js'
 import { reactive } from 'vue'
 import MachineRoom from './MachineRoom/MachineRoom.vue'
+import BalanceButton from './components/BalanceButton.vue'
 
 const tg = useTgStore().tg
 const data = useTgStore().data
@@ -41,14 +42,23 @@ const menu = reactive({
     }
 })
 
+const platformIndex = ["ios", "android", "tdesktop", "unknown"]
+    .indexOf(tg.platform.toLowerCase())
+
+const top = [62, 48, 64, 16][platformIndex] + "px"
+const height = [30, 28, 64, 24][platformIndex] + "px"
+
 
 
 </script>
 
 <template>
     <BalanceButton />
-    <div :class="`tab-content ${menu.bgClass} ${current.change}`">
-        <div class="main-grid">
+    <div
+        :class="`tab-content ${menu.bgClass} ${current.change}`"
+        :style="`--top: ${top}`"
+    >
+        <div class="main-grid" :style="`--top-height: ${height}`">
             <MachineRoom v-if="current.is(tabs.workshop)" />
             <WorkshopMachines v-if="false" />
             <WorkshopModels v-if="current.is(tabs.models)" />
@@ -64,6 +74,45 @@ const menu = reactive({
 </template>
 
 <style scoped>
+
+
+.tab-content {
+    position: fixed;
+    top: 0;
+    padding-top: var(--top);
+    padding-bottom: 48px;
+    min-height: calc(100vh - 96px); /* Account for both tab bars */
+    height: calc(100vh - 96px); /* Account for both tab bars */
+    /* padding-bottom: 80px; */
+    width: 100%;
+    overflow: auto;
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 0vh,
+        transparent var(--top),
+        #fff3 calc(32px + var(--top)),
+        white calc(48px + var(--top)),
+        white calc(100vh - 48px),
+        #fff3 calc(100vh - 32px),
+        transparent 100vh
+    );
+    /* background-color: #0007; */
+    transition: 1s;
+}
+  
+/* Style your content */
+/* .content {
+    padding: 20px;
+} */
+
+.main-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+    padding-top: var(--top-height);
+    padding-bottom: 160px;
+}
 
 .tab-content.faded {
     opacity: .8;

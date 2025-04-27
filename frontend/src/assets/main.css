@@ -19,42 +19,6 @@ html, body {
 } */
 
 
-.tab-content {
-    position: fixed;
-    top: 0;
-    padding-top: 48px;
-    padding-bottom: 48px;
-    min-height: calc(100vh - 96px); /* Account for both tab bars */
-    height: calc(100vh - 96px); /* Account for both tab bars */
-    /* padding-bottom: 80px; */
-    width: 100%;
-    overflow: auto;
-    mask-image: linear-gradient(
-        to bottom,
-        transparent 0vh,
-        #fff3 32px,
-        white 48px,
-        white calc(100vh - 48px),
-        #fff3 calc(100vh - 32px),
-        transparent 100vh
-    );
-    /* background-color: #0007; */
-    transition: 1s;
-}
-  
-/* Style your content */
-/* .content {
-    padding: 20px;
-} */
-
-.main-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 8px;
-    padding-bottom: 160px;
-}
-
 .card {
     /* border: 1px solid #000000; */
     border-radius: 8px;
