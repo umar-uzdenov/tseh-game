@@ -1,6 +1,30 @@
-function launch(asyncFun) {
-    setTimeout(asyncFun, 0)
+function launch(asyncFun, timeout = 0) {
+    setTimeout(asyncFun, timeout)
 }
+
+function launchLoop(fun, interval = 1000, immediate = true) {
+    if (immediate) { setTimeout(fun, 0) }
+    setInterval(fun, interval)
+}
+
+const tg = window.Telegram.WebApp
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+let db = null
+
+launch(async () => {
+    for (let i = 0; i < 99; i++) {
+        if (window.database) {
+            db = window.database
+            return
+        }
+        sleep(10)
+    }
+    console.log("no database")
+})
 
 function get(url, params) {
     return new Promise((resolve, reject) => {
@@ -27,6 +51,7 @@ function get(url, params) {
 function authTg(initData) {
     return new Promise((resolve, reject) => {
         try {
+            // return resolve(true)
             const xhr = new XMLHttpRequest();
             xhr.open('POST', '/api/auth');
             xhr.setRequestHeader('Content-Type', 'application/json');
@@ -36,7 +61,7 @@ function authTg(initData) {
                     // if (data.success) {
                     //     console.log('Authenticated as:', data.user);
                     // }
-                    resolve(data.success);
+                    resolve(data);
                 // } else {
                 //     reject(`Request failed with status ${xhr.status}`);
                 // }

@@ -20,9 +20,9 @@ export const useTgStore = defineStore('tg', () => {
     tg.ready()
 
     launch(async () => {
-        const isAuth = await authTg(tg.initData)
-        if (isAuth) data.hash = tg.initDataUnsafe.user.hash
-        data.user = await get("/api/user", { tgId: data.userId })
+        // const isAuth = await authTg(tg.initData)
+        // if (isAuth) data.hash = tg.initDataUnsafe.user.hash
+        data.user = await get("/api/user", { tgId:   data.userId })
         // console.log("lol")
     })
 

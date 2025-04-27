@@ -18,5 +18,5 @@ const current = reactive({
         <WorkshopModels v-if="current.is('models')" />
         <WorkshopWarehouse v-if="current.is('warehouse')" />
     </div>
-    <SubTabButtons :subs="subs" :current="current"/>
+    <SubTabButtons v-if="false" :subs="subs" :current="current"/>
 </template>

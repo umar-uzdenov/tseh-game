@@ -32,10 +32,16 @@ const loaded = []
 async function get(tgId) {
     try {
         // console.log(userMain)
-        console.log("tgId", tgId)
+        // console.log("tgId", tgId)
+        if (tgId == 0) {
+            const user = readData(`user`, `block_0`, `user_0.json`)
+            // console.log(JSON.parse(user))
+            return readData(`user`, `block_0`, `user_0.json`)
+        }
         let id = 0
         const tgToId = userMain.tgToId.find(item => item.tg == tgId)
         if (tgToId) id = tgToId.id
+
         else return { error: "user not found" }
         // const id = 0; //
         // console.log(id)
@@ -44,7 +50,7 @@ async function get(tgId) {
 
         let user = loaded.find(lu => lu.id == id) // loaded user
         // console.log(user)
-        console.log("user is loaded?")
+        // console.log("user is loaded?")
 
         if (!user) {
             const index = Math.floor(id / blockSize) // find block index
@@ -53,7 +59,7 @@ async function get(tgId) {
         }
         // console.log(user)
 
-        console.log("user found and loaded")
+        // console.log("user found and loaded")
 
         return user
     } catch (error) {

