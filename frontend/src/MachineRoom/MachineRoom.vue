@@ -106,12 +106,6 @@ launch(async () => { // todo: simplify
 
 <style scoped>
 
-/* card */
-
-:root {
-    --animation-duration: 1s;
-}
-
 @keyframes machine-card-compact-frames {
     0% {
         height: 240px;
@@ -140,10 +134,14 @@ launch(async () => { // todo: simplify
     cursor: pointer;
     overflow: hidden;
     position: relative;
+
     user-select: none;
     -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    -webkit-touch-callout: none;
 
     border-radius: 8px;
     background: rgba(0, 10, 0, 0.7);
