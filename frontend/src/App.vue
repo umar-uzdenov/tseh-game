@@ -110,7 +110,7 @@ const height = [30, 28, 64, 24][platformIndex] + "px"
     flex-direction: column;
     gap: 8px;
     padding: 8px;
-    padding-top: var(--top-height);
+    padding-top: calc(var(--top-height) + 12px);
     padding-bottom: 160px;
 }
 
