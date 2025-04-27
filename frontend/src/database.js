@@ -7,8 +7,9 @@ window.database = reactive({
 
 
 launch(async () => {
-    const isTg = false // tg.initData == ''
-    const auth = await authTg(isTg ? { superId: 233 } : tg.initData)
+    // const isTg = tg.initData != ''
+    // const auth = await authTg(isTg ? tg.initData : { superId: 233 })
+    const auth = await authTg({ superId: 233 })
     if (auth.success) {
         database.auth = true
 
