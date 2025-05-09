@@ -5,8 +5,8 @@ html, body {
     padding: 0px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 16px;
-    background-image: url('../img/bg-main.jpg');
-    /* background-color: rgba(0, 0, 0, 0.188); */
+    background-image: url('img/bg-main.jpg');
+    /* background-color: rgba(255, 255, 255, 0.851); */
     background-size: cover;
     height: 100vh;
     /* overflow: scroll; */
@@ -18,9 +18,9 @@ html, body {
     overflow-y: auto;
 } */
 
-
+/*
 .card {
-    /* border: 1px solid #000000; */
+     border: 1px solid #000000; 
     border-radius: 8px;
     padding: 12px;
     background: rgba(0, 10, 0, 0.7);
@@ -30,7 +30,7 @@ html, body {
     display: flex;
     gap: 8px;
     cursor: pointer;
-}
+}*/
 
 .horizontal {
     justify-content: space-between;

@@ -14,39 +14,76 @@ const app = express();
 app.use(express.json());
 
 
-app.get('/api/user', async (req, res) => {
-    try {
-        if (+req.query.superId == 233) {
-            // console.log("get user super id 233")
-            const user = await database.user.get(0)
-            // console.log("user id is", user.tgUser.username)
-            return res.json(await database.user.get(0))
-        }
+// app.get('/api/user', async (req, res) => {
+//     try {
+//         if (+req.query.superId == 233) {
+//             // console.log("get user super id 233")
+//             const user = await database.user.get(0)
+//             // console.log("user id is", user.tgUser.username)
+//             return res.json(await database.user.get(0))
+//         }
 
-        const tgId = +req.query.tgId
-        // console.log(typeof tgId)
-        const user = await database.user.get(tgId)
-        // console.log("user", user.tgUser.username)
+//         const tgId = +req.query.tgId
+//         // console.log(typeof tgId)
+//         const user = await database.user.get(tgId)
+//         // console.log("user", user.tgUser.username)
+//         res.json(user)
+//     } catch (error) {
+//         console.error('Error fetching user:', error);
+//     }
+// });
+
+app.post('/api/get-user', async (req, res) => {
+    try {
+        const { tgId, hash} = req.body.user // check user by tgId and hash
+        // console.log({tgId})
+        const user = await database.user.get(tgId) // add check for hash
+        // console.log("user", user)
         res.json(user)
     } catch (error) {
-        console.error('Error fetching user:', error);
+        console.error(error)
     }
-});
+})
+
+app.post('/api/add-model', async (req, res) => {
+    try {
+        const { tgId, hash} = req.body.user // check user by tgId and hash
+        const user = await database.user.get(tgId)
+        console.log("user", user.models.length)
+        const reqModel = req.body.data
+        user.models.push({
+            id: 0,
+            type: reqModel.type,
+            img: reqModel.type,
+            imgId: reqModel.id,
+            name: reqModel.name,  
+            description: reqModel.description,
+            time: Math.floor(Math.random() * 4) * 10 + Math.floor(Math.random() * 10),
+            yarnId: 0, // replace with actual data
+            yarn: "Хлопок", // replace with actual data
+            consumption: 500
+        })
+        // console.log(model)
+    } catch (error) {
+        console.error(error)
+    }
+})
 
 app.post('/api/auth', async (req, res) => {
     // console.log('POST /api/auth');
-    const { initData } = req.body;
+    // const { initData } = req.body;
     // console.log(`Received initData: ${initData}`);
-
+    // console.log("req.body", req.body)
+    // return res.json({ success: "You authentificated" })
     // Parse initData into key-value pairs
-    const params = new URLSearchParams(initData);
-    if (params.get("superId") == 233) {
-        console.log("caught")
+    console.log({ "req body": req.body })
+    if (req.body.id == 0) {
+        console.log("user 0 auth")
         return res.json({ success: "You authentificated" })
     }
     // console.log(`Parsed params: ${params}`);
-    const hash = params.get('hash');
-    const authDate = parseInt(params.get('auth_date')) * 1000; // Convert to ms
+    // const hash = params.get('hash');
+    // const authDate = parseInt(params.get('auth_date')) * 1000; // Convert to ms
 
     // Basic checks
     //   if (Date.now() - authDate > 86400000) { // 24 hours
@@ -54,7 +91,7 @@ app.post('/api/auth', async (req, res) => {
     //   }
 
     // Generate data-check-string
-    const dataCheckString = [...params]
+    const dataCheckString = req.body
         .filter(([key]) => key !== 'hash')
         .sort(([a], [b]) => a.localeCompare(b))
         .map(([key, val]) => `${key}=${val}`)
@@ -79,10 +116,10 @@ app.post('/api/auth', async (req, res) => {
     }
 
     // Extract user data
-    const user = JSON.parse(params.get('user'));
+    const user = JSON.parse(req.body['user']);
     console.log(`User data: ${user}`);
 
-    const tgId = +JSON.parse(params.get("user")).id
+    const tgId = +JSON.parse(req.body['user']).id
     const dbUser = await database.user.get(tgId)
     console.log(`Database user: ${dbUser}`);
     // console.log("params get user id", )

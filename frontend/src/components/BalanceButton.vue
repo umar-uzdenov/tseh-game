@@ -1,7 +1,5 @@
 <script setup>
 import { reactive } from 'vue'
-import { useTgStore } from '@/stores/tg.js'
-const tg = useTgStore().tg
 const platformIndex = ["ios", "android", "tdesktop", "unknown"]
     .indexOf(tg.platform.toLowerCase())
     // .indexOf(window.Telegram.WebApp.platform.toLowerCase())
@@ -17,8 +15,8 @@ const balanceButton = reactive({
 })
 
 launch(async () => {
-    const userData = await get("/api/user", { tgId: useTgStore().data.userId })
-    balanceButton.value = userData.balance
+    // const userData = await get("/api/user", { tgId: useTgStore().data.userId })
+    balanceButton.value = 12345678
 })
 </script>
 

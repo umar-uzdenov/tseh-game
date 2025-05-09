@@ -1,10 +1,14 @@
 <script setup>
-const { size, animation, duration } =
-    defineProps(['size', 'animation', 'duration'])
+const { state, animation, duration } =
+    defineProps(['state', 'animation', 'duration'])
 </script>
 
 <template>
-    <div :class="`manage-buttons ${size} ${animation}`" :style="`--duration: ${duration}`">
+    <div
+        :class="`manage-buttons ${state} ${animation}`"
+        :style="`--duration: ${duration}`"
+        v-if="state == 'expand'"
+    >
         <div class="button stop-button">Отменить</div>
         <div class="button pause-button">Остановить</div>
         <div class="button add-button">Добавить</div>
@@ -13,33 +17,6 @@ const { size, animation, duration } =
 
 <style scoped>
 
-
-/* manage buttons */
-
-@keyframes manage-buttons-compact-frames {
-    0% {
-        bottom: 12px;
-    }
-    35% {
-        bottom: -36px;
-    }
-    100% {
-        bottom: -36px;
-    }
-}
-
-@keyframes manage-buttons-expand-frames {
-    0% {
-        bottom: -36px;
-    }
-    65% {
-        bottom: -36px;
-    }
-    100% {
-        bottom: 12px;
-    }
-}
-
 .manage-buttons {
     display: flex;
     justify-content:space-between;
@@ -47,26 +24,12 @@ const { size, animation, duration } =
     gap: 8px;
     position: absolute;
     left: 12px;
-    right: 12px;
+    width: calc(100vw - 72px);
     height: 32px;
-}
-
-.compact.manage-buttons {
-    bottom: -36px;
-}
-
-.compact-animation.manage-buttons {
-    animation: manage-buttons-compact-frames ease-in-out;
-    animation-duration: var(--duration);
 }
 
 .expand.manage-buttons {
     bottom: 12px;
-}
-
-.expand-animation.manage-buttons {
-    animation: manage-buttons-expand-frames ease-in-out;
-    animation-duration: var(--duration);
 }
 
 .button {
@@ -87,17 +50,17 @@ const { size, animation, duration } =
 
 .stop-button {
     box-shadow: 0 0 2px 1px #F44336 inset;
-    color: #F44336;
+    color: #ff2515;
 }
 
 .pause-button {
     box-shadow: 0 0 2px 1px #FDD835 inset;
-    color: #FDD835;
+    color: #ffd930;
 }
 
 .add-button {
     box-shadow: 0 0 2px 1px #4CAF50 inset;
-    color: #4CAF50;
+    color: #3bb43f;
 }
 
 </style>

@@ -2,10 +2,10 @@
 // import { useMarketStore } from '@/stores/market/market'
 // const market = useMarketStore().market
 
-import { useTgStore } from '@/stores/tg';
-const tg = useTgStore().tg
-const data = useTgStore().data
-
+const data = {
+    userName: "default",
+    userID: "def"
+}
 </script>
 
 <template>

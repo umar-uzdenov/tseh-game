@@ -1,20 +1,15 @@
 <script setup>
-import { useTgStore } from './stores/tg.js'
-import { useTabsStore } from './stores/tabs.js'
 import { reactive } from 'vue'
-import MachineRoom from './MachineRoom/MachineRoom.vue'
+import MachineRoom from './tabs/MachineRoom/MachineRoom.vue'
 import BalanceButton from './components/BalanceButton.vue'
-
-const tg = useTgStore().tg
-const data = useTgStore().data
-
-console.log(database.test)
-
+import Menu from './components/Menu.vue'
+import UserModels from './tabs/UserModels/UserModels.vue'
+import { useTabsStore } from './stores/tabs'
 
 const tabs = useTabsStore().tabs
 
 const current = reactive({
-    value : tabs[0],
+    value : tabs[1],
     change: "",
     is(name) { return this.value.name == name },
     set(tab) {
@@ -58,10 +53,9 @@ const height = [30, 28, 64, 24][platformIndex] + "px"
         :class="`tab-content ${menu.bgClass} ${current.change}`"
         :style="`--top: ${top}`"
     >
-        <div class="main-grid" :style="`--top-height: ${height}`">
+        <div class="main-grid" :style="`--top-height: ${height};`">
             <MachineRoom v-if="current.is(tabs.workshop)" />
-            <WorkshopMachines v-if="false" />
-            <WorkshopModels v-if="current.is(tabs.models)" />
+            <UserModels v-if="current.is(tabs.models)" />
             <WorkshopWarehouse v-if="current.is(tabs.warehouse)" />
             <WorkshopYarns v-if="current.is(tabs.yarns)" />
             <StoreMachines v-if="current.is(tabs.machineStore)" />
