@@ -13,18 +13,9 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-let db = null
-
-launch(async () => {
-    for (let i = 0; i < 99; i++) {
-        if (window.database) {
-            db = window.database
-            return
-        }
-        sleep(10)
-    }
-    console.log("no database")
-})
+Array.prototype.random = function() {
+    return this[Math.floor(Math.random() * this.length)];
+}
 
 function get(url, params) {
     return new Promise((resolve, reject) => {
@@ -69,7 +60,29 @@ function authTg(initData) {
             // xhr.onerror = () => {
             //     reject('Network error');
             // };
-            xhr.send(JSON.stringify({ initData }));
+            xhr.send(JSON.stringify(initData))
+        } catch (error) {
+            reject(`Error: ${error}`);
+        }
+    });
+}
+
+function post(url, data) {
+    // return console.log(data)
+    return new Promise((resolve, reject) => {
+        try {
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', `/api/${url}`);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onload = () => {
+                // console.log(xhr.responseText)
+                const data = JSON.parse(xhr.responseText);
+                resolve(data);
+            };
+            xhr.send(JSON.stringify({
+                user: { tgId: 0, hash: 0 },
+                data,
+            }))
         } catch (error) {
             reject(`Error: ${error}`);
         }

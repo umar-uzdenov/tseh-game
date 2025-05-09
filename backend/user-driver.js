@@ -14,43 +14,68 @@ async function readData(...filename) {
     return JSON.parse(file.toString())
 }
 
-function writeData(data, ...filename) {
+async function writeData(data, ...filename) {
     const filePath = path.join(dbPath, ...filename)
-    console.log("filePath", filePath)
+    // console.log("filePath", filePath)
     fs.writeFileSync(filePath, JSON.stringify(data, null, 4))
 }
-
-// function get(name, id) {
-//     if (blocks[name + ".json"].lastId < id) return { error: "item not found" }
-//     return blocks[name + ".json"].items.find(item => item.id == id)
-// }
 
 const userMain = await readData("user.json")
 const blockSize = 100
 const loaded = []
 
+setTimeout(async () => {
+    while (true) {
+        await new Promise(res => setTimeout(res, 3000))
+        await writeData(userMain, "user.json")
+        
+        let toUnload = []
+        for (let i = 0; i < userMain.tgToId.length; i++) {
+            const user = userMain.tgToId[i]
+            let loadedUserIndex = loaded.findIndex(lu => lu.id == user.id) // loaded user
+            if (loadedUserIndex == -1) break
+
+            const loadedUser = loaded[loadedUserIndex]
+            const index = Number((loadedUser.id / blockSize).toFixed(0))
+            await writeData(loadedUser, `user`, `block_${index}`, `user_${loadedUser.id}.json`)
+
+            if (new Date().getTime() - user.last > 10000) {
+                toUnload.push(loadedUserIndex)
+                console.log({toUnload})
+            }
+        }
+
+        toUnload.reverse().forEach(index => loaded.splice(index, 1))
+        toUnload = []
+    }
+}, 0)
+
 async function get(tgId) {
     try {
         // console.log(userMain)
         // console.log("tgId", tgId)
-        if (tgId == 0) {
-            const user = readData(`user`, `block_0`, `user_0.json`)
-            // console.log(JSON.parse(user))
-            return readData(`user`, `block_0`, `user_0.json`)
-        }
-        let id = 0
+        // console.log({tgId})
         const tgToId = userMain.tgToId.find(item => item.tg == tgId)
-        if (tgToId) id = tgToId.id
-
-        else return { error: "user not found" }
-        // const id = 0; //
-        // console.log(id)
-        // console.log("lastid", userMain.lastId)
-        if (userMain.lastId < id) return { error: "user not found" }
-
-        let user = loaded.find(lu => lu.id == id) // loaded user
-        // console.log(user)
-        // console.log("user is loaded?")
+        const { id, last } = tgToId
+        // console.log({id,last})
+        if (new Date().getTime() - last > 1000) {
+            // console.log("1s")
+            tgToId.last = new Date().getTime() // replace with game cycle
+        }
+        // console.log({id,last})
+        const loadedUser = loaded.find(lu => lu.id == id)
+        // console.log(loadedUser)
+        if (loadedUser) {
+            // console.log(loadedUser)
+            return loadedUser
+        }
+        else {
+            const index = Math.floor(id / blockSize) // find block index
+            const user = await readData(`user`, `block_${index}`, `user_${id}.json`)
+            loaded.push(user)
+            // console.log(user.id)
+            return user
+        }
 
         if (!user) {
             const index = Math.floor(id / blockSize) // find block index
@@ -71,8 +96,8 @@ async function add(user) {
     console.log("add function")
     const id = userMain.lastId + 1
     userMain.lastId = id
-    userMain.tgToId.push({ tg: user.tgId, id })
-    writeData(userMain, "user.json")
+    userMain.tgToId.push({ tg: user.tgId, id, last: new Date().getTime() })
+    
 
     user.id = id // rewrite to generate new user
     loaded.push(user)
