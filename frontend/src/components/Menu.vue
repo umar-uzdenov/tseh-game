@@ -1,6 +1,5 @@
 <script setup>
-import { useTabsStore } from '@/stores/tabs.js'
-const tabs = useTabsStore().tabs
+import tabs from '@/tabs.js'
 const props = defineProps(['menu', 'current'])
 
 function activate(tab) {
@@ -56,7 +55,7 @@ function activate(tab) {
 }
 
 .menu-block.expanded {
-    height: calc(32px + 49px * 8);
+    height: calc(32px + 49px * 6);
     width: 200px;
     left: calc(50vw - 100px);
     background-color: rgba(0, 0, 0, 0.7);

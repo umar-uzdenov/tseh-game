@@ -2,9 +2,6 @@ import { reactive } from 'vue'
 
 window.database = reactive({
     user: {},
-    addModel(model) {
-        post('/add-model', model)
-    },
     models: [
         { name: "cap", description: "Шапка", quantity: 7},
         { name: "cardigan", description: "Кардиган", quantity: 7},
@@ -13,7 +10,16 @@ window.database = reactive({
         { name: "scarf", description: "Шарф", quantity: 7},
         { name: "snood", description: "Снуд", quantity: 7},
         { name: "sweater", description: "Свитер", quantity: 7},
-    ]
+    ],
+    sellItem(itemId) {
+        post('/sell-item', { itemId })
+    },
+    addModel(model) {
+        post('/add-model', model)
+    },
+    createOrder(data) {
+        post('/create-order', data)
+    },
 })
 
 
@@ -32,7 +38,7 @@ launch(async () => {
             // const user = 
             database.user = {...(await post("/get-user", {}))}
             // console.log(database.user)
-        })
+        }, 100)
     }
 
     // console.log(database.auth)

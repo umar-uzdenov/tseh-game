@@ -69,6 +69,64 @@ app.post('/api/add-model', async (req, res) => {
     }
 })
 
+app.post('/api/sell-item', async (req, res) => {
+    const { tgId, hash } = req.body.user // check user by tgId and hash
+    const { itemId } = req.body.data
+    const user = await database.user.get(tgId)
+    const item = user.items.find(item => item.id === itemId)
+
+    user.balance += item.price * (item.quantityProduced - item.quantitySold)
+    user.total += item.price * (item.quantityProduced - item.quantitySold)
+
+    if (item.quantityLeft) {
+        item.quantitySold = item.quantityProduced
+    } else {
+        const itemIndex = user.items.findIndex(item => item.id === itemId)
+        user.items.splice(itemIndex, 1)
+    }
+    res.json({success: "success"})
+})
+
+app.post('/api/create-order', async (req, res) => {
+    const { tgId, hash } = req.body.user // check user by tgId and hash
+    const data = req.body.data
+    console.log(data)
+    const user = await database.user.get(tgId)
+    const machine = user.machines.find(machine => machine.id == data.machineId)
+    if (machine.currentItemId != -1) {
+        // типа античит
+        return res.json({ error: "Order already exist on this machine" })
+    }
+    const model = user.models.find(model => model.id == data.modelId)
+    user.lastItemId += 1
+
+    user.items.push({
+        "id": user.lastItemId, // set last item id + 1 after assigning
+        "price": model.price,
+        "name": model.name,
+        "img": model.img,
+        "quantity": data.quantity,
+        "quantityLeft": data.quantity,
+        "quantityProduced": 0,
+        "time": model.time,
+        "timeLeft": model.time
+    })
+    machine.currentModelId = model.id
+    machine.currentItemId = user.lastItemId
+    machine.lastProcess = new Date().getTime()
+    console.log("creating order")
+    // const item = user.items.find(item => item.id === itemId)
+    // const itemIndex = user.items.findIndex(item => item.id === itemId)
+    // console.log({itemIndex})
+    // user.items.splice(itemIndex, 1)
+    // // добавить поведение, чтобы карточка не удалялась, когда есть ещё товары для производства 
+    // // ну или нет
+    // // console.log(user.balance)
+    // console.log({price: item.price * item.quantityProduced})
+    // user.balance += item.price * item.quantityProduced
+    res.json({success: "success"})
+})
+
 app.post('/api/auth', async (req, res) => {
     // console.log('POST /api/auth');
     // const { initData } = req.body;

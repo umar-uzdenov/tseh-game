@@ -13,7 +13,10 @@
         "photo_url": "https://t.me/i/userpic/320/MAJoSgg3bCNEMRN4cd_U2B_xhvOXRlyg5rTLsJ0HWFk.svg"
     },
     "lastRequest": 1745311108875,
-    "balance": 19800000,
+    "lastProcess": 1747173207384,
+    "lastItemId": 125,
+    "balance": null,
+    "total": null,
     "machinesByed": 1,
     "machinesSold": 0,
     "itemsSold": 0,
@@ -29,7 +32,8 @@
             "time": 34,
             "yarnId": 0,
             "yarn": "Хлопок",
-            "consumption": 500
+            "consumption": 500,
+            "price": 770
         },
         {
             "id": 1,
@@ -41,7 +45,8 @@
             "time": 22,
             "yarnId": 0,
             "yarn": "Шерсть",
-            "consumption": 350
+            "consumption": 350,
+            "price": 500
         },
         {
             "id": 2,
@@ -53,10 +58,11 @@
             "time": 13,
             "yarnId": 0,
             "yarn": "Ангора",
-            "consumption": 120
+            "consumption": 120,
+            "price": 230
         },
         {
-            "id": 0,
+            "id": 3,
             "type": "cardigan",
             "img": "cardigan",
             "imgId": 2,
@@ -65,10 +71,11 @@
             "time": 25,
             "yarnId": 0,
             "yarn": "Хлопок",
-            "consumption": 500
+            "consumption": 500,
+            "price": 800
         },
         {
-            "id": 0,
+            "id": 4,
             "type": "scarf",
             "img": "scarf",
             "imgId": 4,
@@ -77,7 +84,8 @@
             "time": 1,
             "yarnId": 0,
             "yarn": "Хлопок",
-            "consumption": 500
+            "consumption": 500,
+            "price": 300
         }
     ],
     "yarns": [
@@ -94,10 +102,10 @@
             "name": "Sturm",
             "img": "sturm.jpg",
             "distinctName": "№1",
-            "currentModelId": 0,
-            "quantity": 20,
-            "quantityLeft": 20,
-            "start": 1745311108875
+            "currentModelId": -1,
+            "currentItemId": -1,
+            "start": 1745311108875,
+            "lastProcess": 1747255588648
         },
         {
             "id": 1,
@@ -105,90 +113,32 @@
             "img": "arashi.jpg",
             "distinctName": "№2",
             "currentModelId": 0,
-            "quantity": 30,
-            "quantityLeft": 13,
-            "start": 1745311108875
+            "currentItemId": 125,
+            "start": 1745311108875,
+            "lastProcess": 1747380343000
         },
         {
             "id": 2,
             "name": "FengBao",
             "img": "fengbao.jpg",
             "distinctName": "№3",
-            "currentModelId": 2,
-            "quantity": 200,
-            "quantityLeft": 174,
-            "start": 1745311108875
-        },
-        {
-            "id": 3,
-            "name": "Sturm",
-            "img": "sturm.jpg",
-            "distinctName": "№4",
-            "currentModelId": 1,
-            "quantity": 50,
-            "quantityLeft": 23,
-            "start": 1745311108875
-        },
-        {
-            "id": 4,
-            "name": "Sturm",
-            "img": "sturm.jpg",
-            "distinctName": "№5",
-            "currentModelId": 1,
-            "quantity": 40,
-            "quantityLeft": 32,
-            "start": 1745311108875
-        },
-        {
-            "id": 5,
-            "name": "FengBao",
-            "img": "fengbao.jpg",
-            "distinctName": "№6",
-            "currentModelId": 0,
-            "quantity": 33,
-            "quantityLeft": 11,
-            "start": 1745311108875
-        },
-        {
-            "id": 6,
-            "name": "Arashi",
-            "img": "arashi.jpg",
-            "distinctName": "№7",
-            "currentModelId": 2,
-            "quantity": 25,
-            "quantityLeft": 1,
-            "start": 1745311108875
-        },
-        {
-            "id": 7,
-            "name": "Arashi",
-            "img": "arashi.jpg",
-            "distinctName": "№8",
-            "currentModelId": 2,
-            "quantity": 45,
-            "quantityLeft": 23,
-            "start": 1745311108875
-        },
-        {
-            "id": 8,
-            "name": "FengBao",
-            "img": "fengbao.jpg",
-            "distinctName": "№9",
-            "currentModelId": 1,
-            "quantity": 54,
-            "quantityLeft": 54,
-            "start": 1745311108875
-        },
-        {
-            "id": 9,
-            "name": "FengBao",
-            "img": "fengbao.jpg",
-            "distinctName": "№10",
-            "currentModelId": 2,
-            "quantity": 24,
-            "quantityLeft": 14,
-            "start": 1745311108875
+            "currentModelId": -1,
+            "currentItemId": -1,
+            "start": 1745311108875,
+            "lastProcess": 1747379982354
         }
     ],
-    "items": []
+    "items": [
+        {
+            "id": 125,
+            "price": 770,
+            "name": "Кардиган",
+            "img": "cardigan",
+            "quantity": 1,
+            "quantityLeft": 1,
+            "quantityProduced": 0,
+            "time": 34,
+            "timeLeft": 3
+        }
+    ]
 }

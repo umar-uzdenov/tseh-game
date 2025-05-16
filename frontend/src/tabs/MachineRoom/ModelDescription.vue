@@ -10,7 +10,8 @@ const { state, animation, model, duration} =
         v-if="state == 'expand'"
     >
         <div class="top">
-            <div class="yarn">{{ model.yarn }}</div>
+            <!-- <div class="yarn">{{ model.yarn }}</div> -->
+            <div class="yarn">Время выхода:</div>
             <div class="time">{{ model.time }} мин</div>
         </div>
         <div class="description">{{ model.description }}</div>

@@ -1,6 +1,6 @@
 import path from "path"
 import fs from "fs"
-
+import { sleep, launch, now } from './util.js'
 import { fileURLToPath } from 'node:url';
 // import path from 'node:path';
 
@@ -24,9 +24,10 @@ const userMain = await readData("user.json")
 const blockSize = 100
 const loaded = []
 
-setTimeout(async () => {
+launch(async () => {
+    let counterToWrite = 0
     while (true) {
-        await new Promise(res => setTimeout(res, 3000))
+        await sleep(300) // game loop
         await writeData(userMain, "user.json")
         
         let toUnload = []
@@ -37,7 +38,14 @@ setTimeout(async () => {
 
             const loadedUser = loaded[loadedUserIndex]
             const index = Number((loadedUser.id / blockSize).toFixed(0))
-            await writeData(loadedUser, `user`, `block_${index}`, `user_${loadedUser.id}.json`)
+            processUser(loadedUser)
+            
+            counterToWrite++
+            if (counterToWrite > 100) {
+                await writeData(loadedUser, `user`, `block_${index}`, `user_${loadedUser.id}.json`)
+                counterToWrite = 0
+            }
+            
 
             if (new Date().getTime() - user.last > 10000) {
                 toUnload.push(loadedUserIndex)
@@ -48,7 +56,54 @@ setTimeout(async () => {
         toUnload.reverse().forEach(index => loaded.splice(index, 1))
         toUnload = []
     }
-}, 0)
+})
+
+function processUser(user) {
+    // console.log(user.machines.length)
+    // user.lastProcess = new Date().getTime()
+    if (now() - user.lastProcess > 1000) {
+        for (const machine of user.machines) {
+            // continue
+        // user.machines.forEach(machine => {
+            if (machine.currentItemId == -1) continue
+
+            const currentModel = user.models.find(model => model.id == machine.currentModelId)
+            const currentItem = user.items.find(item => item.id == machine.currentItemId)
+
+            if (currentItem === undefined) {
+                user.items.push({
+                // console.log({
+                    "id": machine.currentItemId,
+                    "price": currentModel.price, // get from model info
+                    "name": currentModel.name, // getFrom
+                    "img": currentModel.img,
+                    "quantity": 1000,
+                    "quantityProduced": 0,
+                    quantityLeft: 1000,
+                    time: currentModel.time,
+                    timeLeft: 0
+                })
+                continue
+            }
+
+            currentItem.quantityProduced = currentItem.quantity - currentItem.quantityLeft
+            while (now() - machine.lastProcess > 1000) {
+                if (currentItem.quantityLeft > 0) {
+                    if (currentItem.timeLeft > 0) {
+                        currentItem.timeLeft -= 1
+                    } else if (currentItem.timeLeft == 0) {
+                        currentItem.quantityLeft -= 1
+                        currentItem.timeLeft = currentModel.time
+                    }
+                } else if (currentItem.quantityLeft == 0) {
+                    machine.currentItemId = -1
+                    machine.currentModelId = -1
+                }
+                machine.lastProcess += 1000
+            }
+        }
+    }
+}
 
 async function get(tgId) {
     try {

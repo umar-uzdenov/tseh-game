@@ -25,6 +25,7 @@ const { card } = defineProps(['card'])
     height: 8px;
     border-radius: 4px;
     box-shadow: 0 0 2px 2px rgb(255, 66, 66) inset;
+    background-color: rgba(255, 66, 66, 0.831);
     transform: rotate(45deg);
 }
 
@@ -35,6 +36,7 @@ const { card } = defineProps(['card'])
     height: 8px;
     border-radius: 4px;
     box-shadow: 0 0 2px 2px rgb(255, 66, 66) inset;
+    background-color: rgba(255, 66, 66, 0.831);
     transform: rotate(-45deg);
 }
 </style>

@@ -1,13 +1,19 @@
 <script setup>
-const { state, animation, quantityLeft, quantity, duration } =
-    defineProps(['state', 'animation', 'quantityLeft', 'quantity', 'duration'])
+import { computed } from 'vue';
+
+const { state, animation, machine, duration } =
+    defineProps(['state', 'animation', 'machine', 'duration'])
+
+const item = computed(() => window.database.user.items
+    .find(item => item.id == machine.currentItemId))
+
 </script>
 
 <template>
-    <div :class="`block ${state} ${animation}`">
+    <div v-if="item" :class="`block ${state} ${animation}`">
         <div class="label" v-if="state == 'expand'">Осталось:</div>
         <div class="quantity">
-            {{ quantityLeft + " / " + quantity }} шт
+            {{ item.quantityLeft + " / " + item.quantity }} шт
         </div>
     </div>
 </template>

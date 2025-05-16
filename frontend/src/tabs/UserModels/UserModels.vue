@@ -72,7 +72,7 @@ function selectType(type) {
         <div class="card-column">
             <div class="model-name">{{model.name}}</div>
             <div class="model-description">{{model.description}}</div>
-            <div class="model-yarn">Материал: {{model.yarn}}</div>
+            <!-- <div class="model-yarn">Материал: {{model.yarn}}</div> -->
             <div class="model-time">Время: {{model.time}} минут</div>
         </div>
     </div>
@@ -125,8 +125,8 @@ function selectType(type) {
 }
 
 .model-img {
-    width: 132px;
-    height: 132px;
+    width: 102px;
+    height: 102px;
     border-radius: 8px;
 }
 

@@ -15,6 +15,27 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
 
+function minuteSpell(minutes) {
+    // return right spelling for russian word "минута" according to given minutes
+    const lastDigit = minutes % 10;
+    const lastTwoDigits = minutes % 100;
+    // console.log({lastDigit, lastTwoDigits})
+
+    if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {
+        return 'минут';
+    }
+
+    if (lastDigit === 1) {
+        return 'минута';
+    }
+
+    if (lastDigit >= 2 && lastDigit <= 4) {
+        return 'минуты';
+    }
+
+    return 'минут';
+}
+
 Array.prototype.random = function() {
     return this[Math.floor(Math.random() * this.length)];
 }
@@ -74,7 +95,7 @@ function post(url, data) {
     return new Promise((resolve, reject) => {
         try {
             const xhr = new XMLHttpRequest();
-            xhr.open('POST', `/api/${url}`);
+            xhr.open('POST', `/api${url}`);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.onload = () => {
                 // console.log(xhr.responseText)

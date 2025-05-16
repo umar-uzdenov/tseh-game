@@ -1,6 +1,21 @@
 <script setup>
-const { state, animation, duration } =
-    defineProps(['state', 'animation', 'duration'])
+const { state, animation, duration, machine, card } =
+    defineProps(['state', 'animation', 'duration', 'machine', 'card'])
+
+function addItem() {
+    if (card.order.model == -1) card.order.modelError = true
+    if (card.order.quantity < 1 || card.order.quantity > 1000) card.order.quantityError = true
+    // console.log(card.order)
+    if (card.order.modelError || card.order.quantityError) return
+    
+    const data = {
+        machineId: machine.id,
+        modelId: card.order.model,
+        quantity: card.order.quantity,
+    }
+    console.log(data)
+    window.database.createOrder(data)
+}
 </script>
 
 <template>
@@ -9,9 +24,13 @@ const { state, animation, duration } =
         :style="`--duration: ${duration}`"
         v-if="state == 'expand'"
     >
-        <div class="button stop-button">Отменить</div>
-        <div class="button pause-button">Остановить</div>
-        <div class="button add-button">Добавить</div>
+        <div
+            v-if="machine.currentItemId == -1"
+            class="button add-button"
+            @click="addItem()"
+        >Создать заказ</div>
+        <div v-else class="button stop-button">Отменить производство</div>
+        <!-- <div class="button pause-button">Остановить</div> -->
     </div>
 </template>
 
@@ -42,7 +61,8 @@ const { state, animation, duration } =
     overflow: hidden;
 
     background-color: #0007;
-    border-radius: 4px;user-select: none;
+    border-radius: 4px;
+    user-select: none;
     -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */

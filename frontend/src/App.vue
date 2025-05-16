@@ -4,12 +4,10 @@ import MachineRoom from './tabs/MachineRoom/MachineRoom.vue'
 import BalanceButton from './components/BalanceButton.vue'
 import Menu from './components/Menu.vue'
 import UserModels from './tabs/UserModels/UserModels.vue'
-import { useTabsStore } from './stores/tabs'
-
-const tabs = useTabsStore().tabs
+import tabs from './tabs.js'
 
 const current = reactive({
-    value : tabs[1],
+    value : tabs[0],
     change: "",
     is(name) { return this.value.name == name },
     set(tab) {

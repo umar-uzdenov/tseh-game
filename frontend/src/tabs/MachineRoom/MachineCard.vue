@@ -8,6 +8,7 @@ import ModelDescription from './ModelDescription.vue'
 import ModelQuantity from './ModelQuantity.vue'
 import ManageButtons from './ManageButtons.vue'
 import CloseButton from './CloseButton.vue'
+import SelectModel from './SelectModel.vue'
 
 const { machine, index } = defineProps(['machine', 'index'])
 const database = window.database
@@ -17,6 +18,12 @@ const card = reactive({
     state: "compact",
     animation: "",
     duration: '.7s',
+    order: {
+        model: -1,
+        quantity: 0,
+        modelError: false,
+        quantityError: false,
+    },
     compact() {
         this.state = "compact"
         this.animation = "compact-animation"
@@ -42,6 +49,11 @@ const card = reactive({
         <div class="background" @click="card.toggle"></div>
         <div class="window">
             <CloseButton :card="card" />
+            <SelectModel
+                :machine="machine"
+                :card="card"
+                v-if="machine.currentModelId == -1 && card.state == 'expand'"
+            />
             <MachineImg
                 :state="card.state"
                 :animation="card.animation"
@@ -49,6 +61,7 @@ const card = reactive({
                 :duration="card.animationDuration"
             />
             <ModelImg
+                v-if="machine.currentModelId != -1"
                 :state="card.state"
                 :animation="card.animation"
                 :model="database.user?.models[machine?.currentModelId]"
@@ -62,27 +75,31 @@ const card = reactive({
                 :duration="card.animationDuration"
             />
             <ModelName
+                v-if="machine.currentModelId != -1"
                 :state="card.state"
                 :animation="card.animation"
                 :name="database.user?.models[machine?.currentModelId]?.name"
                 :duration="card.animationDuration"
             />
             <ModelDescription
+                v-if="machine.currentModelId != -1"
                 :state="card.state"
                 :animation="card.animation"
                 :model="database.user?.models[machine?.currentModelId]"
                 :duration="card.animationDuration"
             />
             <ModelQuantity
+                v-if="machine.currentModelId != -1"
                 :state="card.state"
                 :animation="card.animation"
-                :quantity-left="machine.quantityLeft"
-                :quantity="machine.quantity"
+                :machine="machine"
                 :duration="card.animationDuration"
             />
             <ManageButtons
                 :state="card.state"
                 :animation="card.animation"
+                :card="card"
+                :machine="machine"
                 :model="database.user?.models[machine?.currentModelId]"
                 :duration="card.animationDuration"
             />
@@ -173,6 +190,9 @@ const card = reactive({
     height: calc(100vw + 252px);
     background-color: rgb(15, 15, 15);
     box-shadow: 0 0 14px 3px rgba(95, 95, 95, 0.5) inset;
+    /*display: flex;
+    flex-direction: column;
+    padding: 12px;*/
 }
 
 </style>
