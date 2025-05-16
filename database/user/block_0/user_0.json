@@ -14,9 +14,9 @@
     },
     "lastRequest": 1745311108875,
     "lastProcess": 1747173207384,
-    "lastItemId": 125,
-    "balance": null,
-    "total": null,
+    "lastItemId": 128,
+    "balance": 2013500,
+    "totalEarned": 13500,
     "machinesByed": 1,
     "machinesSold": 0,
     "itemsSold": 0,
@@ -113,32 +113,47 @@
             "img": "arashi.jpg",
             "distinctName": "№2",
             "currentModelId": 0,
-            "currentItemId": 125,
+            "currentItemId": 127,
             "start": 1745311108875,
-            "lastProcess": 1747380343000
+            "lastProcess": 1747381445736
         },
         {
             "id": 2,
             "name": "FengBao",
             "img": "fengbao.jpg",
             "distinctName": "№3",
-            "currentModelId": -1,
-            "currentItemId": -1,
+            "currentModelId": 2,
+            "currentItemId": 128,
             "start": 1745311108875,
-            "lastProcess": 1747379982354
+            "lastProcess": 1747381446276
         }
     ],
     "items": [
         {
-            "id": 125,
+            "id": 127,
             "price": 770,
             "name": "Кардиган",
             "img": "cardigan",
-            "quantity": 1,
-            "quantityLeft": 1,
+            "imgId": 1,
+            "quantity": 22,
+            "quantityLeft": 22,
             "quantityProduced": 0,
+            "quantitySold": 0,
             "time": 34,
-            "timeLeft": 3
+            "timeLeft": 9
+        },
+        {
+            "id": 128,
+            "price": 230,
+            "name": "Шапка",
+            "img": "cap",
+            "imgId": 2,
+            "quantity": 12,
+            "quantityLeft": 11,
+            "quantityProduced": 1,
+            "quantitySold": 0,
+            "time": 13,
+            "timeLeft": 12
         }
     ]
 }

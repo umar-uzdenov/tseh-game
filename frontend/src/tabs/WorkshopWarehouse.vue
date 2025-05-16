@@ -22,10 +22,11 @@ function sell(item) {
             class="item"
         >
             <div class="card-row">
-                <img class="item-icon" :src="`img/model/${item.img}.jpg`" alt="item image" />
+                <img class="item-icon" :src="`img/model/${item.img}/${item.img}_${item.imgId}.jpg`" alt="item image" />
                 <div class="card-column">
                     <span>{{item.name}}</span>
-                    <span>{{item.quantityProduced}} шт</span>
+                    <span>{{item.quantityProduced - item.quantitySold}} шт</span>
+                    <span>Цена {{item.price}} ₽</span>
                 </div>
             </div>
             <button @click="sell(item)">Продать</button>

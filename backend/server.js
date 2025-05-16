@@ -76,7 +76,7 @@ app.post('/api/sell-item', async (req, res) => {
     const item = user.items.find(item => item.id === itemId)
 
     user.balance += item.price * (item.quantityProduced - item.quantitySold)
-    user.total += item.price * (item.quantityProduced - item.quantitySold)
+    user.totalEarned += item.price * (item.quantityProduced - item.quantitySold)
 
     if (item.quantityLeft) {
         item.quantitySold = item.quantityProduced
@@ -105,9 +105,11 @@ app.post('/api/create-order', async (req, res) => {
         "price": model.price,
         "name": model.name,
         "img": model.img,
+        "imgId": model.imgId,
         "quantity": data.quantity,
         "quantityLeft": data.quantity,
         "quantityProduced": 0,
+        "quantitySold": 0,
         "time": model.time,
         "timeLeft": model.time
     })
