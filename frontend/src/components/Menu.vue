@@ -1,11 +1,22 @@
 <script setup>
 import tabs from '@/tabs.js'
+import { computed } from 'vue'
 const props = defineProps(['menu', 'current'])
+
+const balance = computed(() => {
+    try {
+        return window.database.user.balance
+            .toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+    } catch (e) {
+        return "0"
+    }
+})
 
 function activate(tab) {
     props.current.set(tab)
     props.menu.toggle()
 }
+
 </script>
 
 <template>
@@ -14,12 +25,12 @@ function activate(tab) {
             v-for="(tab, index) in tabs" :key="index"
             :class="`menu-item-block ${props.menu.class}`"
         >
-            <button class="menu-item" @click="activate(tab)">{{ tab.description }}</button>
-            <div class="menu-separator"></div>
+            <button class="menu-item no-select" @click="activate(tab)">{{ tab.description }}</button>
+            <div class="menu-separator no-select"></div>
         </div>
-        <div class="menu-button-block" @click="props.menu.toggle()">
-            <div :class="`menu-icon ${props.menu.class}`"><div>></div></div>
-            <button :class="`menu-button ${props.menu.class}`">Меню</button>
+        <div class="menu-button-block no-select" @click="props.menu.toggle()">
+            <div>{{ balance }}  ₽</div>
+            <button class="menu-button">Меню</button>
         </div>
     </div>
 </template>
@@ -41,9 +52,9 @@ function activate(tab) {
 }
 
 .menu-block {
-    bottom: 12px;
-    left: calc(50vw - 60px);
-    width: 120px;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
     height: 32px;
     transition: 0.5s;
     background-color: rgba(0, 0, 0, 0.5);
@@ -56,8 +67,6 @@ function activate(tab) {
 
 .menu-block.expanded {
     height: calc(32px + 49px * 6);
-    width: 200px;
-    left: calc(50vw - 100px);
     background-color: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(5px);
 }
@@ -81,82 +90,18 @@ function activate(tab) {
     position: absolute;
     bottom: 0;
     height: 32px;
-    width: 120px;
+    width: 100%;
+    padding: 0px 16px;
     background-color: transparent;
     display: flex;
-    justify-content: center;
-    cursor: pointer;
+    justify-content: space-between;
     align-items: center;
     cursor: pointer;
 }
 
-@keyframes icon-expand {
-    0% {
-        right: 16px;
-        rotate: -90deg;
-    }
-    50% {
-        right: 16px;
-        rotate: 90deg;
-    }
-    100% {
-        right: 52px;
-        rotate: 90deg;
-    }
-}
-
-@keyframes icon-compact {
-    0% {
-        right: 52px;
-        rotate: 90deg;
-    }
-    50% {
-        right: 16px;
-        rotate: 90deg;
-    }
-    100% {
-        right: 16px;
-        rotate: -90deg;
-    }
-}
-
-.menu-icon {
-    height: 16px;
-    width: 16px;
-    overflow: hidden;
-    position: absolute;
-    right: 16px;
-    bottom: 6px;
-    font-weight: bold;
-    font-size: 20px;
-    rotate: -90deg;
-    animation: icon-compact .5s ease-in-out;
-}
-
-.menu-icon.expanded {
-    right: 52px;
-    rotate: 90deg;
-    animation: icon-expand .5s ease-in-out;
-}
-
-.menu-icon div {
-    position: absolute;
-    left: 2px;
-    top: -5px;
-}
-
 .menu-button {
     height: 32px;
-    width: 120px;
     background-color: transparent;
-    position: absolute;
-    bottom: 0px;
-    transition: .5s
-}
-
-.menu-button.expanded {
-    bottom: -24px;
-    transition: 0.2s;
 }
 
 .menu-item {

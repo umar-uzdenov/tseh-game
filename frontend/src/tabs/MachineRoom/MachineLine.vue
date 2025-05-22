@@ -54,6 +54,8 @@ const swipe = reactive({
     height: calc((100vw - 13 * 8px) / 6 + 112px);
     background-color: rgba(255, 0, 0, 0);
     display: flex;
+    left: 8px;
+    margin-bottom: 8px;
 }
 
 .partial-line {
@@ -64,6 +66,7 @@ const swipe = reactive({
     display: flex;
     justify-content: flex-start;
     gap: 8px;
+    left: 8px;
 }
 
 </style>

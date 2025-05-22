@@ -39,7 +39,7 @@ function erase() {
     >
         <img
             class="model-img"
-            :src="`img/model/${model.img}/${model.img}_${model.imgId}.jpg`"
+            :src="`img/model/64/${model.img}/${model.img}_${model.imgId}.jpg`"
             alt="model image"
         />
 

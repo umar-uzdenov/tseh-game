@@ -8,7 +8,6 @@
 
 html, body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 16px;
     background-image: url('img/bg-main.jpg');
     /* background-color: rgba(255, 255, 255, 0.851); */
     background-size: cover;
@@ -16,6 +15,16 @@ html, body {
     overflow: hidden;
     /* overscroll-behavior-y: none; */
     /* overflow: scroll; */
+}
+
+.no-select {
+    user-select: none;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    outline: none;
 }
 
 /* .body {

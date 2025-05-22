@@ -16,6 +16,15 @@ function addItem() {
     console.log(data)
     window.database.createOrder(data)
 }
+
+function stopOrder() {
+    const data = {
+        machineId: machine.id,
+        itemId: machine.currentItemId,
+    }
+    window.database.stopOrder(data)
+}
+
 </script>
 
 <template>
@@ -29,7 +38,7 @@ function addItem() {
             class="button add-button"
             @click="addItem()"
         >Создать заказ</div>
-        <div v-else class="button stop-button">Отменить производство</div>
+        <div v-else class="button stop-button" @click="stopOrder()">Отменить производство</div>
         <!-- <div class="button pause-button">Остановить</div> -->
     </div>
 </template>

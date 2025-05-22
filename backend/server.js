@@ -58,7 +58,8 @@ app.post('/api/add-model', async (req, res) => {
             imgId: reqModel.id,
             name: reqModel.name,  
             description: reqModel.description,
-            time: Math.floor(Math.random() * 4) * 10 + Math.floor(Math.random() * 10),
+            time: Math.floor(Math.random() * 4) * 10 + Math.floor(Math.random() * 5 + 5),
+            price: Math.floor(Math.random() * 30) * 10 + 100,
             yarnId: 0, // replace with actual data
             yarn: "Хлопок", // replace with actual data
             consumption: 500
@@ -126,6 +127,48 @@ app.post('/api/create-order', async (req, res) => {
     // // console.log(user.balance)
     // console.log({price: item.price * item.quantityProduced})
     // user.balance += item.price * item.quantityProduced
+    res.json({success: "success"})
+})
+
+
+
+app.post('/api/stop-order', async (req, res) => {
+    const { tgId, hash } = req.body.user // check user by tgId and hash
+    const data = req.body.data
+    const user = await database.user.get(tgId)
+    const machine = user.machines.find(machine => machine.id == data.machineId)
+    const item = user.items.find(item => item.id == machine.currentItemId)
+    machine.currentItemId = -1
+    machine.currentModelId = -1
+
+    item.quantity = item.quantity - item.quantityLeft
+    item.quantityProduced = item.quantity
+    item.quantityLeft = 0
+
+    res.json({success: "success"})
+})
+
+
+app.post('/api/buy-machine', async (req, res) => {
+    const { tgId, hash } = req.body.user // check user by tgId and hash
+    const machine = req.body.data
+    const user = await database.user.get(tgId)
+
+    if (user.balance < machine.price) return res.json({ fail: "fail" })
+
+    user.lastMachineId++
+    
+    user.machines.push({
+        id: user.lastMachineId,
+        name: machine.name,
+        img: machine.img + ".jpg",
+        distinctName: "№" + (user.lastMachineId + 1),
+        currentModelId: -1,
+        currentItemId: -1,
+        lastProcess: new Date().getTime()
+    })
+    user.balance -= machine.price
+
     res.json({success: "success"})
 })
 

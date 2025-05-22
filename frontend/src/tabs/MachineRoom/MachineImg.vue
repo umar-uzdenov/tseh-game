@@ -1,16 +1,26 @@
 <script setup>
+import { computed } from 'vue'
+
 const { state, animation, machine, duration } =
     defineProps(['state', 'animation', 'machine', 'duration'])
 
 function isStopped() {
     return machine.currentItemId == -1 ? "stopped" : ""
 }
+
+const img = computed(() => {
+    let prefix = "img/machine/"
+    if (state == "compact") prefix += "256/"
+    if (state == "expand") prefix += "64/"
+    return prefix + machine.img
+})
+
 </script>
 
 <template>
     <img
         :class="`machine-img ${state} ${animation} ${isStopped()}`"
-        :src="`img/machine/${machine.img}`"
+        :src="img"
         alt="machine image"
     />
 </template>

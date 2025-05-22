@@ -1,7 +1,6 @@
 <script setup>
 import { useUserWarehousesStore } from '@/stores/user/user-warehouse'
 import { computed } from 'vue'
-const warehouse = useUserWarehousesStore().warehouse
 
 const items = computed(() => window.database.user.items)
 launch(() => console.log({items: items.length}), 1000)
@@ -22,7 +21,7 @@ function sell(item) {
             class="item"
         >
             <div class="card-row">
-                <img class="item-icon" :src="`img/model/${item.img}/${item.img}_${item.imgId}.jpg`" alt="item image" />
+                <img class="item-icon" :src="`img/model/256/${item.img}/${item.img}_${item.imgId}.jpg`" alt="item image" />
                 <div class="card-column">
                     <span>{{item.name}}</span>
                     <span>{{item.quantityProduced - item.quantitySold}} шт</span>
@@ -40,6 +39,7 @@ function sell(item) {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 8px;
+    padding: 8px;
 }
 
 .item {

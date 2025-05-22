@@ -34,21 +34,5 @@ const balanceButton = reactive({
 </template>
 
 <style>
-.balance {
-    position: fixed;
-    z-index: 100;
-    display: flex;
-}
 
-.balance {
-    border: none;
-    cursor: pointer;;
-    color: rgb(223, 223, 223);
-    align-items: center;
-    justify-content: center;
-}
-
-.balance {
-    background-color:rgba(0, 0, 0, 0.5)
-}
 </style>

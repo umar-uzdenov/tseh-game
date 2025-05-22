@@ -7,7 +7,7 @@ import UserModels from './tabs/UserModels/UserModels.vue'
 import tabs from './tabs.js'
 
 const current = reactive({
-    value : tabs[0],
+    value : tabs[3],
     change: "",
     is(name) { return this.value.name == name },
     set(tab) {
@@ -41,17 +41,23 @@ const platformIndex = ["ios", "android", "tdesktop", "unknown"]
 const top = [62, 48, 64, 16][platformIndex] + "px"
 const height = [30, 28, 64, 24][platformIndex] + "px"
 
+// document.addEventListener('visibilitychange', () => {
+//   if (document.visibilityState === 'visible') {
+//     navigator.wakeLock.request("screen")
+//   }
+// });
+
 
 
 </script>
 
 <template>
-    <BalanceButton />
+    <!-- <BalanceButton /> -->
     <div
         :class="`tab-content ${menu.bgClass} ${current.change}`"
-        :style="`--top: ${top}`"
+        :style="`--top: ${top};--top-height: ${height};`"
     >
-        <div class="main-grid" :style="`--top-height: ${height};`">
+        <!-- <div class="main-grid" :style="`--top-height: ${height};`"> -->
             <MachineRoom v-if="current.is(tabs.workshop)" />
             <UserModels v-if="current.is(tabs.models)" />
             <WorkshopWarehouse v-if="current.is(tabs.warehouse)" />
@@ -60,9 +66,9 @@ const height = [30, 28, 64, 24][platformIndex] + "px"
             <StoreYarns v-if="current.is(tabs.yarnStore)" />
             <Profile v-if="current.is(tabs.profile)" />
             <Rating v-if="current.is(tabs.rating)" />
-        </div>
+        <!-- </div> -->
     </div>
-    <Menu :menu="menu" :current="current"/>
+    <Menu :menu="menu" :current="current" />
 </template>
 
 <style scoped>
@@ -71,12 +77,16 @@ const height = [30, 28, 64, 24][platformIndex] + "px"
 .tab-content {
     position: fixed;
     top: 0;
-    padding-top: var(--top);
+    padding-top: calc(var(--top) + var(--top-height) + 24px);
+    padding-bottom: 160px;
+    
+    /* 
+    min-height: calc(100vh - 96px); /* Account for both tab bars
     padding-bottom: 48px;
-    min-height: calc(100vh - 96px); /* Account for both tab bars */
-    height: calc(100vh - 96px); /* Account for both tab bars */
-    /* padding-bottom: 80px; */
+    padding-bottom: 80px;
+    */
     width: 100%;
+    height: 100vh; /* Account for both tab bars */
     overflow: auto;
     mask-image: linear-gradient(
         to bottom,
@@ -84,8 +94,8 @@ const height = [30, 28, 64, 24][platformIndex] + "px"
         transparent var(--top),
         #fff3 calc(32px + var(--top)),
         white calc(48px + var(--top)),
-        white calc(100vh - 48px),
-        #fff3 calc(100vh - 32px),
+        white calc(100vh - 64px),
+        #fff5 calc(100vh - 48px),
         transparent 100vh
     );
     /* background-color: #0007; */
@@ -98,12 +108,14 @@ const height = [30, 28, 64, 24][platformIndex] + "px"
 } */
 
 .main-grid {
+    /*
     display: flex;
     flex-direction: column;
     gap: 8px;
     padding: 8px;
     padding-top: calc(var(--top-height) + 24px);
     padding-bottom: 160px;
+    */
 }
 
 .tab-content.faded {

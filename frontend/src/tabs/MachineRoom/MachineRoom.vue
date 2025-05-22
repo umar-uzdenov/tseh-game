@@ -28,9 +28,19 @@ const lines = computed(() => {
 </script>
 
 <template>
-    <MachineLine v-for="(line, index) in lines" :key="index" :machines="line" />
+    <div class="main-grid>">
+        <MachineLine v-for="(line, index) in lines" :key="index" :machines="line" />
+    </div>
 </template>
 
 <style scoped>
 
+.main-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+    padding-top: calc(var(--top-height) + 24px);
+    padding-bottom: 160px;
+}
 </style>

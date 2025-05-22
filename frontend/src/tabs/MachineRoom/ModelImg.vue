@@ -1,12 +1,21 @@
 <script setup>
+import { computed } from 'vue';
+
 const { state, animation, model, duration } =
     defineProps(['state', 'animation', 'model', 'duration'])
+
+const img = computed(() => {
+    let prefix = "img/model/"
+    if (state == "compact") prefix += "256/"
+    if (state == "expand") prefix += "1024/"
+    return `${prefix}${model.img}/${model.img}_${model.imgId}.jpg`
+})
 </script>
 
 <template>
     <img
         :class="`model-img ${state} ${animation}`"
-        :src="`img/model/${model.img}/${model.img}_${model.imgId}.jpg`"
+        :src="img"
         alt="model image"
     />
 </template>

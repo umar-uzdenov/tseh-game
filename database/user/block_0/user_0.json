@@ -14,9 +14,10 @@
     },
     "lastRequest": 1745311108875,
     "lastProcess": 1747173207384,
-    "lastItemId": 128,
-    "balance": 2013500,
-    "totalEarned": 13500,
+    "lastMachineId": 6,
+    "lastItemId": 136,
+    "balance": 4152700,
+    "totalEarned": 75270,
     "machinesByed": 1,
     "machinesSold": 0,
     "itemsSold": 0,
@@ -28,7 +29,7 @@
             "img": "cardigan",
             "imgId": 1,
             "name": "Кардиган",
-            "description": "Лёгкий и длинный летний хлопковый кардиган",
+            "description": "Лёгкий и длинный летний хлопковый кардиган, стильный и модный",
             "time": 34,
             "yarnId": 0,
             "yarn": "Хлопок",
@@ -86,6 +87,71 @@
             "yarn": "Хлопок",
             "consumption": 500,
             "price": 300
+        },
+        {
+            "id": 0,
+            "type": "dress",
+            "img": "dress",
+            "imgId": 3,
+            "name": "Бриллиант",
+            "description": "Тёплое зимнее платье",
+            "time": 10,
+            "yarnId": 0,
+            "yarn": "Хлопок",
+            "consumption": 500,
+            "price": 900
+        },
+        {
+            "id": 0,
+            "type": "cap",
+            "img": "cap",
+            "imgId": 1,
+            "name": "123",
+            "description": "456вы в",
+            "time": 330,
+            "yarnId": 0,
+            "yarn": "Хлопок",
+            "consumption": 500,
+            "price": 230
+        },
+        {
+            "id": 0,
+            "type": "jacket",
+            "img": "jacket",
+            "imgId": 3,
+            "name": "123цукепы ",
+            "description": "456вы в",
+            "time": 15,
+            "yarnId": 0,
+            "yarn": "Хлопок",
+            "consumption": 500,
+            "price": 300
+        },
+        {
+            "id": 0,
+            "type": "snood",
+            "img": "snood",
+            "imgId": 0,
+            "name": "Снуд",
+            "description": "Снуд-восьмёрка",
+            "time": 18,
+            "price": 190,
+            "yarnId": 0,
+            "yarn": "Хлопок",
+            "consumption": 500
+        },
+        {
+            "id": 0,
+            "type": "cap",
+            "img": "cap",
+            "imgId": 0,
+            "name": "вщдцдыь",
+            "description": "ОылдыдчьвЛл",
+            "time": 15,
+            "price": 380,
+            "yarnId": 0,
+            "yarn": "Хлопок",
+            "consumption": 500
         }
     ],
     "yarns": [
@@ -112,48 +178,57 @@
             "name": "Arashi",
             "img": "arashi.jpg",
             "distinctName": "№2",
-            "currentModelId": 0,
-            "currentItemId": 127,
+            "currentModelId": -1,
+            "currentItemId": -1,
             "start": 1745311108875,
-            "lastProcess": 1747381445736
+            "lastProcess": 1747938400866
         },
         {
             "id": 2,
             "name": "FengBao",
             "img": "fengbao.jpg",
             "distinctName": "№3",
-            "currentModelId": 2,
-            "currentItemId": 128,
+            "currentModelId": -1,
+            "currentItemId": -1,
             "start": 1745311108875,
-            "lastProcess": 1747381446276
-        }
-    ],
-    "items": [
-        {
-            "id": 127,
-            "price": 770,
-            "name": "Кардиган",
-            "img": "cardigan",
-            "imgId": 1,
-            "quantity": 22,
-            "quantityLeft": 22,
-            "quantityProduced": 0,
-            "quantitySold": 0,
-            "time": 34,
-            "timeLeft": 9
+            "lastProcess": 1747925306091
         },
         {
-            "id": 128,
-            "price": 230,
-            "name": "Шапка",
-            "img": "cap",
-            "imgId": 2,
-            "quantity": 12,
-            "quantityLeft": 11,
-            "quantityProduced": 1,
-            "quantitySold": 0,
-            "time": 13,
-            "timeLeft": 12
+            "id": 3,
+            "name": "Fengbao",
+            "img": "fengbao.jpg",
+            "distinctName": "№4",
+            "currentModelId": -1,
+            "currentItemId": -1,
+            "lastProcess": 1747941079029
+        },
+        {
+            "id": 4,
+            "name": "Sturm",
+            "img": "sturm.jpg",
+            "distinctName": "№5",
+            "currentModelId": -1,
+            "currentItemId": -1,
+            "lastProcess": 1747942011748
+        },
+        {
+            "id": 5,
+            "name": "Fengbao",
+            "img": "fengbao.jpg",
+            "distinctName": "№6",
+            "currentModelId": -1,
+            "currentItemId": -1,
+            "lastProcess": 1747942027136
+        },
+        {
+            "id": 6,
+            "name": "Fengbao",
+            "img": "fengbao.jpg",
+            "distinctName": "№7",
+            "currentModelId": -1,
+            "currentItemId": -1,
+            "lastProcess": 1747942346353
         }
-    ]
+    ],
+    "items": []
 }

@@ -50,11 +50,11 @@ onBeforeUnmount(() => document.removeEventListener('click', onClickOutside))
 <style scoped>
 .custom-select {
   position: relative;
-  width: 200px;
   font-family: Arial, sans-serif;
   user-select: none;
   outline: none;
   width: 100%;
+  height: 36px;
   background-color: #333;
   color: white;
 }
@@ -70,7 +70,6 @@ onBeforeUnmount(() => document.removeEventListener('click', onClickOutside))
   justify-content: space-between;
   border: 1px solid #ccc;
   padding: 6px 12px;
-  border-radius: 4px;
   cursor: pointer;
 }
 
