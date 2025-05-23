@@ -50,9 +50,10 @@ app.post('/api/add-model', async (req, res) => {
         const { tgId, hash} = req.body.user // check user by tgId and hash
         const user = await database.user.get(tgId)
         console.log("user", user.models.length)
+        user.lastModelId++
         const reqModel = req.body.data
         user.models.push({
-            id: 0,
+            id: user.lastModelId,
             type: reqModel.type,
             img: reqModel.type,
             imgId: reqModel.id,
