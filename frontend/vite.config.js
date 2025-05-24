@@ -45,7 +45,14 @@ import { fileURLToPath, URL } from 'node:url'
      port: 443, // Your desired port
      host: '0.0.0.0', // Optional: Allow external access
      proxy: {
-       '/api': 'http://localhost:3000/'
+       '/api': 'http://localhost:3000/',
+       '/cafe': {
+          target: 'http://localhost:5500',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/cafe/, '/'),
+        },
+        '/assets': 'http://localhost:5500/',
+        '/order': 'http://localhost:5500/',
      //   '/api': {
      //     target: 'http://localhost:3000/', // 0.0.0.0 for real server?
      //     changeOrigin: true,
