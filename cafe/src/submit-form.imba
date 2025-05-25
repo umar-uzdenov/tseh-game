@@ -3,23 +3,32 @@ let telInvalid = false
 extend tag element
 
 	def submit
+		window.alert "1"
 		unless order.telIsValid
 			telInvalid = true
 			return false
+		window.alert "2"
 		return false if order.items.length == 0
+
+		window.alert "3"
 
 		telInvalid = false
 		let data = order.data
 		order.items = []
 
+		window.alert "4"
+
 		# @ts-expect-error
 		let result = await post "/order", data
+		window.alert "5"
 
 		if result.success
+			window.alert "6"
 			window.alert "Ваш заказ принят, вам позвонит оператор для подтверждения заказа"
 			order.total = 0
 			return true
 		else
+			window.alert "7"
 			order.items = data.items
 			return false
 
