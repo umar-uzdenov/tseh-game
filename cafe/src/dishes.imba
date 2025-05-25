@@ -164,8 +164,9 @@ tag item-list
 		order.items.find do $1.id == dish.id
 
 	<self.vtc [h:calc(100vh - 96px - 64px) b:96px]
-		<h2> dish_list.list[dish_list.current].name
+		
 		[l:calc(16px - 100vw) r:calc(16px + 100vw)]=!dishes_show> # hide for now
+		<h2> dish_list.list[dish_list.current].name
 		for dish, index in dish_list.list[dish_list.current].items
 			<div.fsc [w:100% h:72px mih:72px]>
 				<div.vtc [p:0 16px w:100% mih:72px]>
