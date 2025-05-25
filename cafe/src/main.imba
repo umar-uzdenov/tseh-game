@@ -4,6 +4,7 @@ import './categories'
 import './items'
 import './order-list'
 import './submit-form'
+import './dishes.imba'
 
 let order = new Order()
 let currentCategory = 'hot_dishes'
@@ -15,11 +16,12 @@ extend tag element
 
 tag app
 	<self[d:vflex g:16px]>
-		<categories>
-		<div[d:vflex g:16px p:48px 8px]>
-			<items>
-			<order-list>
-			<submit-form>
+		<dishes>
+		# <categories>
+		# <div[d:vflex g:16px p:48px 8px]>
+		# 	<items>
+		# 	<order-list>
+		# 	<submit-form>
 
 imba.mount <app>
 

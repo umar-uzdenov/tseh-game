@@ -1,5 +1,8 @@
 window.Telegram.WebApp.ready()
 
+if ["ios", "android"].includes(window.Telegram.WebApp.platform.toLowerCase())
+	tg.requestFullscreen()
+
 # defining globals
 extend tag element
 	get tg do window.Telegram.WebApp
@@ -15,6 +18,8 @@ extend tag element
 				console.log e
 	def sleep ms do new Promise(do setTimeout($1, ms))
 	def launch do setTimeout $1, 0
+
+
 
 
 # function launchLoop(fun, interval = 1000, immediate = true) {
