@@ -8,19 +8,19 @@ extend tag element
 				xhr.open "POST", url # "/api{url}"
 				xhr.setRequestHeader "Content-Type", "application/json"
 				xhr.onload = do resolve(JSON.parse xhr.responseText) # @ts-ignore
-				xhr.send JSON.stringify { chatId: tg.initDataUnsafe.user..id ?? 0, ...data}
+				xhr.send JSON.stringify { chatId: tg..initDataUnsafe..user..id ?? 0, ...data}
 			catch e
-				console.log e
+				window.alert e
 
 	def submit
-		window.alert "1"
+		# window.alert "1"
 		unless order.telIsValid
 			telInvalid = true
 			return false
-		window.alert "2"
+		# window.alert "2"
 		return false if order.items.length == 0
 
-		window.alert "3"
+		# window.alert "3"
 
 		telInvalid = false
 		let data = order.data
@@ -35,15 +35,15 @@ extend tag element
 		catch e
 			window.alert e
 
-		window.alert "5"
+		# window.alert "5"
 
 		if result.success
-			window.alert "6"
+			# window.alert "6"
 			window.alert "Ваш заказ принят, вам позвонит оператор для подтверждения заказа"
 			order.total = 0
 			return true
 		else
-			window.alert "7"
+			# window.alert "7"
 			order.items = data.items
 			return false
 
