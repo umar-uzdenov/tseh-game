@@ -131,17 +131,6 @@ async function get(tgId) {
             // console.log(user.id)
             return user
         }
-
-        if (!user) {
-            const index = Math.floor(id / blockSize) // find block index
-            user = readData(`user`, `block_${index}`, `user_${id}.json`)
-            loaded.push(user)
-        }
-        // console.log(user)
-
-        // console.log("user found and loaded")
-
-        return user
     } catch (error) {
         return { error }
     }
