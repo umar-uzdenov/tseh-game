@@ -154,4 +154,4 @@ async function add(user) {
     return { success: "user added" } // replace with some response
 }
 
-export default { get, add }
+export default { get, add, userList: userMain }

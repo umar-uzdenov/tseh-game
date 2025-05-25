@@ -54,7 +54,20 @@ window.database = reactive({
 launch(async () => {
     // const isTg = tg.initData != ''
     // const auth = await authTg(isTg ? tg.initData : { superId: 233 })
-    const auth = await authTg({ id: 0 })
+    const auth = await authTg({
+        id: 1,
+        hash: "ae129d20bb1d730a5177abb20f4742f6c7e1d093cfa22dd55615172fdd7f9d1f",
+        user: {
+            "id": 893065688,
+            "first_name": "عمر",
+            "last_name": "الأزدني",
+            "username": "umar_uzden",
+            "language_code": "ru",
+            "is_premium": true,
+            "allows_write_to_pm": true,
+            "photo_url": "https://t.me/i/userpic/320/MAJoSgg3bCNEMRN4cd_U2B_xhvOXRlyg5rTLsJ0HWFk.svg"
+        }
+    })
     if (auth.success) {
         database.auth = true
 

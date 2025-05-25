@@ -89,6 +89,7 @@ app.post('/api/sell-item', async (req, res) => {
     res.json({success: "success"})
 })
 
+// @ts-expect-error
 app.post('/api/create-order', async (req, res) => {
     const { tgId, hash } = req.body.user // check user by tgId and hash
     const data = req.body.data
@@ -149,7 +150,7 @@ app.post('/api/stop-order', async (req, res) => {
     res.json({success: "success"})
 })
 
-
+// @ts-expect-error
 app.post('/api/buy-machine', async (req, res) => {
     const { tgId, hash } = req.body.user // check user by tgId and hash
     const machine = req.body.data
@@ -173,6 +174,7 @@ app.post('/api/buy-machine', async (req, res) => {
     res.json({success: "success"})
 })
 
+// @ts-expect-error
 app.post('/api/auth', async (req, res) => {
     // console.log('POST /api/auth');
     // const { initData } = req.body;
@@ -180,14 +182,15 @@ app.post('/api/auth', async (req, res) => {
     // console.log("req.body", req.body)
     // return res.json({ success: "You authentificated" })
     // Parse initData into key-value pairs
-    console.log({ "req body": req.body })
+    // console.log({ "req body": req.body })
     if (req.body.id == 0) {
         console.log("user 0 auth")
         return res.json({ success: "You authentificated" })
     }
     // console.log(`Parsed params: ${params}`);
-    // const hash = params.get('hash');
-    // const authDate = parseInt(params.get('auth_date')) * 1000; // Convert to ms
+
+    const hash = req.body['hash']
+    // const authDate = parseInt(req.body['auth_date']) * 1000; // Convert to ms
 
     // Basic checks
     //   if (Date.now() - authDate > 86400000) { // 24 hours
@@ -195,12 +198,19 @@ app.post('/api/auth', async (req, res) => {
     //   }
 
     // Generate data-check-string
-    const dataCheckString = req.body
+
+    // console.log(Object.entries(req.body))
+
+    // return res.status(401).json({ error: 'Invalid hash' });
+
+    const dataCheckString = Object.entries(req.body)
         .filter(([key]) => key !== 'hash')
         .sort(([a], [b]) => a.localeCompare(b))
         .map(([key, val]) => `${key}=${val}`)
         .join('\n');
-    console.log(`Data check string: ${dataCheckString}`);
+    // console.log(`Data check string: ${dataCheckString}`);
+
+    // return res.status(401).json({ error: 'Invalid hash' });
 
     // Compute secret key from bot token
     const secret = crypto.createHmac('sha256', 'WebAppData')
@@ -214,34 +224,47 @@ app.post('/api/auth', async (req, res) => {
         .update(dataCheckString)
         .digest('hex');
 
+    // console.log({computedHash, hash})
+
     if (computedHash !== hash) {
         console.error('Invalid hash');
         return res.status(401).json({ error: 'Invalid hash' });
     }
 
+    // return res.status(401).json({ error: 'Invalid hash' });
     // Extract user data
     const user = JSON.parse(req.body['user']);
-    console.log(`User data: ${user}`);
+    // console.log(`User data: ${user}`);
 
     const tgId = +JSON.parse(req.body['user']).id
     const dbUser = await database.user.get(tgId)
-    console.log(`Database user: ${dbUser}`);
+    // console.log(`Database user: ${dbUser}`);
     // console.log("params get user id", )
     if (dbUser.error) {
+        const now = new Date().getTime()
+        return res.json({ success: "success" })
+        const userList = database.user.getUserList()
+        userList.lastId++
         await database.user.add({
-            tgId: user.id, 
-            hash,
-            tgUser: user, 
-            lastRequest: Date.now(),
-            balance: 3000000, 
-            machinesByed: 1,
-            machinesSold: 0,
-            itemsSold: 0,
-            moneyEarned: 0,
-            models: [], 
-            yarns: [], 
-            machines: [], 
-            items: []
+            "id": userList.lastId,
+            "tgId": tgId,
+            "hash": "",
+            "tgUser": user,
+            "lastRequest": now,
+            "lastProcess": now,
+            "lastMachineId": -1,
+            "lastModelId": -1,
+            "lastItemId": -1,
+            "balance": 3_000_000,
+            "totalEarned": 0,
+            "machinesByed": 0,
+            "machinesSold": 0,
+            "itemsSold": 0,
+            "moneyEarned": 0,
+            "models": [],
+            "yarns": [],
+            "machines": [],
+            "items": []
         })
         console.log(`User added to database: ${user.id}`);
     }

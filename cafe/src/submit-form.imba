@@ -26,7 +26,7 @@ extend tag element
 		let data = order.data
 		order.items = []
 
-		window.alert "4"
+		# window.alert "4"
 
 		# @ts-expect-error
 		let result

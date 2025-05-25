@@ -133,8 +133,8 @@ tag dishes
 			<img src=cartSvg [w:24px h:24px pos:relative t:-4px]>
 			order.total + " ₽"
 		if categories_show or dishes_show
-			<.menu @click=show_categories>
-				dish_list.list[dish_list.current].name
+			<.menu @click=show_categories> "Меню"
+				
 		if details_show
 			<.menu [c:white] @click=submitAndShowMain> "Заказать"
 	
@@ -164,6 +164,7 @@ tag item-list
 		order.items.find do $1.id == dish.id
 
 	<self.vtc [h:calc(100vh - 96px - 64px) b:96px]
+		<h2> dish_list.list[dish_list.current].name
 		[l:calc(16px - 100vw) r:calc(16px + 100vw)]=!dishes_show> # hide for now
 		for dish, index in dish_list.list[dish_list.current].items
 			<div.fsc [w:100% h:72px mih:72px]>
