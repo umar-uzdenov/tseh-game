@@ -1,6 +1,16 @@
 # let post = window.post
 let telInvalid = false
 extend tag element
+	def post url, data
+		return new Promise do(resolve, reject) # @ts-ignore
+			try
+				let xhr = new XMLHttpRequest()
+				xhr.open "POST", url # "/api{url}"
+				xhr.setRequestHeader "Content-Type", "application/json"
+				xhr.onload = do resolve(JSON.parse xhr.responseText) # @ts-ignore
+				xhr.send JSON.stringify { chatId: tg.initDataUnsafe.user..id ?? 0, ...data}
+			catch e
+				console.log e
 
 	def submit
 		window.alert "1"
