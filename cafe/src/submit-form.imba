@@ -19,7 +19,12 @@ extend tag element
 		window.alert "4"
 
 		# @ts-expect-error
-		let result = await post "/order", data
+		let result
+		try
+			result = await post "/order", data
+		catch e
+			window.alert e
+
 		window.alert "5"
 
 		if result.success
