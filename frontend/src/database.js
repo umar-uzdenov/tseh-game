@@ -58,6 +58,7 @@ launch(async () => {
     const auth = await authTg({
         hash: window.Telegram.WebApp.initDataUnsafe.hash,
         initData: window.Telegram.WebApp.initData,
+        user: window.Telegram.WebApp.initDataUnsafe?.user
     })
     // const auth = await authTg(window.Telegram.WebApp.initDataUnsafe)
     // const auth = await authTg({
