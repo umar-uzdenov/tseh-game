@@ -78,6 +78,9 @@ launch(async () => {
         database.auth = true
 
         launchLoop(async () => {
+            if (count++ < 3) window.alert(JSON.stringify({where:"database launch loop", auth}))
+
+
             // const params = { tgId: 0, hash: 0 }
             const params = { tgId: i, hash: "ae129d20bb1d730a5177abb20f4742f6c7e1d093cfa22dd55615172fdd7f9d1f" }
             // const params = isTg ? { superId: 233 } : tg.initData
