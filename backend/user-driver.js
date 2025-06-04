@@ -36,9 +36,9 @@ setTimeout(async () => {
         // console.log("after writing user json")
         counterToWrite++
 
-        if (counterToWrite % 10 == 0) {
-            console.log({counterToWrite})
-        }
+        // if (counterToWrite % 10 == 0) {
+        //     console.log({counterToWrite})
+        // }
         
         let toUnload = []
         for (let i = 0; i < userMain.tgToId.length; i++) {
@@ -68,7 +68,7 @@ setTimeout(async () => {
 }, 0)
 
 function processUser(user) {
-    console.log({user})
+    // console.log({user})
     // console.log(user.machines.length)
     // user.lastProcess = new Date().getTime()
     if (now() - user.lastProcess > 1000) {

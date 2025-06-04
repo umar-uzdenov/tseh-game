@@ -187,11 +187,13 @@ app.post('/api/auth', async (req, res) => {
     // return res.json({ success: "You authentificated" })
     // Parse initData into key-value pairs
     // console.log({ "req body": req.body })
-    if (req.body.id == 0) {
-        console.log("user 0 auth")
-        return res.json({ success: "You authentificated" })
-    }
+    // if (req.body.id == 0) {
+    //     console.log("user 0 auth")
+    //     return res.json({ success: "You authentificated" })
+    // }
     // console.log(`Parsed params: ${params}`);
+
+    console.log({where: "auth", data: req.body})
 
     const hash = req.body['hash']
     // const authDate = parseInt(req.body['auth_date']) * 1000; // Convert to ms
