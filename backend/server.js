@@ -224,8 +224,9 @@ app.post('/api/auth', async (req, res) => {
     // return res.status(401).json({ error: 'Invalid hash' });
 
     // Compute secret key from bot token
+    console.log({token: process.env.TELEGRAM_BOT_TOKEN})
     const secret = crypto.createHmac('sha256', 'WebAppData')
-        .update(+process.env.TELEGRAM_BOT_TOKEN)
+        .update(process.env.TELEGRAM_BOT_TOKEN)
         .digest();
     
     //   console.log(process.env.TELEGRAM_BOT_TOKEN)
