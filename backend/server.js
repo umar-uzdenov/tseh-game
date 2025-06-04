@@ -35,7 +35,11 @@ app.use(express.json());
 
 app.post('/api/get-user', async (req, res) => {
     try {
-        const { tgId, hash} = req.body.user // check user by tgId and hash
+        // console.log(1)
+        console.log(req.body)
+
+        const { tgId, hash } = req.body // check user by tgId and hash
+        // console.log({tgId, hash})
         // console.log({tgId})
         const user = await database.user.get(tgId) // add check for hash
         // console.log("user", user)
@@ -233,20 +237,28 @@ app.post('/api/auth', async (req, res) => {
 
     // return res.status(401).json({ error: 'Invalid hash' });
     // Extract user data
-    const user = JSON.parse(req.body['user']);
+    // console.log(req.body.user)
+    // return res.json({error:true})
+    const user = req.body.user
     // console.log(`User data: ${user}`);
 
-    const tgId = +JSON.parse(req.body['user']).id
+    const tgId = user.id
+    
     const dbUser = await database.user.get(tgId)
+    //  catch (e) {
+        // console.log({e})
+    // console.log({dbUser})
     // console.log(`Database user: ${dbUser}`);
     // console.log("params get user id", )
     if (dbUser.error) {
+        // console.log({err: dbUser.error})
+    
         const now = new Date().getTime()
-        return res.json({ success: "success" })
+        // return res.json({ success: "success" })
         const userList = database.user.getUserList()
-        userList.lastId++
+        // userList.lastId++
         await database.user.add({
-            "id": userList.lastId,
+            // "id": userList.lastId++,
             "tgId": tgId,
             "hash": "",
             "tgUser": user,

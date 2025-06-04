@@ -35,24 +35,24 @@ import { fileURLToPath, URL } from 'node:url'
      },
    },
    server: {
-     https: {
-         key: fs.readFileSync('../../../etc/letsencrypt/live/tseh-game.ru/privkey.pem'),
-         cert: fs.readFileSync('../../../etc/letsencrypt/live/tseh-game.ru/fullchain.pem')
-     },
-     headers: {
-         'Content-Security-Policy': `script-src 'self' https://telegram.org;`
-     },
+    //  https: {
+    //      key: fs.readFileSync('../../../etc/letsencrypt/live/tseh-game.ru/privkey.pem'),
+    //      cert: fs.readFileSync('../../../etc/letsencrypt/live/tseh-game.ru/fullchain.pem')
+    //  },
+    //  headers: {
+    //      'Content-Security-Policy': `script-src 'self' https://telegram.org;`
+    //  },
      port: 443, // Your desired port
      host: '0.0.0.0', // Optional: Allow external access
      proxy: {
        '/api': 'http://localhost:3000/',
-       '/cafe': {
-          target: 'http://localhost:5500',
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/cafe/, '/'),
-        },
-        '/assets': 'http://localhost:5500/',
-        '/order': 'http://localhost:5500/',
+      //  '/cafe': {
+      //     target: 'http://localhost:5500',
+      //     changeOrigin: true,
+      //     rewrite: (path) => path.replace(/^\/cafe/, '/'),
+      //   },
+      //   '/assets': 'http://localhost:5500/',
+      //   '/order': 'http://localhost:5500/',
      //   '/api': {
      //     target: 'http://localhost:3000/', // 0.0.0.0 for real server?
      //     changeOrigin: true,

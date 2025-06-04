@@ -103,9 +103,30 @@ function post(url, data) {
                 resolve(data);
             };
             xhr.send(JSON.stringify({
-                user: { tgId: 0, hash: 0 },
+                user: {
+                    tgId: window.Telegram.WebApp.initDataUnsafe?.user?.id ?? 0,
+                    hash: window.Telegram.WebApp.initDataUnsafe?.hash ?? 0
+                },
                 data,
             }))
+        } catch (error) {
+            reject(`Error: ${error}`);
+        }
+    });
+}
+
+function getUser(userData) {
+        return new Promise((resolve, reject) => {
+        try {
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', `/api/get-user`);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onload = () => {
+                // console.log(xhr.responseText)
+                const data = JSON.parse(xhr.responseText);
+                resolve(data);
+            };
+            xhr.send(JSON.stringify(userData))
         } catch (error) {
             reject(`Error: ${error}`);
         }

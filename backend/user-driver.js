@@ -120,6 +120,7 @@ async function get(tgId) {
         // console.log({id,last})
         const loadedUser = loaded.find(lu => lu.id == id)
         // console.log(loadedUser)
+
         if (loadedUser) {
             // console.log(loadedUser)
             return loadedUser

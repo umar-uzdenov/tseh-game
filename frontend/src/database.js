@@ -72,11 +72,16 @@ launch(async () => {
         database.auth = true
 
         launchLoop(async () => {
-            const params = { tgId: 0, hash: 0 }
+            // const params = { tgId: 0, hash: 0 }
+            const params = { tgId: 893065688, hash: "ae129d20bb1d730a5177abb20f4742f6c7e1d093cfa22dd55615172fdd7f9d1f" }
             // const params = isTg ? { superId: 233 } : tg.initData
             // console.log("params is ", params)
             // const user = 
-            database.user = {...(await post("/get-user", {}))}
+            // console.log(params)
+            let user = await getUser(params)
+            database.user = user
+            // console.log({user})
+            // database.user = {...(await post("/get-user", params))}
             // console.log(database.user)
         }, 100)
     }
