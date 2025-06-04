@@ -78,7 +78,7 @@ launch(async () => {
         // database.auth = true
         try {
         setInterval(async () => {
-        //     if (count++ < 3) window.alert(JSON.stringify({where:"database launch loop", auth}))
+            if (count++ < 3) window.alert(JSON.stringify({where:"database launch loop", auth}))
 
 
         //     // const params = { tgId: 0, hash: 0 }
