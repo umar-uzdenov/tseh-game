@@ -294,6 +294,7 @@ app.post('/api/auth', async (req, res) => {
   
     // Example: Use cookies or JWT
     //   res.cookie('userId', user.id, { httpOnly: true });
+    // console.log('Authentication successful');
     console.log('Authentication successful');
     res.json({ success: true });
 });
