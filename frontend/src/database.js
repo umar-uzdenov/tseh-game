@@ -55,11 +55,11 @@ launch(async () => {
     // if (count++ < 3) window.alert(JSON.stringify({where:"database launch"}))
 
     // const isTg = tg.initData != ''
-    // const auth = await authTg({
-    //     hash: window.Telegram.WebApp.initDataUnsafe.hash,
-    //     user: window.Telegram.WebApp.initDataUnsafe.user,
-    // })
-    const auth = await authTg(window.Telegram.WebApp.initDataUnsafe)
+    const auth = await authTg({
+        hash: window.Telegram.WebApp.initDataUnsafe.hash,
+        initData: window.Telegram.WebApp.initData,
+    })
+    // const auth = await authTg(window.Telegram.WebApp.initDataUnsafe)
     // const auth = await authTg({
     //     id: 1,
     //     hash: "ae129d20bb1d730a5177abb20f4742f6c7e1d093cfa22dd55615172fdd7f9d1f",
