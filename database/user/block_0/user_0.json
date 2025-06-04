@@ -16,7 +16,7 @@
     "lastProcess": 1747173207384,
     "lastMachineId": 6,
     "lastModelId": 9,
-    "lastItemId": 136,
+    "lastItemId": 138,
     "balance": 4152700,
     "totalEarned": 75270,
     "machinesByed": 1,
@@ -179,10 +179,10 @@
             "name": "Arashi",
             "img": "arashi.jpg",
             "distinctName": "№2",
-            "currentModelId": -1,
-            "currentItemId": -1,
+            "currentModelId": 4,
+            "currentItemId": 138,
             "start": 1745311108875,
-            "lastProcess": 1747938400866
+            "lastProcess": 1749017148441
         },
         {
             "id": 2,
@@ -231,5 +231,32 @@
             "lastProcess": 1747942346353
         }
     ],
-    "items": []
+    "items": [
+        {
+            "id": 137,
+            "price": 300,
+            "name": "Тёплый шарф",
+            "img": "scarf",
+            "imgId": 4,
+            "quantity": 23,
+            "quantityLeft": 0,
+            "quantityProduced": 1,
+            "quantitySold": 0,
+            "time": 1,
+            "timeLeft": 1
+        },
+        {
+            "id": 138,
+            "price": 300,
+            "name": "Тёплый шарф",
+            "img": "scarf",
+            "imgId": 4,
+            "quantity": 33,
+            "quantityLeft": 12,
+            "quantityProduced": 21,
+            "quantitySold": 0,
+            "time": 1,
+            "timeLeft": 0
+        }
+    ]
 }

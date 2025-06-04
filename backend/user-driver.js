@@ -25,15 +25,18 @@ const blockSize = 100
 const loaded = []
 
 setTimeout(async () => {
-    console.log("setting timeout for loop")
+    // console.log("setting timeout for loop")
     let counterToWrite = 0
     while (true) {
-        console.log("before sleep")
+        // console.log("before sleep")
         await new Promise(resolve => setTimeout(resolve, 300))
         // await sleep(300) // game loop
-        console.log("after sleep")
+        // console.log("after sleep")
         await writeData(userMain, "user.json")
-        console.log("after writing user json")
+        // console.log("after writing user json")
+        if (counterToWrite % 10 == 0) {
+            console.log({counterToWrite})
+        }
         
         let toUnload = []
         for (let i = 0; i < userMain.tgToId.length; i++) {
