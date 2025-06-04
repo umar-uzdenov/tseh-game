@@ -209,17 +209,17 @@ app.post('/api/auth', async (req, res) => {
 
     // return res.status(401).json({ error: 'Invalid hash' });
     const searchParams = new URLSearchParams( req.body.initData )
-    console.log({searchParams})
+    // console.log({searchParams})
     const hash = searchParams.get('hash')
     const searchObject = Object.fromEntries(searchParams)
-    console.log({searchObject})
+    // console.log({searchObject})
 
     const dataCheckString = Object.entries(req.body)
         .filter(([key]) => key !== 'hash')
         .sort() // ([a], [b]) => a.localeCompare(b))
         .map(([key, val]) => `${key}=${val}`)
         .join('\n');
-    console.log(`Data check string: ${dataCheckString}`);
+    // console.log(`Data check string: ${dataCheckString}`);
 
     // return res.status(401).json({ error: 'Invalid hash' });
 
@@ -246,7 +246,7 @@ app.post('/api/auth', async (req, res) => {
     // Extract user data
     // console.log(req.body.user)
     // return res.json({error:true})
-    const user = Object.fromEntries(new URLSearchParams( searchParams.get('user') ))
+    const user = JSON.parse(searchParams.get('user'))
     // const user = req.body.user
     // console.log(`User data: ${user}`);
 
