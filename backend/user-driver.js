@@ -28,8 +28,11 @@ setTimeout(async () => {
     console.log("setting timeout for loop")
     let counterToWrite = 0
     while (true) {
+        console.log("before sleep")
         await sleep(300) // game loop
+        console.log("after sleep")
         await writeData(userMain, "user.json")
+        console.log("after writing user json")
         
         let toUnload = []
         for (let i = 0; i < userMain.tgToId.length; i++) {
