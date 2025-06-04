@@ -73,6 +73,8 @@ launch(async () => {
     if (count++ < 3) window.alert(JSON.stringify({where:"database launch", auth}))
 
     if (auth.success) {
+        if (count++ < 3) window.alert(JSON.stringify({where:"database auth success", auth}))
+
         database.auth = true
 
         launchLoop(async () => {
