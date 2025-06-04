@@ -208,9 +208,9 @@ app.post('/api/auth', async (req, res) => {
     // console.log(Object.entries(req.body))
 
     // return res.status(401).json({ error: 'Invalid hash' });
-    Object.fromEntries(new URLSearchParams( req.body.initData ))
+    
 
-    const dataCheckString = Object.entries(req.body)
+    const dataCheckString = Object.fromEntries(new URLSearchParams( req.body.initData )) // Object.entries(req.body)
         .filter(([key]) => key !== 'hash')
         .sort(([a], [b]) => a.localeCompare(b))
         .map(([key, val]) => `${key}=${val}`)
