@@ -29,7 +29,8 @@ setTimeout(async () => {
     let counterToWrite = 0
     while (true) {
         console.log("before sleep")
-        await sleep(300) // game loop
+        await new Promise(resolve => setTimeout(resolve, 300))
+        // await sleep(300) // game loop
         console.log("after sleep")
         await writeData(userMain, "user.json")
         console.log("after writing user json")
