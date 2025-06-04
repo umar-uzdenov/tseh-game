@@ -52,7 +52,7 @@ window.database = reactive({
 let databaseCount = 0
 
 launch(async () => {
-    if (count++ < 3) window.alert(JSON.stringify({where:"database launch"}))
+    // if (count++ < 3) window.alert(JSON.stringify({where:"database launch"}))
 
     // const isTg = tg.initData != ''
     // const auth = await authTg(isTg ? tg.initData : { superId: 233 })
@@ -70,7 +70,7 @@ launch(async () => {
             "photo_url": "https://t.me/i/userpic/320/MAJoSgg3bCNEMRN4cd_U2B_xhvOXRlyg5rTLsJ0HWFk.svg"
         }
     })
-    if (count++ < 3) window.alert(JSON.stringify({where:"database launch", auth}))
+    // if (count++ < 3) window.alert(JSON.stringify({where:"database launch", auth}))
 
     if (auth.success) {
         if (count++ < 3) window.alert(JSON.stringify({where:"database auth success", auth}))
