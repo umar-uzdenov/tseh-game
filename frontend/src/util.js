@@ -104,10 +104,8 @@ function post(url, data) {
                 resolve(data);
             };
             xhr.send(JSON.stringify({
-                user: {
-                    tgId: window.Telegram.WebApp.initDataUnsafe?.user?.id ?? 0,
-                    hash: window.Telegram.WebApp.initDataUnsafe?.hash ?? 0
-                },
+                tgId: window.Telegram.WebApp.initDataUnsafe?.user?.id ?? 0,
+                hash: window.Telegram.WebApp.initDataUnsafe?.hash ?? 0,
                 data,
             }))
         } catch (error) {
