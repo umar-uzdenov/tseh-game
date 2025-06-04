@@ -247,6 +247,7 @@ app.post('/api/auth', async (req, res) => {
     // console.log(req.body.user)
     // return res.json({error:true})
     const user = JSON.parse(searchParams.get('user'))
+    console.log({user})
     // const user = req.body.user
     // console.log(`User data: ${user}`);
 
