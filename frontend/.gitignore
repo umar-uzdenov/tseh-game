@@ -37,3 +37,4 @@ vite.config.js
 database/*
 !database/.gitkeep
 !database/user/block_0/user_0.json
+!database/user.json
