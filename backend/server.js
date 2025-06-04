@@ -264,7 +264,7 @@ app.post('/api/auth', async (req, res) => {
     
         const now = new Date().getTime()
         // return res.json({ success: "success" })
-        const userList = database.user.getUserList()
+        // const userList = database.user.getUserList()
         // userList.lastId++
         await database.user.add({
             // "id": userList.lastId++,
@@ -287,8 +287,8 @@ app.post('/api/auth', async (req, res) => {
             "machines": [],
             "items": []
         })
-        const userFromDb = await database.user.get(tgId)
-        userList.tgToId.push({tg: tgId, id: userFromDb.id, last: new Date().getTime()})
+        // const userFromDb = await database.user.get(tgId)
+        // userList.tgToId.push({tg: tgId, id: userFromDb.id, last: new Date().getTime()})
         console.log(`User added to database: ${userFromDb.id}`);
     }
   
