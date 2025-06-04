@@ -288,7 +288,7 @@ app.post('/api/auth', async (req, res) => {
             "items": []
         })
         const userFromDb = await database.user.get(tgId)
-        userList.push({tg: tgId, id: userFromDb.id, last: new Date().getTime()})
+        userList.tgToId.push({tg: tgId, id: userFromDb.id, last: new Date().getTime()})
         console.log(`User added to database: ${userFromDb.id}`);
     }
   
