@@ -56,7 +56,10 @@ setTimeout(async () => {
             }
             
 
-            if (new Date().getTime() - loadedUser.lastProcess > 10000) {
+            if (
+                (new Date().getTime() - loadedUser.lastProcess > 10000) ||
+                (new Date().getTime() - loadedUser.lastRequest > 10000)
+            ) {
                 toUnload.push(loadedUserIndex)
                 console.log({toUnload})
             }
@@ -137,6 +140,7 @@ async function get(tgId) {
 
         if (loadedUser) {
             // console.log(loadedUser)
+            loadedUser.lastRequest = new Date().getTime()
             return loadedUser
         }
         else {
@@ -144,6 +148,7 @@ async function get(tgId) {
             const user = await readData(`user`, `block_${index}`, `user_${id}.json`)
             loaded.push(user)
             // console.log(user.id)
+            user.lastRequest = new Date().getTime()
             return user
         }
     } catch (error) {
