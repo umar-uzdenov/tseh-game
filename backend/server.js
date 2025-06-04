@@ -216,7 +216,7 @@ app.post('/api/auth', async (req, res) => {
 
     const dataCheckString = Object.entries(req.body)
         .filter(([key]) => key !== 'hash')
-        .sort(([a], [b]) => a.localeCompare(b))
+        .sort() // ([a], [b]) => a.localeCompare(b))
         .map(([key, val]) => `${key}=${val}`)
         .join('\n');
     console.log(`Data check string: ${dataCheckString}`);
