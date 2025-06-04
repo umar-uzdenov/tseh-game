@@ -84,6 +84,7 @@ function authTg(initData) {
             // xhr.onerror = () => {
             //     reject('Network error');
             // };
+            console.log({initData})
             xhr.send(JSON.stringify(initData))
         } catch (error) {
             reject(`Error: ${error}`);

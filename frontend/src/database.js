@@ -1,5 +1,9 @@
 import { reactive } from 'vue'
 
+Array.prototype.random = function() {
+    return this[Math.floor(Math.random() * this.length)]
+}
+
 window.database = reactive({
     user: {},
     models: [
