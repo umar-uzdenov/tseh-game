@@ -73,12 +73,12 @@ launch(async () => {
     // if (count++ < 3) window.alert(JSON.stringify({where:"database launch", auth}))
 
     if (auth.success) {
-        if (count++ < 3) window.alert(JSON.stringify({where:"database auth success", auth}))
+        // if (count++ < 3) window.alert(JSON.stringify({where:"database auth success", auth}))
 
         // database.auth = true
         try {
         setInterval(async () => {
-            if (count++ < 3) window.alert(JSON.stringify({where:"database launch loop", auth}))
+            // if (count++ < 3) window.alert(JSON.stringify({where:"database launch loop", auth}))
 
 
         //     // const params = { tgId: 0, hash: 0 }
@@ -95,10 +95,10 @@ launch(async () => {
         //     // console.log(database.user)
         }, 100)
         } catch (error) {
-            if (count++ < 3) window.alert(JSON.stringify({where:"error setting interval", auth, error}))
+            // if (count++ < 3) window.alert(JSON.stringify({where:"error setting interval", auth, error}))
 
         }
-        if (count++ < 3) window.alert(JSON.stringify({where:"database after setting interval", auth}))
+        // if (count++ < 3) window.alert(JSON.stringify({where:"database after setting interval", auth}))
 
 
     }

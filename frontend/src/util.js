@@ -126,11 +126,11 @@ function getUser() {
                 const data = JSON.parse(xhr.responseText);
                 resolve(data);
             };
-            let data = {
-                tgId: window.Telegram.WebApp.initDataUnsafe?.user?.id ?? 0,
-                hash: window.Telegram.WebApp.initDataUnsafe?.hash ?? 0
-            }
-            if (count++ < 5) window.alert({where: "util get user", data})
+            // let data = {
+            //     tgId: window.Telegram.WebApp.initDataUnsafe?.user?.id ?? 0,
+            //     hash: window.Telegram.WebApp.initDataUnsafe?.hash ?? 0
+            // }
+            // if (count++ < 5) window.alert({where: "util get user", data})
             xhr.send(JSON.stringify({
                 tgId: window.Telegram.WebApp.initDataUnsafe?.user?.id ?? 0,
                 hash: window.Telegram.WebApp.initDataUnsafe?.hash ?? 0
