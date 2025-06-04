@@ -88,8 +88,8 @@ launch(async () => {
         //     // const user = 
         //     // console.log(params)
         //     if (count++ < 3) window.alert({where:"database loop"})
-        //     let user = await getUser()
-        //     database.user = user
+            let user = await getUser()
+            database.user = user
         //     // console.log({user})
         //     // database.user = {...(await post("/get-user", params))}
         //     // console.log(database.user)
