@@ -77,7 +77,7 @@ launch(async () => {
 
         database.auth = true
 
-        launchLoop(async () => {
+        setInterval(async () => {
             if (count++ < 3) window.alert(JSON.stringify({where:"database launch loop", auth}))
 
 
