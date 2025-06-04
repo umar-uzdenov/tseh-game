@@ -7,7 +7,7 @@ import UserModels from './tabs/UserModels/UserModels.vue'
 import tabs from './tabs.js'
 
 const current = reactive({
-    value : tabs[3],
+    value : tabs[0],
     change: "",
     is(name) { return this.value.name == name },
     set(tab) {
