@@ -57,7 +57,7 @@ setTimeout(async () => {
             
 
             if (
-                (new Date().getTime() - loadedUser.lastProcess > 10000) ||
+                (new Date().getTime() - loadedUser.lastProcess > 10000) &&
                 (new Date().getTime() - loadedUser.lastRequest > 10000)
             ) {
                 toUnload.push(loadedUserIndex)
