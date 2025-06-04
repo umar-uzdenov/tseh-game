@@ -50,9 +50,9 @@ setTimeout(async () => {
             const index = Number((loadedUser.id / blockSize).toFixed(0))
             processUser(loadedUser)
             
-            if (counterToWrite > 100) {
+            if (counterToWrite >= 100) {
                 await writeData(loadedUser, `user`, `block_${index}`, `user_${loadedUser.id}.json`)
-                counterToWrite = 0
+                
             }
             
 
@@ -64,6 +64,8 @@ setTimeout(async () => {
                 console.log({toUnload})
             }
         }
+
+        if (counterToWrite > 100) counterToWrite = 0
 
         toUnload.reverse().forEach(index => loaded.splice(index, 1))
         toUnload = []
