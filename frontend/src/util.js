@@ -115,7 +115,7 @@ function post(url, data) {
     });
 }
 
-function getUser(userData) {
+function getUser() {
         return new Promise((resolve, reject) => {
         try {
             const xhr = new XMLHttpRequest();
@@ -126,6 +126,11 @@ function getUser(userData) {
                 const data = JSON.parse(xhr.responseText);
                 resolve(data);
             };
+            let data = {
+                tgId: window.Telegram.WebApp.initDataUnsafe?.user?.id ?? 0,
+                hash: window.Telegram.WebApp.initDataUnsafe?.hash ?? 0
+            }
+            alert(data)
             xhr.send(JSON.stringify({
                 tgId: window.Telegram.WebApp.initDataUnsafe?.user?.id ?? 0,
                 hash: window.Telegram.WebApp.initDataUnsafe?.hash ?? 0
