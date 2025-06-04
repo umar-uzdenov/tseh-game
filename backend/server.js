@@ -193,7 +193,7 @@ app.post('/api/auth', async (req, res) => {
     // }
     // console.log(`Parsed params: ${params}`);
 
-    console.log({where: "auth", data: req.body})
+    // console.log({where: "auth", data: req.body})
 
     const hash = req.body['hash']
     // const authDate = parseInt(req.body['auth_date']) * 1000; // Convert to ms
@@ -230,7 +230,7 @@ app.post('/api/auth', async (req, res) => {
         .update(dataCheckString)
         .digest('hex');
 
-    // console.log({computedHash, hash})
+    console.log({computedHash, hash})
 
     if (computedHash !== hash) {
         console.error('Invalid hash');

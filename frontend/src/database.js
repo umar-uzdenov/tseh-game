@@ -55,6 +55,10 @@ launch(async () => {
     // if (count++ < 3) window.alert(JSON.stringify({where:"database launch"}))
 
     // const isTg = tg.initData != ''
+    // const auth = await authTg({
+    //     hash: window.Telegram.WebApp.initDataUnsafe.hash,
+    //     user: window.Telegram.WebApp.initDataUnsafe.user,
+    // })
     const auth = await authTg(window.Telegram.WebApp.initDataUnsafe)
     // const auth = await authTg({
     //     id: 1,
