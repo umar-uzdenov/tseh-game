@@ -76,7 +76,7 @@ launch(async () => {
         if (count++ < 3) window.alert(JSON.stringify({where:"database auth success", auth}))
 
         // database.auth = true
-
+        try {
         setInterval(async () => {
             if (count++ < 3) window.alert(JSON.stringify({where:"database launch loop", auth}))
 
@@ -94,8 +94,11 @@ launch(async () => {
             // database.user = {...(await post("/get-user", params))}
             // console.log(database.user)
         }, 100)
+        } catch (error) {
+            if (count++ < 3) window.alert(JSON.stringify({where:"database after setting interval", auth, error}))
 
-        if (count++ < 3) window.alert(JSON.stringify({where:"database after setting interval", auth}))
+        }
+
 
     }
 
