@@ -25,6 +25,7 @@ const blockSize = 100
 const loaded = []
 
 setTimeout(async () => {
+    console.log("setting timeout for loop")
     let counterToWrite = 0
     while (true) {
         await sleep(300) // game loop
