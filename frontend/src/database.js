@@ -49,9 +49,11 @@ window.database = reactive({
     })(),
 })
 
-
+let databaseCount = 0
 
 launch(async () => {
+    if (count++ < 3) window.alert({where:"database launch"})
+
     // const isTg = tg.initData != ''
     // const auth = await authTg(isTg ? tg.initData : { superId: 233 })
     const auth = await authTg({
@@ -78,6 +80,7 @@ launch(async () => {
             // console.log("params is ", params)
             // const user = 
             // console.log(params)
+            if (count++ < 3) window.alert({where:"database loop"})
             let user = await getUser()
             database.user = user
             // console.log({user})
