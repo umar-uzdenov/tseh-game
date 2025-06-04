@@ -225,7 +225,7 @@ app.post('/api/auth', async (req, res) => {
 
     // Compute secret key from bot token
     const secret = crypto.createHmac('sha256', 'WebAppData')
-        .update(process.env.TELEGRAM_BOT_TOKEN)
+        .update(+process.env.TELEGRAM_BOT_TOKEN)
         .digest();
     
     //   console.log(process.env.TELEGRAM_BOT_TOKEN)
