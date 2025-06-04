@@ -68,6 +68,7 @@ setTimeout(async () => {
 }, 0)
 
 function processUser(user) {
+    console.log({user})
     // console.log(user.machines.length)
     // user.lastProcess = new Date().getTime()
     if (now() - user.lastProcess > 1000) {
