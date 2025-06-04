@@ -214,7 +214,7 @@ app.post('/api/auth', async (req, res) => {
         .sort(([a], [b]) => a.localeCompare(b))
         .map(([key, val]) => `${key}=${val}`)
         .join('\n');
-    // console.log(`Data check string: ${dataCheckString}`);
+    console.log(`Data check string: ${dataCheckString}`);
 
     // return res.status(401).json({ error: 'Invalid hash' });
 
@@ -226,7 +226,7 @@ app.post('/api/auth', async (req, res) => {
     //   console.log(process.env.TELEGRAM_BOT_TOKEN)
     // Validate hash
     const computedHash = crypto
-        .createHmac('sha256')
+        .createHmac('sha256', secret)
         .update(dataCheckString)
         .digest('hex');
 
