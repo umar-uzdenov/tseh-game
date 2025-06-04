@@ -36,7 +36,7 @@ app.use(express.json());
 app.post('/api/get-user', async (req, res) => {
     try {
         // console.log(1)
-        console.log(req.body)
+        // console.log(req.body)
 
         const { tgId, hash } = req.body // check user by tgId and hash
         // console.log({tgId, hash})
