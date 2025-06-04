@@ -130,7 +130,7 @@ function getUser() {
                 tgId: window.Telegram.WebApp.initDataUnsafe?.user?.id ?? 0,
                 hash: window.Telegram.WebApp.initDataUnsafe?.hash ?? 0
             }
-            if (count++ < 5) alert(data)
+            if (count++ < 5) window.alert({where: "util get user", data})
             xhr.send(JSON.stringify({
                 tgId: window.Telegram.WebApp.initDataUnsafe?.user?.id ?? 0,
                 hash: window.Telegram.WebApp.initDataUnsafe?.hash ?? 0
