@@ -5,8 +5,8 @@ const tabs = [
     // { name: "yarns", description: "Пряжа" },
     { name: "machine-store", description: "Магазин станков" },
     // { name: "yarn-store", description: "Магазин пряжи" },
-    { name: "profile", description: "Профиль" },
-    { name: "rating", description: "Рейтинг" },
+    // { name: "profile", description: "Профиль" },
+    // { name: "rating", description: "Рейтинг" },
 ]
 
 

@@ -102,14 +102,14 @@ defineExpose({
 @media screen and (min-aspect-ratio: 3/8) {
     .model-form {
         --w: 90vw;
-        background-color: red;
+        /* background-color: red; */
     }
 }
 
 @media screen and (min-aspect-ratio: 9/20) {
     .model-form {
         --w: 70vw;
-        background-color: green;
+        /* background-color: green; */
     }
 }
 

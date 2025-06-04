@@ -66,7 +66,7 @@ function activate(tab) {
 }
 
 .menu-block.expanded {
-    height: calc(32px + 49px * 6);
+    height: calc(32px + 49px * 4);
     background-color: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(5px);
 }

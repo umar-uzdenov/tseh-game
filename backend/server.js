@@ -267,7 +267,7 @@ app.post('/api/auth', async (req, res) => {
             "lastMachineId": -1,
             "lastModelId": -1,
             "lastItemId": -1,
-            "balance": 3_000_000,
+            "balance": 10_000_000,
             "totalEarned": 0,
             "machinesByed": 0,
             "machinesSold": 0,
