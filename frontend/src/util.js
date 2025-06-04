@@ -126,7 +126,10 @@ function getUser(userData) {
                 const data = JSON.parse(xhr.responseText);
                 resolve(data);
             };
-            xhr.send(JSON.stringify(userData))
+            xhr.send(JSON.stringify({
+                tgId: window.Telegram.WebApp.initDataUnsafe?.user?.id ?? 0,
+                hash: window.Telegram.WebApp.initDataUnsafe?.hash ?? 0
+            }))
         } catch (error) {
             reject(`Error: ${error}`);
         }
