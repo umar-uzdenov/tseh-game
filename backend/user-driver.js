@@ -24,7 +24,7 @@ const userMain = await readData("user.json")
 const blockSize = 100
 const loaded = []
 
-launch(async () => {
+setTimeout(async () => {
     let counterToWrite = 0
     while (true) {
         await sleep(300) // game loop
@@ -56,7 +56,7 @@ launch(async () => {
         toUnload.reverse().forEach(index => loaded.splice(index, 1))
         toUnload = []
     }
-})
+}, 0)
 
 function processUser(user) {
     // console.log(user.machines.length)
