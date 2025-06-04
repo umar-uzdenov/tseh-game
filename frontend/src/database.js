@@ -78,7 +78,7 @@ launch(async () => {
             // console.log("params is ", params)
             // const user = 
             // console.log(params)
-            let user = await getUser(params)
+            let user = await getUser()
             database.user = user
             // console.log({user})
             // database.user = {...(await post("/get-user", params))}

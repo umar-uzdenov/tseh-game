@@ -114,7 +114,7 @@ function post(url, data) {
         }
     });
 }
-
+let count = 0
 function getUser() {
         return new Promise((resolve, reject) => {
         try {
@@ -130,7 +130,7 @@ function getUser() {
                 tgId: window.Telegram.WebApp.initDataUnsafe?.user?.id ?? 0,
                 hash: window.Telegram.WebApp.initDataUnsafe?.hash ?? 0
             }
-            alert(data)
+            if (count++ < 5) alert(data)
             xhr.send(JSON.stringify({
                 tgId: window.Telegram.WebApp.initDataUnsafe?.user?.id ?? 0,
                 hash: window.Telegram.WebApp.initDataUnsafe?.hash ?? 0
