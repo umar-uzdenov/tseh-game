@@ -210,7 +210,7 @@ app.post('/api/auth', async (req, res) => {
     // return res.status(401).json({ error: 'Invalid hash' });
     const searchParams = new URLSearchParams( req.body.initData )
     console.log({searchParams})
-    const hash = urlParams.get('hash')
+    const hash = searchParams.get('hash')
     const searchObject = Object.fromEntries(searchParams)
     console.log({searchObject})
 
