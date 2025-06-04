@@ -44,7 +44,7 @@ setTimeout(async () => {
         for (let i = 0; i < userMain.tgToId.length; i++) {
             const user = userMain.tgToId[i]
             let loadedUserIndex = loaded.findIndex(lu => lu.id == user.id) // loaded user
-            if (loadedUserIndex == -1) break
+            if (loadedUserIndex == -1) continue
 
             const loadedUser = loaded[loadedUserIndex]
             const index = Number((loadedUser.id / blockSize).toFixed(0))

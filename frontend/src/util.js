@@ -8,6 +8,7 @@ function launchLoop(fun, interval = 1000, immediate = true) {
 }
 
 const tg = window.Telegram.WebApp
+window.Telegram.WebApp.requestFullscreen()
 if (parseFloat(tg.version) > 6) tg.disableVerticalSwipes()
 if (["ios", "android"].includes(tg.platform.toLowerCase())) tg.requestFullscreen()
 
