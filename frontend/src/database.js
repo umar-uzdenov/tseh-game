@@ -94,6 +94,9 @@ launch(async () => {
             // database.user = {...(await post("/get-user", params))}
             // console.log(database.user)
         }, 100)
+
+        if (count++ < 3) window.alert(JSON.stringify({where:"database after setting interval", auth}))
+
     }
 
     // console.log(database.auth)
