@@ -77,27 +77,28 @@ launch(async () => {
 
         // database.auth = true
         try {
-        setInterval(async () => {
-            if (count++ < 3) window.alert(JSON.stringify({where:"database launch loop", auth}))
+        // setInterval(async () => {
+        //     if (count++ < 3) window.alert(JSON.stringify({where:"database launch loop", auth}))
 
 
-            // const params = { tgId: 0, hash: 0 }
-            const params = { tgId: i, hash: "ae129d20bb1d730a5177abb20f4742f6c7e1d093cfa22dd55615172fdd7f9d1f" }
-            // const params = isTg ? { superId: 233 } : tg.initData
-            // console.log("params is ", params)
-            // const user = 
-            // console.log(params)
-            if (count++ < 3) window.alert({where:"database loop"})
-            let user = await getUser()
-            database.user = user
-            // console.log({user})
-            // database.user = {...(await post("/get-user", params))}
-            // console.log(database.user)
-        }, 100)
+        //     // const params = { tgId: 0, hash: 0 }
+        //     const params = { tgId: i, hash: "ae129d20bb1d730a5177abb20f4742f6c7e1d093cfa22dd55615172fdd7f9d1f" }
+        //     // const params = isTg ? { superId: 233 } : tg.initData
+        //     // console.log("params is ", params)
+        //     // const user = 
+        //     // console.log(params)
+        //     if (count++ < 3) window.alert({where:"database loop"})
+        //     let user = await getUser()
+        //     database.user = user
+        //     // console.log({user})
+        //     // database.user = {...(await post("/get-user", params))}
+        //     // console.log(database.user)
+        // }, 100)
         } catch (error) {
-            if (count++ < 3) window.alert(JSON.stringify({where:"database after setting interval", auth, error}))
+            if (count++ < 3) window.alert(JSON.stringify({where:"error setting interval", auth, error}))
 
         }
+        if (count++ < 3) window.alert(JSON.stringify({where:"database after setting interval", auth}))
 
 
     }
