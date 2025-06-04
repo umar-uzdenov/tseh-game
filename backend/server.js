@@ -289,7 +289,7 @@ app.post('/api/auth', async (req, res) => {
         })
         // const userFromDb = await database.user.get(tgId)
         // userList.tgToId.push({tg: tgId, id: userFromDb.id, last: new Date().getTime()})
-        console.log(`User added to database: ${userFromDb.id}`);
+        console.log(`User added to database: ${user.id}`);
     }
   
     // Example: Use cookies or JWT
