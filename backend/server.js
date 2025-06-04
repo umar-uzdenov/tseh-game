@@ -195,7 +195,7 @@ app.post('/api/auth', async (req, res) => {
 
     // console.log({where: "auth", data: req.body})
 
-    const hash = req.body['hash']
+    // const hash = req.body['hash']
     // const authDate = parseInt(req.body['auth_date']) * 1000; // Convert to ms
 
     // Basic checks
@@ -210,6 +210,7 @@ app.post('/api/auth', async (req, res) => {
     // return res.status(401).json({ error: 'Invalid hash' });
     const searchParams = new URLSearchParams( req.body.initData )
     console.log({searchParams})
+    const hash = urlParams.get('hash')
     const searchObject = Object.fromEntries(searchParams)
     console.log({searchObject})
 
