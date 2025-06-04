@@ -56,7 +56,7 @@ setTimeout(async () => {
             }
             
 
-            if (new Date().getTime() - user.last > 10000) {
+            if (new Date().getTime() - loadedUser.lastProcess > 10000) {
                 toUnload.push(loadedUserIndex)
                 console.log({toUnload})
             }
@@ -72,11 +72,13 @@ function processUser(user) {
     // console.log(user.machines.length)
     // user.lastProcess = new Date().getTime()
     if (now() - user.lastProcess > 1000) {
-        user.lastProcess = new Date().getTime()
+        // user.lastProcess = new Date().getTime()
         for (const machine of user.machines) {
             // continue
         // user.machines.forEach(machine => {
             if (machine.currentItemId == -1) continue
+            user.lastProcess = new Date().getTime()
+
 
             const currentModel = user.models.find(model => model.id == machine.currentModelId)
             const currentItem = user.items.find(item => item.id == machine.currentItemId)
@@ -111,6 +113,7 @@ function processUser(user) {
                     machine.currentModelId = -1
                 }
                 machine.lastProcess += 1000
+
             }
         }
     }
