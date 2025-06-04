@@ -34,6 +34,8 @@ setTimeout(async () => {
         // console.log("after sleep")
         await writeData(userMain, "user.json")
         // console.log("after writing user json")
+        counterToWrite++
+
         if (counterToWrite % 10 == 0) {
             console.log({counterToWrite})
         }
@@ -48,7 +50,6 @@ setTimeout(async () => {
             const index = Number((loadedUser.id / blockSize).toFixed(0))
             processUser(loadedUser)
             
-            counterToWrite++
             if (counterToWrite > 100) {
                 await writeData(loadedUser, `user`, `block_${index}`, `user_${loadedUser.id}.json`)
                 counterToWrite = 0
