@@ -71,6 +71,7 @@ function processUser(user) {
     // console.log(user.machines.length)
     // user.lastProcess = new Date().getTime()
     if (now() - user.lastProcess > 1000) {
+        user.lastProcess = new Date().getTime()
         for (const machine of user.machines) {
             // continue
         // user.machines.forEach(machine => {
