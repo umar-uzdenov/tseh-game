@@ -246,7 +246,8 @@ app.post('/api/auth', async (req, res) => {
     // Extract user data
     // console.log(req.body.user)
     // return res.json({error:true})
-    const user = req.body.user
+    const user = Object.fromEntries(new URLSearchParams( searchObject.get('user') ))
+    // const user = req.body.user
     // console.log(`User data: ${user}`);
 
     const tgId = user.id
