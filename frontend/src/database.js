@@ -38,15 +38,43 @@ window.database = reactive({
             { state: "used", transcription: "Б/У" },
         ]
 
-        const machines = [
-            1.5, 1.2, 1.8, 1.6, 1.4, 1.5, 2.2
-        ].map((price, id) => {
-            const machine = brands.random()
-            return {
-                id, price: price * 1000000,
-                name: machine.name, img: machine.img, state: states.random(),
-            }
-        })
+        const sturm = Array(3).fill(0)
+            .map(_=> speedInRange(0.9, 1.1))
+            .map((speed, id) => {
+                console.log({speed, id, price: Math.floor(Math.pow(speed / 0.8, 4) * 800) * 1000})
+                return {
+                    id: id, speed, price: Math.floor(Math.pow(speed / 0.8, 4) * 800) * 1000,
+                    name: "Sturm", img: "sturm", state: states.random(),
+                }
+            })
+        const arashi = Array(3).fill(0)
+            .map(_=> speedInRange(1.0, 1.2))
+            .map((speed, id) => {
+                return {
+                    id: id, speed, price: Math.floor(Math.pow(speed / 0.8, 4) * 800) * 1000,
+                    name: "Arashi", img: "arashi", state: states.random(),
+                }
+            })
+        const fengbao = Array(3).fill(0)
+            .map(_=> speedInRange(0.8, 1.0))
+            .map((speed, id) => {
+                return {
+                    id: id, speed, price: Math.floor(Math.pow(speed / 0.8, 4) * 800) * 1000,
+                    name: "Fengbao", img: "fengbao", state: states.random(),
+                }
+            })
+
+
+
+        const machines = [...sturm, ...arashi, ...fengbao]
+            .sort(_=> Math.random())
+            // .map((price, id) => {
+            //     const machine = brands.random()
+            //     return {
+            //         id, price: price * 1000000,
+            //         name: machine.name, img: machine.img, state: states.random(),
+            //     }
+            // })
     
         return machines
     })(),
@@ -114,3 +142,19 @@ launch(async () => {
     // console.log(database.auth)
 })
 // console.log(database.test)
+
+        
+function speedInRange(start, end) {
+	const size = Math.round((end - start) / 0.01) + 1 // (1.2 - 0.8) / 0.01 + 1 = 41
+    // console.log({start, end, size})
+	return +(Math.floor(Math.random() * size) * 0.01 + start).toFixed(2)
+}
+
+function numberCompare(first, second) {
+	if (first > second)
+		return 1
+	else if (second > first)
+		return -1
+	else
+		return 0
+}

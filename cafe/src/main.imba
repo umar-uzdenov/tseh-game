@@ -1,36 +1,41 @@
-import Order from './Order.imba'
 
-import './categories'
-import './items'
+import cafeVasabiDishList from './cafe-vasabi.imba'
+
+import './tabs'
+
+import './global-data'
+import './global-css'
+
+import './price'
+import './item'
+
+import './header-block'
+import './menu-bar'
+
+import './category-list'
+import './item-list'
 import './order-list'
+import './customer-data'
 import './submit-form'
-import './dishes.imba'
 
-let order = new Order()
-let currentCategory = 'hot_dishes'
 
-extend tag element
-	get order do order
-	get current do currentCategory
-	set current value do currentCategory = value
+import "./cafe"
 
 tag app
-	<self[d:vflex g:16px]>
-		<dishes>
-		# <categories>
-		# <div[d:vflex g:16px p:48px 8px]>
-		# 	<items>
-		# 	<order-list>
-		# 	<submit-form>
+	def build
+		headerText = "Категории"
+	<self[d:vtc g:16px c:white]>
+		<cafe route='/cafe-vasabi/' menu=cafeVasabiDishList>
+	# "lol"
+	# # <img [pos:fixed t:16px w:72px h:40px] src="/img/logo.png">
+	# <h1[pos:fixed t:64px c:emerald5]> "ᐯ 卂 丂 卂 乃 丨"
+	# <header-block>
+	# <category-list>
+	# <item-list>
+	# <order-view>
+	# <details-view>
+	# <menu-bar>
 
 imba.mount <app>
-
-global css
-	*  m:0 p:0 box-sizing:border-box
-	body ff:Arial,sans-serif bg:#f8f8f8
-	button
-		ol:none bd:none cursor:pointer bgc:transparent
-		user-select:none -webkit-user-select:none -moz-user-select:none -ms-user-select:none
-		-webkit-tap-highlight-color:transparent -webkit-touch-callout:none
-
-
+	
+	

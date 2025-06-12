@@ -4,30 +4,36 @@ import dotenv from 'dotenv'
 import TelegramBot from 'node-telegram-bot-api'
 
 dotenv.config()
+
 const TOKEN = process.env.TOKEN;
-const ADMIN_ID = parseInt(process.env.ADMIN_ID, 10);
+const ADMIN_ID = +process.env.ADMIN_ID
+const PORT = +process.env.PORT || 443
+const IP = +process.env.IP || "0.0.0.0"
+# console.log(process.env)
 
 const bot = new TelegramBot(TOKEN, { polling: true })
-def test
-	bot.sendMessage(ADMIN_ID, "Hello admin")
-# test!
+
 
 const app = express!
 app.use express.json!
 
-# const sub = express()
-# sub.use express.json!
-
-# app.use "/cafe", sub
 
 # @ts-ignore
-app.get '/', do(req, res)
-	res.send index.body
+app.get '/', do $2.send index.body # for main
 
 # @ts-ignore
-app.post '/order', do(req, res)
+# app.get '/cafe-vasabi', do $2.send index.body
+
+const cafeVasabi = express()
+app.use '/cafe-vasabi', cafeVasabi
+# @ts-ignore
+cafeVasabi.get '/', do $2.send index.body
+
+
+
+# @ts-ignore
+cafeVasabi.post '/order', do(req, res)
 	console.log(req.body)
-	res.json {success:"success"}
 	let items = req.body.items
 		.map(do "{$1.name}: {$1.price} ₽ x {$1.quantity} = {$1.price * $1.quantity} ₽")
 		.join("\n")
@@ -35,8 +41,11 @@ app.post '/order', do(req, res)
 	let tel = "Телефон: {req.body.tel}"
 	let address = req.body.address == "" ? "" : "Адрес доставки: {req.body.address}"
 	bot.sendMessage ADMIN_ID, "{items}\n---\n{total}\n\n{tel}\n{address}"
+	
+	res.json {success:"success"}
 
 
 # @ts-ignore
+# imba.serve app.listen(PORT, IP)
 imba.serve app.listen(5500, '0.0.0.0')
 # imba.serve app.listen(process.env.PORT or 5000, '0.0.0.0')

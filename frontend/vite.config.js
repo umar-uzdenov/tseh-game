@@ -46,18 +46,19 @@ import { fileURLToPath, URL } from 'node:url'
      host: '0.0.0.0', // Optional: Allow external access
      proxy: {
        '/api': 'http://localhost:3000/',
-      //  '/cafe': {
-      //     target: 'http://localhost:5500',
-      //     changeOrigin: true,
-      //     rewrite: (path) => path.replace(/^\/cafe/, '/'),
-      //   },
-      //   '/assets': 'http://localhost:5500/',
-      //   '/order': 'http://localhost:5500/',
-     //   '/api': {
-     //     target: 'http://localhost:3000/', // 0.0.0.0 for real server?
-     //     changeOrigin: true,
+       '/cafe': {
+          target: 'http://localhost:5500/cafe-vasabi/',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/cafe\/cafe-vasabi/, '/cafe-vasabi'),
+        },
+        '/assets': 'http://localhost:5500/',
+        '/order': 'http://localhost:5500/',
+       '/api': {
+         target: 'http://localhost:3000/', // 0.0.0.0 for real server?
+         changeOrigin: true,
        }
      }
+    }
    
  //   build: { // do not need
  //     target: 'esnext' // Required for Telegram Web Apps
