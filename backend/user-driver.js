@@ -105,20 +105,38 @@ function processUser(user) {
             }
 
             currentItem.quantityProduced = currentItem.quantity - currentItem.quantityLeft
-            while (now() - machine.lastProcess > 1000) {
-                if (currentItem.quantityLeft > 0) {
-                    if (currentItem.timeLeft > 0) {
-                        currentItem.timeLeft -= 1
-                    } else if (currentItem.timeLeft == 0) {
-                        currentItem.quantityLeft -= 1
-                        currentItem.timeLeft = currentModel.time
+            if (machine.speed) {
+                while (now() - machine.lastProcess > machine.tickSpeed) {
+                    if (currentItem.quantityLeft > 0) {
+                        if (currentItem.timeLeft > 0) {
+                            currentItem.timeLeft -= 1
+                        } else if (currentItem.timeLeft == 0) {
+                            currentItem.quantityLeft -= 1
+                            currentItem.timeLeft = currentModel.time
+                        }
+                    } else if (currentItem.quantityLeft == 0) {
+                        machine.currentItemId = -1
+                        machine.currentModelId = -1
                     }
-                } else if (currentItem.quantityLeft == 0) {
-                    machine.currentItemId = -1
-                    machine.currentModelId = -1
-                }
-                machine.lastProcess += 1000
+                    machine.lastProcess += machine.tickSpeed
 
+                }
+            } else {
+                while (now() - machine.lastProcess > 1000) {
+                    if (currentItem.quantityLeft > 0) {
+                        if (currentItem.timeLeft > 0) {
+                            currentItem.timeLeft -= 1
+                        } else if (currentItem.timeLeft == 0) {
+                            currentItem.quantityLeft -= 1
+                            currentItem.timeLeft = currentModel.time
+                        }
+                    } else if (currentItem.quantityLeft == 0) {
+                        machine.currentItemId = -1
+                        machine.currentModelId = -1
+                    }
+                    machine.lastProcess += 1000
+
+                }
             }
         }
     }

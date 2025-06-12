@@ -168,6 +168,8 @@ app.post('/api/buy-machine', async (req, res) => {
         id: user.lastMachineId,
         name: machine.name,
         img: machine.img + ".jpg",
+        speed: machine.speed,
+        tickSpeed: Math.floor(1000 / machine.speed),
         distinctName: "№" + (user.lastMachineId + 1),
         currentModelId: -1,
         currentItemId: -1,
