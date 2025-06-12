@@ -47,9 +47,9 @@ import { fileURLToPath, URL } from 'node:url'
      proxy: {
        '/api': 'http://localhost:3000/',
        '/cafe': {
-          target: 'http://localhost:5500/cafe-vasabi/',
+          target: 'http://localhost:5500',
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/cafe\/cafe-vasabi/, '/cafe-vasabi'),
+          rewrite: (path) => path.replace(/^\/cafe/, '/'),
         },
         '/assets': 'http://localhost:5500/',
         '/order': 'http://localhost:5500/',
