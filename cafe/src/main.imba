@@ -25,7 +25,7 @@ tag app
 	def build
 		headerText = "Категории"
 	<self[d:vtc g:16px c:white]>
-		<cafe route='/cafe-vasabi/' menu=cafeVasabiDishList>
+		<cafe menu=cafeVasabiDishList>
 	# "lol"
 	# # <img [pos:fixed t:16px w:72px h:40px] src="/img/logo.png">
 	# <h1[pos:fixed t:64px c:emerald5]> "ᐯ 卂 丂 卂 乃 丨"
